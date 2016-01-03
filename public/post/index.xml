@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Mike Hartington&#39;s blog</title>
+    <link>https://mhartington.io/post/</link>
+    <description>Recent content in Posts on Mike Hartington&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 03 Jan 2016 12:09:03 -0500</lastBuildDate>
+    <atom:link href="https://mhartington.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>A New Year</title>
+      <link>https://mhartington.io/post/a-new-year/</link>
+      <pubDate>Sun, 03 Jan 2016 12:09:03 -0500</pubDate>
+      
+      <guid>https://mhartington.io/post/a-new-year/</guid>
+      <description>
+
+&lt;p&gt;This isn&amp;rsquo;t as much as a year in review for 2015, but all the things I look forward to doing in 2016.&lt;/p&gt;
+
+&lt;h2 id=&#34;2015:b67d1d6d125631768b0b19907cac5760&#34;&gt;2015&lt;/h2&gt;
+
+&lt;p&gt;So 2015 was a big year for me. I gave so many talks and got to meet a whole bunch of other speakers. This was definitly a year where I felt like I grew the most as a speaker and developer. If you&amp;rsquo;re looking to become a better speaker or get into being a dev advocate, defintily checkout this talk by &lt;a href=&#34;https://twitter.com/r00k&#34;&gt;Ben Orenstein&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/l9JXH7JPjR4&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+
+&lt;p&gt;I also got to be on a bunch of podcasts, Adventurs In Angular, AngularAir, as well as the Web Platform Podcast. All of which were really fun and felt like a big growth for me personally.&lt;/p&gt;
+
+&lt;p&gt;Finally one of the coolest things to happen was being accepted into the Google Developer Experts program.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Go figure, I&amp;rsquo;m an expert&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s an amazing program, filled with other amazing developers and it&amp;rsquo;s quite an honour to be a part of.&lt;/p&gt;
+
+&lt;h2 id=&#34;2016:b67d1d6d125631768b0b19907cac5760&#34;&gt;2016&lt;/h2&gt;
+
+&lt;p&gt;Now while 2015 was great, 2016 is shaping up to be an even better year with big changes to my life.&lt;/p&gt;
+
+&lt;h4 id=&#34;i-m-moving:b67d1d6d125631768b0b19907cac5760&#34;&gt;I&amp;rsquo;m moving&lt;/h4&gt;
+
+&lt;p&gt;As much as I love Rhode Island, I am moving out west to the Bay Area. This is something that I thought would be pretty easy for me but is turning out to be really hard. Rhode Island has been the only home I&amp;rsquo;ve known so it&amp;rsquo;s hard for to leave, but it&amp;rsquo;s something I feel like I need to do. No apartment yet, but will be heading out soon to find one and eventually start my new life out there.&lt;/p&gt;
+
+&lt;h3 id=&#34;more-speaking:b67d1d6d125631768b0b19907cac5760&#34;&gt;More Speaking&lt;/h3&gt;
+
+&lt;p&gt;As busy as last year was with conferences, this year is already shaping up to be just as busy. I head out the California to go apartment hunting, then on my way back, I make a quick stop in Utah for Phonegap Day. There&amp;rsquo;s a whole bunch of conferences going on as well, plus some other GDE related events that I&amp;rsquo;ll be attending so life will be very busy, but I&amp;rsquo;ll love every bit of it.&lt;/p&gt;
+
+&lt;h3 id=&#34;more-open-source:b67d1d6d125631768b0b19907cac5760&#34;&gt;More Open Source&lt;/h3&gt;
+
+&lt;p&gt;While working for Ionic, I get to participate in open source every day. While that may seem to be enogh for some, I really want to step up my contribution to any open source project. Whether it&amp;rsquo;s helping out with issues, making PRs, or even helping fund the development, like I currently do for NeoVim. I just want to do more for this community&lt;/p&gt;
+
+&lt;h3 id=&#34;more-time-for-myself:b67d1d6d125631768b0b19907cac5760&#34;&gt;More Time for myself&lt;/h3&gt;
+
+&lt;p&gt;Open source if great and very rewarding&amp;hellip;. but very exhausting. Now this seem very contradictory to what I said before, but I want to spend more time away from my laptop. Since I&amp;rsquo;ll be out in California, maybe plan for a few days away, with no phone or anything, but just to hangout and do some rock climbing. Who knows, but at least something to enjoy MY time. I have this fear of burning out way to early in life and never being able to contribute as much as I could.&lt;/p&gt;
+
+&lt;p&gt;So that&amp;rsquo;s all for now. It is the weekend so, time to close the laptop and enjoy the Sun&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>My Dotfiles</title>
+      <link>https://mhartington.io/post/my-dotfiles/</link>
+      <pubDate>Mon, 28 Dec 2015 10:30:41 -0500</pubDate>
+      
+      <guid>https://mhartington.io/post/my-dotfiles/</guid>
+      <description>
+
+&lt;p&gt;My dotfiles are my pride and joy. There are hundreds of hours spent tweaking them to create the best setup for me. Recently I&amp;rsquo;ve started working on three different machines, my Mac, a Windows machine, as well as Ubuntu. This introduced an interesting issue; how can I create a similar environment across all these platforms, but only store them in one location?&lt;/p&gt;
+
+&lt;h2 id=&#34;tools:090900ff8df7a62498826c12b7a52bda&#34;&gt;Tools&lt;/h2&gt;
+
+&lt;p&gt;In my workflow, I have the following tools setup:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Neovim&lt;/li&gt;
+&lt;li&gt;Git&lt;/li&gt;
+&lt;li&gt;tmux&lt;/li&gt;
+&lt;li&gt;zsh&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In fact, this very blog post is being written using all 4 of these tools&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/my-shell.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/my-shell.png&#34; alt=&#34;my-shell&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;the-problem:090900ff8df7a62498826c12b7a52bda&#34;&gt;The Problem&lt;/h2&gt;
+
+&lt;p&gt;Each of these tools has to be installed at some point for each environment I want to run, but each environment has different ways to install these tools.
+For Mac, it&amp;rsquo;s fairly easy, just use homebrew and I can group these into one install command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install neovim git tmux zsh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then I can sit back and just relax while the real work is done.&lt;/p&gt;
+
+&lt;p&gt;For linux on the other hand, it&amp;rsquo;s not so easy. While there is linuxbrew, the linix port of homebrew, it&amp;rsquo;s often out of date and requires a lengthy &lt;code&gt;agt-get&lt;/code&gt; install for any dependencies. Then add a few lines to my shells &lt;code&gt;rc&lt;/code&gt; file&amp;hellip;.THEN I can install things.&lt;/p&gt;
+
+&lt;p&gt;Don&amp;rsquo;t even get me started on windows&amp;hellip;.I seriously haven&amp;rsquo;t thought about how much of a pain it will be to get things setup on windows.&lt;/p&gt;
+
+&lt;h2 id=&#34;solution:090900ff8df7a62498826c12b7a52bda&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;p&gt;So while all of these have a slightly different problem, I can write a simple &lt;a href=&#34;https://github.com/mhartington/dotfiles/blob/master/install.sh&#34;&gt;install script&lt;/a&gt; in bash to handle most of it.&lt;/p&gt;
+
+&lt;p&gt;In that script, it handles my setup for a fresh Mac machine.&lt;/p&gt;
+
+&lt;p&gt;But what about Ubuntu? Well, I just write another script.&lt;/p&gt;
+
+&lt;p&gt;It may not be the most elegant solution, but for me and what I need, it works great.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Welcome</title>
+      <link>https://mhartington.io/post/welcome/</link>
+      <pubDate>Mon, 28 Dec 2015 09:37:11 -0500</pubDate>
+      
+      <guid>https://mhartington.io/post/welcome/</guid>
+      <description>&lt;p&gt;Consider this my first post&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
