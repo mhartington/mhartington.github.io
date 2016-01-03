@@ -1,7 +1,8 @@
 box: debian
 build:
   steps:
-      - arjen/hugo-build@1.8.1
+    - arjen/hugo-build:
+        version: "1.8.1"
         theme: hugo-minimalist-theme
         flags: --buildDrafts=true
 deploy:
