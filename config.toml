@@ -10,7 +10,7 @@ theme = "hugo-minimalist-theme"
 [params]
     site_author = "Mike Hartington"
     site_description = "The ramblings of a New Englander"
-    location = "Earth"
+    location = "USA"
     # All paths are relative to the baseurl. Put your files
     # somewhere in the static folder.
     avatar = "http://www.gravatar.com/avatar/be834f0968111acbbc6f3bf67041c8d5?s=128"
