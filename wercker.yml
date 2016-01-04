@@ -8,7 +8,7 @@ build:
 deploy:
   steps:
     - uetchy/gh-pages:  
-        token: $GITHUB_TOKEN
+        token: $GIT_TOKEN
         repo: mhartington/mhartington.github.io
         path: public
         domain: mhartington.io
