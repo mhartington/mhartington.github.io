@@ -11,4 +11,4 @@ deploy:
         token: $GITHUB_TOKEN
         repo: mhartington/mhartington.github.io
         path: public
-        domain: randompaper.co
+        domain: mhartington.io
