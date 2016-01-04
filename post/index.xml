@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Mike Hartington&#39;s blog</title>
-    <link>https://mhartington.io/post/</link>
+    <link>http://mhartington.io/post/</link>
     <description>Recent content in Posts on Mike Hartington&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 03 Jan 2016 12:09:03 -0500</lastBuildDate>
-    <atom:link href="https://mhartington.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://mhartington.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>A New Year</title>
-      <link>https://mhartington.io/post/a-new-year/</link>
+      <link>http://mhartington.io/post/a-new-year/</link>
       <pubDate>Sun, 03 Jan 2016 12:09:03 -0500</pubDate>
       
-      <guid>https://mhartington.io/post/a-new-year/</guid>
+      <guid>http://mhartington.io/post/a-new-year/</guid>
       <description>
 
 &lt;p&gt;This isn&amp;rsquo;t as much as a year in review for 2015, but all the things I look forward to doing in 2016.&lt;/p&gt;
@@ -63,10 +63,10 @@
     
     <item>
       <title>My Dotfiles</title>
-      <link>https://mhartington.io/post/my-dotfiles/</link>
+      <link>http://mhartington.io/post/my-dotfiles/</link>
       <pubDate>Mon, 28 Dec 2015 10:30:41 -0500</pubDate>
       
-      <guid>https://mhartington.io/post/my-dotfiles/</guid>
+      <guid>http://mhartington.io/post/my-dotfiles/</guid>
       <description>
 
 &lt;p&gt;My dotfiles are my pride and joy. There are hundreds of hours spent tweaking them to create the best setup for me. Recently I&amp;rsquo;ve started working on three different machines, my Mac, a Windows machine, as well as Ubuntu. This introduced an interesting issue; how can I create a similar environment across all these platforms, but only store them in one location?&lt;/p&gt;
@@ -84,7 +84,7 @@
 
 &lt;p&gt;In fact, this very blog post is being written using all 4 of these tools&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/my-shell.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/my-shell.png&#34; alt=&#34;my-shell&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/my-shell.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/my-shell.png&#34; alt=&#34;my-shell&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;the-problem:090900ff8df7a62498826c12b7a52bda&#34;&gt;The Problem&lt;/h2&gt;
 
@@ -114,10 +114,10 @@ For Mac, it&amp;rsquo;s fairly easy, just use homebrew and I can group these int
     
     <item>
       <title>Welcome</title>
-      <link>https://mhartington.io/post/welcome/</link>
+      <link>http://mhartington.io/post/welcome/</link>
       <pubDate>Mon, 28 Dec 2015 09:37:11 -0500</pubDate>
       
-      <guid>https://mhartington.io/post/welcome/</guid>
+      <guid>http://mhartington.io/post/welcome/</guid>
       <description>&lt;p&gt;Consider this my first post&lt;/p&gt;
 </description>
     </item>
