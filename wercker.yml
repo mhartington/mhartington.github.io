@@ -7,9 +7,8 @@ build:
         flags: --buildDrafts=true
 deploy:
   steps:
-    - install-packages:
-        packages: git ssh-client
-    - lukevivier/gh-pages@0.2.1:
-        token: $GIT_TOKEN
-        domain: mhartington.io
-        basedir: public
+    - uetchy/gh-pages:  
+        token: $GITHUB_TOKEN
+        repo: mhartington/mhartington.github.io
+        path: public
+        domain: randompaper.co
