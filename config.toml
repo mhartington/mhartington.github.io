@@ -1,4 +1,4 @@
-baseurl = "https://mhartington.io/"
+baseurl = "http://mhartington.io/"
 languageCode = "en-us"
 title = "Mike Hartington's blog"
 # Define how many pages appear per site
