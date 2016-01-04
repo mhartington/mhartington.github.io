@@ -11,5 +11,6 @@ deploy:
         packages: git ssh-client
     - uetchy/gh-pages:
         token: $GIT_TOKEN
+        repo: mhartington/mhartington.github.io
+        path: public  
         domain: mhartington.io
-        basedir: public  
