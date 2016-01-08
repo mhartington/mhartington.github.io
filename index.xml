@@ -6,8 +6,141 @@
     <description>Recent content on Mike Hartington&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Jan 2016 12:09:03 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 08 Jan 2016 16:01:47 -0500</lastBuildDate>
     <atom:link href="http://mhartington.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Ionic IO app name</title>
+      <link>http://mhartington.io/post/ionic-io-app-name/</link>
+      <pubDate>Fri, 08 Jan 2016 16:01:47 -0500</pubDate>
+      
+      <guid>http://mhartington.io/post/ionic-io-app-name/</guid>
+      <description>&lt;p&gt;A good question came up in the Ionic Slack the today. A dev was looking to change the name of an app that was already uploaded to the Ionic platform portal.&lt;/p&gt;
+
+&lt;p&gt;When you start an ionic project from the CLI, along with all the html/css/js that you need, it creats an &lt;code&gt;ionic.project&lt;/code&gt; file. In here, you get your apps name and app_id
+set, which gets used by the CLI&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;
+{
+  &amp;quot;name&amp;quot;: &amp;quot;tmp&amp;quot;,
+  &amp;quot;app_id&amp;quot;: &amp;quot;9cf2c890&amp;quot;
+}
+
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now when I login to the Platform portal and upload my app, I&amp;rsquo;ll see it appear on my dash.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/too-many-tmps.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/too-many-tmps.png&#34; alt=&#34;too-many-tmps&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see, it&amp;rsquo;s not an original name and could be quite confusing.&lt;/p&gt;
+
+&lt;p&gt;So to change the name, I can just edit the name property in my &lt;code&gt;ionic.project&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;
+{
+  &amp;quot;name&amp;quot;: &amp;quot;newName&amp;quot;,
+  &amp;quot;app_id&amp;quot;: &amp;quot;9cf2c890&amp;quot;
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When I upload the app again, it will change the displayed name, but keep everything else the same.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/new-name.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/new-name.png&#34; alt=&#34;new-name&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Automated Hugo Builds</title>
+      <link>http://mhartington.io/post/automated-hugo-builds/</link>
+      <pubDate>Mon, 04 Jan 2016 22:48:59 -0500</pubDate>
+      
+      <guid>http://mhartington.io/post/automated-hugo-builds/</guid>
+      <description>
+
+&lt;p&gt;This is a static site built using &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt;. It&amp;rsquo;s similar to Jekyll in a few ways, but written in Go, so it&amp;rsquo;s super fast. Plus it&amp;rsquo;s not ruby so thats always a plus. Hugo is pretty simple to setup, especially on OSX. You can just &lt;code&gt;brew install&lt;/code&gt; it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;brew install hugo
+
+# create a new site
+hugo new site mySite
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can also run this on Linux or Windows, so another plus over Jekyll.&lt;/p&gt;
+
+&lt;p&gt;Posts are written in Markdown or HTML, what ever you prefer with some frontmatter that feels very familiar to Jekyll, so you should feel right at home.&lt;/p&gt;
+
+&lt;p&gt;A big selling point was that automated builds were dead simple to setup. They even have a section in their docs about setting it up for Github pages. Though, for their example, it assumes you&amp;rsquo;re using this for a projects gh-pages branch, and not a &lt;code&gt;user.github.io&lt;/code&gt; site. While the process is similar, it does have some important differences that you need to watch out for. Nothing against Hugo, but some thing that they could have made a bit clearer.&lt;/p&gt;
+
+&lt;h2 id=&#34;enabling-builds:7818264fcd3e1b87043e534129824e35&#34;&gt;Enabling builds&lt;/h2&gt;
+
+&lt;p&gt;So first I&amp;rsquo;m going to assume you&amp;rsquo;ve dug into Hugo a bit and maybe built a simple site with a page or two. So let&amp;rsquo;s push this to github!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/blog-repo.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/blog-repo.png&#34; alt=&#34;blog-repo&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;One thing you may notice is that I&amp;rsquo;ve pushed this to a dev branch, and then made that the default branch for the repo. This is where the Hugo docs differ. Since this is a &lt;code&gt;user.github.io&lt;/code&gt; site, we&amp;rsquo;ll need to deploy the final output to master.&lt;/p&gt;
+
+&lt;h2 id=&#34;building-on-push:7818264fcd3e1b87043e534129824e35&#34;&gt;Building on Push&lt;/h2&gt;
+
+&lt;p&gt;Now that we have our code somewhere, we can use a automated build service to handle pushing the updates for us. For this we&amp;rsquo;ll use &lt;a href=&#34;http://wercker.com&#34;&gt;Wercker&lt;/a&gt;. Now this is similar to Travis or CircleCI, but it has a bunch of pre-built processors that you can use to make setup even easier.&lt;/p&gt;
+
+&lt;p&gt;Sign up for Wercker (don&amp;rsquo;t worry, it&amp;rsquo;s free) and create a new app from a github repo&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gohugo.io/img/tutorials/wercker-add-app.png&#34;&gt;&lt;img src=&#34;https://gohugo.io/img/tutorials/wercker-add-app.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;image courtesy of Hugo&amp;rsquo;s offical docs&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Follow the steps and configure you access without SSH key&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gohugo.io/img/tutorials/wercker-access.png&#34;&gt;&lt;img src=&#34;https://gohugo.io/img/tutorials/wercker-access.png&#34; alt=&#34;blog-repo&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;image courtesy of Hugo&amp;rsquo;s offical docs&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This will give you a template &lt;code&gt;wercker.yml&lt;/code&gt; file, which you can ignore for now. We&amp;rsquo;ll be making our own later on.&lt;/p&gt;
+
+&lt;p&gt;Now that we have an app on Wercker, let&amp;rsquo;s configure our build. Head over to github and grab an &lt;a href=&#34;https://github.com/settings/tokens&#34;&gt;access token&lt;/a&gt;, the default setting will do fine. Copy the token somewhere like a blank text file.&lt;/p&gt;
+
+&lt;p&gt;Back on Wercker, navigate to your app and click the gear icon in the top&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/app-settings.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/app-settings.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In the sidebar, click Targets and add a custom deploy method.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/custom-deploy.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/custom-deploy.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ll just call this GithuPages for now, enable automatic builds, and set the target branch to build from to dev. Now in my case, dev is the name of the branch my site is developed on. It may be different for you so update the name to match what you used.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/gh-pages.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/gh-pages.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Click save and then add a new environment variable. This will be your github access token you just created.
+We&amp;rsquo;ll call it &lt;code&gt;GIT_TOKEN&lt;/code&gt;, add the token, click save and we should be good.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/token.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/token.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;the-wercker-yml-file:7818264fcd3e1b87043e534129824e35&#34;&gt;The &lt;code&gt;wercker.yml&lt;/code&gt; file&lt;/h2&gt;
+
+&lt;p&gt;So back in our code base, let&amp;rsquo;s create a &lt;code&gt;wercker.yml&lt;/code&gt; file. This is how we&amp;rsquo;ll configure out build on Wercker and build the hugo site.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yml&#34;&gt;box: debian
+build:
+  steps:
+    - arjen/hugo-build:
+        version: &amp;quot;0.15&amp;quot;
+        theme: hugo-minimalist-theme
+        flags: --buildDrafts=true
+deploy:
+  steps:
+    - install-packages:
+        packages: git ssh-client
+    - uetchy/gh-pages:
+        token: $GIT_TOKEN
+        repo: mhartington/mhartington.github.io
+        path: public
+        domain: mhartington.io
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>A New Year</title>
