@@ -5,7 +5,7 @@ title = "Ionic IO app name"
 +++
 
 
-A good question came up in the Ionic Slack the today. A dev was looking to change the name of an app that was already uploaded to the Ionic platform portal.
+A good question came up in the Ionic Slack today. A dev was looking to change the name of an app that was already uploaded to the Ionic platform portal.
 
 When you start an ionic project from the CLI, along with all the html/css/js that you need, it creats an `ionic.project` file. In here, you get your apps name and app_id
 set, which gets used by the CLI
