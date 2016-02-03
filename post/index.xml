@@ -6,8 +6,95 @@
     <description>Recent content in Posts on Mike Hartington&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 Jan 2016 20:54:55 -0800</lastBuildDate>
+    <lastBuildDate>Wed, 03 Feb 2016 09:37:41 -0500</lastBuildDate>
     <atom:link href="http://mhartington.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Setting Focus to an Input in Ionic 2</title>
+      <link>http://mhartington.io/post/setting-input-focus/</link>
+      <pubDate>Wed, 03 Feb 2016 09:37:41 -0500</pubDate>
+      
+      <guid>http://mhartington.io/post/setting-input-focus/</guid>
+      <description>
+
+&lt;p&gt;A Question came up in the Ionic Worldwide Slack today about how to set focus to an input. Now normally you&amp;rsquo;d think you would be able to call &lt;code&gt;.focus()&lt;/code&gt; and call it day. But Ionic wraps native text inputs with custom Angular 2 components to better control the user experience.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-markup:0bcda7bfc7e8ee0885f9b60dc564d639&#34;&gt;The markup&lt;/h3&gt;
+
+&lt;p&gt;Let&amp;rsquo;s take this simple Ionic 2 page&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;
+import {Page} from &#39;ionic-framework/ionic&#39;;
+@Page({
+  template: `
+  &amp;lt;ion-navbar *navbar&amp;gt;
+    &amp;lt;ion-title&amp;gt;Tab 1&amp;lt;/ion-title&amp;gt;
+  &amp;lt;/ion-navbar&amp;gt;
+  &amp;lt;ion-content&amp;gt;
+  &amp;lt;ion-list&amp;gt;
+    &amp;lt;ion-item&amp;gt;
+      &amp;lt;ion-label&amp;gt;Home&amp;lt;/ion-label&amp;gt;
+      &amp;lt;ion-input #input type=&amp;quot;text&amp;quot;&amp;gt;&amp;lt;/ion-input&amp;gt;
+    &amp;lt;/ion-item&amp;gt;
+    &amp;lt;button&amp;gt;Focus&amp;lt;/button&amp;gt;
+  &amp;lt;/ion-list&amp;gt;
+&amp;lt;/ion-content&amp;gt;`
+})
+
+export class Page1 {
+  constructor() { }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we really just want to focus on this little part&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;ion-item&amp;gt;
+  &amp;lt;ion-label&amp;gt;Home&amp;lt;/ion-label&amp;gt;
+  &amp;lt;ion-input #input type=&amp;quot;text&amp;quot;&amp;gt;&amp;lt;/ion-input&amp;gt;
+&amp;lt;/ion-item&amp;gt;
+&amp;lt;button&amp;gt;Focus&amp;lt;/button&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now that &lt;code&gt;#input&lt;/code&gt; is setting a local variable of input to this page, and we can interact with it when we click our button&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;ion-item&amp;gt;
+  &amp;lt;ion-label&amp;gt;Home&amp;lt;/ion-label&amp;gt;
+  &amp;lt;ion-input #input type=&amp;quot;text&amp;quot;&amp;gt;&amp;lt;/ion-input&amp;gt;
+&amp;lt;/ion-item&amp;gt;
+&amp;lt;button (click)=&amp;quot;focusInput(input)&amp;quot;&amp;gt;Focus&amp;lt;/button&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;the-method-call:0bcda7bfc7e8ee0885f9b60dc564d639&#34;&gt;The method call&lt;/h3&gt;
+
+&lt;p&gt;Since our button is calling &lt;code&gt;focusInput(input)&lt;/code&gt;, passing along the input we have, we can use that in our method.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;export class Page1 {
+  constructor() { }
+  focusInput(input) {}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could &lt;code&gt;console.log&lt;/code&gt; and see all the properties that are on ion-input, but we only care about a method on it called &lt;code&gt;setFocus&lt;/code&gt;. From it&amp;rsquo;s name, you can kind of guess what it does.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  focusInput(input) {
+    input.focus();
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now when we run this, if we click our button, it will set focus to the input.&lt;/p&gt;
+
+&lt;h3 id=&#34;bonus-making-the-keyboard-appear-on-a-device:0bcda7bfc7e8ee0885f9b60dc564d639&#34;&gt;Bonus: Making the keyboard appear on a device&lt;/h3&gt;
+
+&lt;p&gt;Now setting focus to an input and getting the keyboard to appear on a device can be quite a pain. But it&amp;rsquo;s rather simple to get it to work. Just add the following to your cordova&amp;rsquo;s config.xml&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;
+&amp;lt;preference name=&amp;quot;KeyboardDisplayRequiresUserAction&amp;quot; value=&amp;quot;false&amp;quot; /&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now when you call &lt;code&gt;focusInput&lt;/code&gt;, the keyboard will display as well.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Object Fit</title>

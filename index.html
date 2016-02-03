@@ -44,6 +44,21 @@
         
             <article class="post">
     
+<h1><a href="http://mhartington.io/post/setting-input-focus/" title="Setting Focus to an Input in Ionic 2">Setting Focus to an Input in Ionic 2</a></h1>
+
+<footer class="post-info"> <span class="post-meta">
+<time datetime="2016.02.03">2016.02.03</time>
+
+</span>
+</footer>
+
+    <p>A Question came up in the Ionic Worldwide Slack today about how to set focus to an input. Now normally you&rsquo;d think you would be able to call .focus() and call it day. But Ionic wraps native text inputs with custom Angular 2 components to better control the user experience. The markup Let&rsquo;s take this simple Ionic 2 page import {Page} from 'ionic-framework/ionic'; @Page({ template: ` &lt;ion-navbar *navbar&gt; &lt;ion-title&gt;Tab 1&lt;/ion-title&gt; &lt;/ion-navbar&gt; &lt;ion-content&gt; &lt;ion-list&gt; &lt;ion-item&gt; &lt;ion-label&gt;Home&lt;/ion-label&gt; &lt;ion-input #input type=&quot;text&quot;&gt;&lt;/ion-input&gt; &lt;/ion-item&gt; &lt;button&gt;Focus&lt;/button&gt; &lt;/ion-list&gt; &lt;/ion-content&gt;` }) export class Page1 { constructor() { } } Now we really just want to focus on this little part &lt;ion-item&gt; &lt;ion-label&gt;Home&lt;/ion-label&gt; &lt;ion-input #input type=&quot;text&quot;&gt;&lt;/ion-input&gt; &lt;/ion-item&gt; &lt;button&gt;Focus&lt;/button&gt; Now that #input is setting a local variable of input to this page, and we can interact with it when we click our button &lt;ion-item&gt; &lt;ion-label&gt;Home&lt;/ion-label&gt; &lt;ion-input #input type=&quot;text&quot;&gt;&lt;/ion-input&gt; &lt;/ion-item&gt; &lt;button (click)=&quot;focusInput(input)&quot;&gt;Focus&lt;/button&gt; The method call Since our button is calling focusInput(input), passing along the input we have, we can use that in our method.&hellip;</p>
+    <p style="text-align:right;"><a  href="http://mhartington.io/post/setting-input-focus/" title="Setting Focus to an Input in Ionic 2"> Continue...</a></p>
+</article>
+
+        
+            <article class="post">
+    
 <h1><a href="http://mhartington.io/post/object-fit/" title="Object Fit">Object Fit</a></h1>
 
 <footer class="post-info"> <span class="post-meta">
