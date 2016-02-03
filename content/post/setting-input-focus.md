@@ -73,7 +73,7 @@ You could `console.log` and see all the properties that are on ion-input, but we
 
 ```javascript
   focusInput(input) {
-    input.focus();
+    input.setFocus();
   }
 ```
 
