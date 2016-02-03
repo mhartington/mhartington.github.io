@@ -77,7 +77,7 @@ export class Page1 {
 &lt;p&gt;You could &lt;code&gt;console.log&lt;/code&gt; and see all the properties that are on ion-input, but we only care about a method on it called &lt;code&gt;setFocus&lt;/code&gt;. From it&amp;rsquo;s name, you can kind of guess what it does.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  focusInput(input) {
-    input.focus();
+    input.setFocus();
   }
 &lt;/code&gt;&lt;/pre&gt;
 
