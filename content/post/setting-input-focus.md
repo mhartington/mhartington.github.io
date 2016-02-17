@@ -7,7 +7,7 @@ title = "Setting Focus to an Input in Ionic 2"
 
 A Question came up in the Ionic Worldwide Slack today about how to set focus to an input. Now normally you'd think you would be able to call `.focus()` and call it day. But Ionic wraps native text inputs with custom Angular 2 components to better control the user experience.
 
-
+<!--more-->
 ### The markup
 
 Let's take this simple Ionic 2 page
