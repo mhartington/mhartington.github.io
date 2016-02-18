@@ -4,13 +4,12 @@ title = "Ionic 2 and External Libraries"
 
 +++
 
-
-Now that Ionic 2 is out in beta, a lot of people have finally set some time aside to give it a shot and investigate everything if has to offer. But with this all the improvements that Ionic 2 and Angular 2 bring, it's a fairly different style of developing that what people were used to before. Everything has to be imported now instead of expecting them to be global, it can be trick to figure out how to integrate with other libraries.
+Now that Ionic 2 is out in beta, people are setting aside some time to give it a shot and investigate everything it has to offer. Ionic 2 and Angular 2 bring a lot of improvements, but it's a fairly different style of developing that what people were used to before. Now, since everything needs to be imported and libraries aren’t global, it can be tricky to figure out how to integrate with other libraries.
 
 
 ### NPM all the things
 
-One change that people will face is how to add third-party-libraries, such as Lodash. With V2, we've moved over to NPM for all our package management. So for our case, if we had a project setup, we can just install Lodash though npm's CLI
+So, how do you add third-party-libraries, such as Lodash? In Ionic 22, we've moved over to NPM for all our package management. So for our case, if we had a project setup, we could just install Lodash though npm's CLI.
 
 ```bash
 $ ionic start myApp --v2 --ts
@@ -18,7 +17,7 @@ $ cd myApp
 $ npm install lodash --save
 ```
 
-Now this is going to give us a starter tabs project, so lets' open our `page1.ts` file.
+Now, this is going to give us a starter tabs project, so let’s open our `page1.ts` file.
 
 ```javascript
 import {Page} from 'ionic-framework/ionic';
@@ -31,7 +30,7 @@ export class Page1 {
 }
 ```
 
-Now, we can import individual methods from lodash using the typical import method that we're seeing. Note, this is the same import state if we were to use Javascript or Typescript.
+Now, we can import individual methods from Lodash, using the typical import method that we're seeing. Note, this would be the same import state if we were to use Javascript or Typescript.
 
 ```javascript
 import {Page} from 'ionic-framework/ionic';
@@ -46,15 +45,14 @@ export class Page1 {
 }
 ```
 
-Now if we were to use regular ES6, that would be the end of it. But since we're using Typescript, we'll get an error.
+If we were to use regular ES6, that would be the end of it. But since we're using Typescript, we'll get an error.
 
 
  [![lodash-typescript-error](/img/lodash-typescript-error.png)](/img/lodash-typescript-error.png)
 
-This will lead many to believe that everything is broken and lodash is working. Your editor will also probably yell at you too. But oddly enough, everything will still work. What gives?
+This might lead you to believe that everything is broken, and Lodash is working. Your editor will also probably yell at you, too. But oddly enough, everything will still work. What gives?
 
-
-So the way Typescript works, it need to analyze the code in order to do it's type checking. But for normal Javascript libraries, they typically don't include any definition files, which mean Typescript won't be able to understand them.
+So, Typescript needs to analyze the code, in order to do its type checking. Normal Javascript libraries typically don't include any definition files, which means Typescript won't be able to understand them.
 
 To circumvent this, we can use [Typings](https://www.npmjs.com/package/typings) which allow us to install definition files for various libraries.
 
