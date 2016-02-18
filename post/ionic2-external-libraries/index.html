@@ -53,18 +53,18 @@
 
             
 
-<p>Now that Ionic 2 is out in beta, a lot of people have finally set some time aside to give it a shot and investigate everything if has to offer. But with this all the improvements that Ionic 2 and Angular 2 bring, it&rsquo;s a fairly different style of developing that what people were used to before. Everything has to be imported now instead of expecting them to be global, it can be trick to figure out how to integrate with other libraries.</p>
+<p>Now that Ionic 2 is out in beta, people are setting aside some time to give it a shot and investigate everything it has to offer. Ionic 2 and Angular 2 bring a lot of improvements, but it&rsquo;s a fairly different style of developing that what people were used to before. Now, since everything needs to be imported and libraries aren’t global, it can be tricky to figure out how to integrate with other libraries.</p>
 
 <h3 id="npm-all-the-things:d834b3a935d8b800dc38a39c51f874d9">NPM all the things</h3>
 
-<p>One change that people will face is how to add third-party-libraries, such as Lodash. With V2, we&rsquo;ve moved over to NPM for all our package management. So for our case, if we had a project setup, we can just install Lodash though npm&rsquo;s CLI</p>
+<p>So, how do you add third-party-libraries, such as Lodash? In Ionic 22, we&rsquo;ve moved over to NPM for all our package management. So for our case, if we had a project setup, we could just install Lodash though npm&rsquo;s CLI.</p>
 
 <pre><code class="language-bash">$ ionic start myApp --v2 --ts
 $ cd myApp
 $ npm install lodash --save
 </code></pre>
 
-<p>Now this is going to give us a starter tabs project, so lets&rsquo; open our <code>page1.ts</code> file.</p>
+<p>Now, this is going to give us a starter tabs project, so let’s open our <code>page1.ts</code> file.</p>
 
 <pre><code class="language-javascript">import {Page} from 'ionic-framework/ionic';
 @Page({
@@ -76,7 +76,7 @@ export class Page1 {
 }
 </code></pre>
 
-<p>Now, we can import individual methods from lodash using the typical import method that we&rsquo;re seeing. Note, this is the same import state if we were to use Javascript or Typescript.</p>
+<p>Now, we can import individual methods from Lodash, using the typical import method that we&rsquo;re seeing. Note, this would be the same import state if we were to use Javascript or Typescript.</p>
 
 <pre><code class="language-javascript">import {Page} from 'ionic-framework/ionic';
 import {sum} from 'lodash'
@@ -90,13 +90,13 @@ export class Page1 {
 }
 </code></pre>
 
-<p>Now if we were to use regular ES6, that would be the end of it. But since we&rsquo;re using Typescript, we&rsquo;ll get an error.</p>
+<p>If we were to use regular ES6, that would be the end of it. But since we&rsquo;re using Typescript, we&rsquo;ll get an error.</p>
 
 <p><a href="/img/lodash-typescript-error.png"><img src="/img/lodash-typescript-error.png" alt="lodash-typescript-error" /></a></p>
 
-<p>This will lead many to believe that everything is broken and lodash is working. Your editor will also probably yell at you too. But oddly enough, everything will still work. What gives?</p>
+<p>This might lead you to believe that everything is broken, and Lodash is working. Your editor will also probably yell at you, too. But oddly enough, everything will still work. What gives?</p>
 
-<p>So the way Typescript works, it need to analyze the code in order to do it&rsquo;s type checking. But for normal Javascript libraries, they typically don&rsquo;t include any definition files, which mean Typescript won&rsquo;t be able to understand them.</p>
+<p>So, Typescript needs to analyze the code, in order to do its type checking. Normal Javascript libraries typically don&rsquo;t include any definition files, which means Typescript won&rsquo;t be able to understand them.</p>
 
 <p>To circumvent this, we can use <a href="https://www.npmjs.com/package/typings">Typings</a> which allow us to install definition files for various libraries.</p>
 
