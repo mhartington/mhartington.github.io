@@ -6,8 +6,103 @@
     <description>Recent content on Mike Hartington&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 17 Feb 2016 11:38:32 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jun 2016 13:03:06 -0400</lastBuildDate>
     <atom:link href="http://mhartington.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Revisiting Typings: Post 1.0</title>
+      <link>http://mhartington.io/post/typings-v1/</link>
+      <pubDate>Thu, 02 Jun 2016 13:03:06 -0400</pubDate>
+      
+      <guid>http://mhartington.io/post/typings-v1/</guid>
+      <description>
+
+&lt;h3 id=&#34;typings-hits-1-0:abfa24ffd91f709388d4be021c500a40&#34;&gt;Typings hits 1.0!&lt;/h3&gt;
+
+&lt;p&gt;Typings finally hit its 1.0 recently (well more like a month or so ago), and with this it brought some drastic change to the API. So my previous post is now out of date.
+This is a perfect chance to go over these changes and how it may affect your project.&lt;/p&gt;
+
+&lt;h3 id=&#34;what-new:abfa24ffd91f709388d4be021c500a40&#34;&gt;What new?&lt;/h3&gt;
+
+&lt;p&gt;So a simple overview what&amp;rsquo;s changed from 0.X to 1.X has been provided in the &lt;a href=&#34;https://github.com/typings/typings#updating-from-0x-to-10&#34;&gt;README.md&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;updating-from-0-x-to-1-0:abfa24ffd91f709388d4be021c500a40&#34;&gt;Updating From &lt;code&gt;0.x&lt;/code&gt; to &lt;code&gt;1.0&lt;/code&gt;?&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rm -rf typings/&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The directory contains &amp;ldquo;main&amp;rdquo;, by default&lt;/li&gt;
+&lt;li&gt;Update &lt;code&gt;tsconfig.json&lt;/code&gt; to match (the bundle file is &lt;code&gt;typings/index.d.ts&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Want &lt;code&gt;main&lt;/code&gt; and/or &lt;code&gt;browser&lt;/code&gt; output again? See &lt;a href=&#34;https://github.com/typings/typings/blob/master/docs/faq.md#where-do-the-type-definitions-install&#34;&gt;where the typings install&lt;/a&gt; in the FAQ&lt;/li&gt;
+&lt;li&gt;Usages of &lt;code&gt;ambient&lt;/code&gt; are now &lt;code&gt;global&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;That means in &lt;code&gt;typings.json&lt;/code&gt; any &lt;code&gt;ambientDependencies&lt;/code&gt; should be renamed &lt;code&gt;globalDependencies&lt;/code&gt; and any &lt;code&gt;ambientDevDependencies&lt;/code&gt; should be renamed &lt;code&gt;globalDevDependencies&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;It also means &lt;code&gt;--ambient&lt;/code&gt; is now &lt;code&gt;--global&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Removed &lt;code&gt;defaultAmbientSource&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If you want to install from DefinitelyTyped, be explicit (use &lt;code&gt;dt~&amp;lt;pkg&amp;gt; --global&lt;/code&gt;). For example: &lt;code&gt;typings install dt~angular-component-router --global --save&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;See &lt;a href=&#34;https://github.com/typings/typings/releases/tag/v1.0.0&#34;&gt;the release notes&lt;/a&gt; for more information!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;While this is great, it also helps to go over some of the changes one by one.&lt;/p&gt;
+
+&lt;h3 id=&#34;no-more-main-and-browser:abfa24ffd91f709388d4be021c500a40&#34;&gt;No more &lt;code&gt;main&lt;/code&gt; and &lt;code&gt;browser&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;One the of the more confusing parts about typings was the use of &lt;code&gt;main&lt;/code&gt; and &lt;code&gt;browser&lt;/code&gt; typings. I&amp;rsquo;ll be honest, I never &lt;em&gt;really&lt;/em&gt; understood the difference, and it often confused many new users in Ionic 2. Thankfully, this is gone, and we now have a much more familiar &lt;code&gt;index&lt;/code&gt;. This is just much easier to understand and follows convention already out there in the JS/TS ecosystem.&lt;/p&gt;
+
+&lt;h3 id=&#34;ambient-becomes-global:abfa24ffd91f709388d4be021c500a40&#34;&gt;Ambient becomes Global&lt;/h3&gt;
+
+&lt;p&gt;Ambient typing always we a pain point when first being introduced to typescript.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;An ambient declaration introduces a variable into a TypeScript scope, but has zero impact on the emitted JavaScript program. Programmers can use ambient declarations to tell the TypeScript compiler that some other component will supply a variable. For example, by default the TypeScript compiler will print an error for uses of undefined variables. To add some of the common variables defined by browsers, a TypeScript programmer can use ambient declarations&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Basically these types are there to tell the compiler that something will at run that has this API.&lt;/p&gt;
+
+&lt;p&gt;imagine if you are writing code that uses jQuery. If you just try to write $() TypeScript will think you are using an undeclared variable $ and will throw an error. Ambient declarations like declare var $ tell the TS compiler that, even though $ isn&amp;rsquo;t visible to the compiler, it will exist when the JS is executed.&lt;/p&gt;
+
+&lt;p&gt;So why change the name?&lt;/p&gt;
+
+&lt;p&gt;I can&amp;rsquo;t speak for the maintainers of typings, but Global makes more sense to me than Ambient as a choice of word. I hear global types, I think globals in terms of JavaScript.&lt;/p&gt;
+
+&lt;p&gt;So a little terminology change, and we get a better understanding of the types mean and do.&lt;/p&gt;
+
+&lt;h3 id=&#34;you-must-define-a-source:abfa24ffd91f709388d4be021c500a40&#34;&gt;You must define a source&lt;/h3&gt;
+
+&lt;p&gt;While most types live in the DefinitelyTyped repo, many authors are publishing types to npm, bower, or directly with the the module.
+Since we have more sources, we need to specify which source we want pull from.&lt;/p&gt;
+
+&lt;p&gt;Take Lodash for example. A quick search in typings will reveal that we have multiple sources for lodash.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;typings search lodash
+Viewing 4 of 4
+
+NAME              SOURCE HOMEPAGE                                        DESCRIPTION VERSIONS UPDATED
+lodash            dt     http://lodash.com/                                          2        2016-05-24T13:56:08.000Z
+lodash            npm    https://www.npmjs.com/package/lodash                        1        2016-04-16T21:15:19.000Z
+lodash            global                                                             1        2016-04-12T19:14:14.000Z
+lodash-decorators dt     https://github.com/steelsojka/lodash-decorators             1        2016-03-16T15:55:26.000Z
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;How is typings supposed to know which one you want? Now we can specify which source we want to pull from.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;typings i npm~lodash --save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I suggest always searching typings before trying to install anything.&lt;/p&gt;
+
+&lt;h2 id=&#34;overview:abfa24ffd91f709388d4be021c500a40&#34;&gt;Overview&lt;/h2&gt;
+
+&lt;p&gt;So while these changes can seem confusing or drastic, they&amp;rsquo;re really not that bad. Typings now seems much easier to approach and you understand where you&amp;rsquo;re getting your types from.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Ionic 2 and External Libraries</title>
