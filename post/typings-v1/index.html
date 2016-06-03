@@ -101,7 +101,7 @@ But what are they?</p>
 <p>An ambient declaration introduces a variable into a TypeScript scope, but has zero impact on the emitted JavaScript program. Programmers can use ambient declarations to tell the TypeScript compiler that some other component will supply a variable. For example, by default the TypeScript compiler will print an error for uses of undefined variables. To add some of the common variables defined by browsers, a TypeScript programmer can use ambient declarations</p>
 </blockquote>
 
-<p>Basically these types are there to tell the compiler that something will at run that has this API.</p>
+<p>Basically these types are there to tell the compiler that something will at runtime will have these APIS.</p>
 
 <p>Imagine if you are writing code that uses jQuery. If you just try to write $() TypeScript will think you are using an undeclared variable $ and will throw an error. Ambient declarations like declare var $ tell the TS compiler that, even though $ isn&rsquo;t visible to the compiler, it will exist when the JS is executed.</p>
 
