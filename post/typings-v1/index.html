@@ -58,7 +58,7 @@
 <p>Typings finally hit its 1.0 recently (well more like a month or so ago), and with this it brought some drastic change to the API. So my previous post is now out of date.
 This is a perfect chance to go over these changes and how it may affect your project.</p>
 
-<h3 id="what-new:abfa24ffd91f709388d4be021c500a40">What new?</h3>
+<h3 id="what-s-new:abfa24ffd91f709388d4be021c500a40">What&rsquo;s new?</h3>
 
 <p>So a simple overview what&rsquo;s changed from 0.X to 1.X has been provided in the <a href="https://github.com/typings/typings#updating-from-0x-to-10">README.md</a></p>
 
@@ -94,7 +94,8 @@ This is a perfect chance to go over these changes and how it may affect your pro
 
 <h3 id="ambient-becomes-global:abfa24ffd91f709388d4be021c500a40">Ambient becomes Global</h3>
 
-<p>Ambient typing always we a pain point when first being introduced to typescript.</p>
+<p>Ambient typings always are a pain point when first being introduced to TypeScript.
+But what are they?</p>
 
 <blockquote>
 <p>An ambient declaration introduces a variable into a TypeScript scope, but has zero impact on the emitted JavaScript program. Programmers can use ambient declarations to tell the TypeScript compiler that some other component will supply a variable. For example, by default the TypeScript compiler will print an error for uses of undefined variables. To add some of the common variables defined by browsers, a TypeScript programmer can use ambient declarations</p>
@@ -102,7 +103,7 @@ This is a perfect chance to go over these changes and how it may affect your pro
 
 <p>Basically these types are there to tell the compiler that something will at run that has this API.</p>
 
-<p>imagine if you are writing code that uses jQuery. If you just try to write $() TypeScript will think you are using an undeclared variable $ and will throw an error. Ambient declarations like declare var $ tell the TS compiler that, even though $ isn&rsquo;t visible to the compiler, it will exist when the JS is executed.</p>
+<p>Imagine if you are writing code that uses jQuery. If you just try to write $() TypeScript will think you are using an undeclared variable $ and will throw an error. Ambient declarations like declare var $ tell the TS compiler that, even though $ isn&rsquo;t visible to the compiler, it will exist when the JS is executed.</p>
 
 <p>So why change the name?</p>
 
@@ -112,10 +113,10 @@ This is a perfect chance to go over these changes and how it may affect your pro
 
 <h3 id="you-must-define-a-source:abfa24ffd91f709388d4be021c500a40">You must define a source</h3>
 
-<p>While most types live in the DefinitelyTyped repo, many authors are publishing types to npm, bower, or directly with the the module.
+<p>While most types live in the DefinitelyTyped repo, many authors are publishing types to npm, bower, or directly with the module.
 Since we have more sources, we need to specify which source we want pull from.</p>
 
-<p>Take Lodash for example. A quick search in typings will reveal that we have multiple sources for lodash.</p>
+<p>Take Lodash for example. A quick search in typings will reveal that we have multiple sources for Lodash.</p>
 
 <pre><code class="language-bash">typings search lodash
 Viewing 4 of 4
