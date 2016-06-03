@@ -10,7 +10,7 @@ Typings finally hit its 1.0 recently (well more like a month or so ago), and wit
 This is a perfect chance to go over these changes and how it may affect your project.
 
 
-### What new?
+### What's new?
 
 So a simple overview what's changed from 0.X to 1.X has been provided in the [README.md](https://github.com/typings/typings#updating-from-0x-to-10)
 
@@ -38,13 +38,14 @@ One the of the more confusing parts about typings was the use of `main` and `bro
 
 ### Ambient becomes Global
 
-Ambient typing always we a pain point when first being introduced to typescript.
+Ambient typings always are a pain point when first being introduced to TypeScript.
+But what are they?
 
 >An ambient declaration introduces a variable into a TypeScript scope, but has zero impact on the emitted JavaScript program. Programmers can use ambient declarations to tell the TypeScript compiler that some other component will supply a variable. For example, by default the TypeScript compiler will print an error for uses of undefined variables. To add some of the common variables defined by browsers, a TypeScript programmer can use ambient declarations
 
 Basically these types are there to tell the compiler that something will at run that has this API.
 
-imagine if you are writing code that uses jQuery. If you just try to write $() TypeScript will think you are using an undeclared variable $ and will throw an error. Ambient declarations like declare var $ tell the TS compiler that, even though $ isn't visible to the compiler, it will exist when the JS is executed.
+Imagine if you are writing code that uses jQuery. If you just try to write $() TypeScript will think you are using an undeclared variable $ and will throw an error. Ambient declarations like declare var $ tell the TS compiler that, even though $ isn't visible to the compiler, it will exist when the JS is executed.
 
 
 So why change the name?
@@ -56,10 +57,10 @@ So a little terminology change, and we get a better understanding of the types m
 
 ### You must define a source
 
-While most types live in the DefinitelyTyped repo, many authors are publishing types to npm, bower, or directly with the the module.
+While most types live in the DefinitelyTyped repo, many authors are publishing types to npm, bower, or directly with the module.
 Since we have more sources, we need to specify which source we want pull from.
 
-Take Lodash for example. A quick search in typings will reveal that we have multiple sources for lodash.
+Take Lodash for example. A quick search in typings will reveal that we have multiple sources for Lodash.
 
 ```bash
 typings search lodash
