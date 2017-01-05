@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mike Hartington&#39;s blog</title>
-    <link>http://mhartington.io/</link>
+    <link>https://mhartington.io/</link>
     <description>Recent content on Mike Hartington&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 02 Jun 2016 13:03:06 -0400</lastBuildDate>
-    <atom:link href="http://mhartington.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://mhartington.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Revisiting Typings: Post 1.0</title>
-      <link>http://mhartington.io/post/typings-v1/</link>
+      <link>https://mhartington.io/post/typings-v1/</link>
       <pubDate>Thu, 02 Jun 2016 13:03:06 -0400</pubDate>
       
-      <guid>http://mhartington.io/post/typings-v1/</guid>
+      <guid>https://mhartington.io/post/typings-v1/</guid>
       <description>
 
 &lt;h3 id=&#34;typings-hits-1-0:abfa24ffd91f709388d4be021c500a40&#34;&gt;Typings hits 1.0!&lt;/h3&gt;
@@ -107,10 +107,10 @@ lodash-decorators dt     https://github.com/steelsojka/lodash-decorators        
     
     <item>
       <title>Ionic 2 and External Libraries</title>
-      <link>http://mhartington.io/post/ionic2-external-libraries/</link>
+      <link>https://mhartington.io/post/ionic2-external-libraries/</link>
       <pubDate>Wed, 17 Feb 2016 11:38:32 -0500</pubDate>
       
-      <guid>http://mhartington.io/post/ionic2-external-libraries/</guid>
+      <guid>https://mhartington.io/post/ionic2-external-libraries/</guid>
       <description>
 
 &lt;p&gt;Now that Ionic 2 is out in beta, people are setting aside some time to give it a shot and investigate everything it has to offer. Ionic 2 and Angular 2 bring a lot of improvements, but it&amp;rsquo;s a fairly different style of developing that what people were used to before. Now, since everything needs to be imported and libraries aren’t global, it can be tricky to figure out how to integrate with other libraries.&lt;/p&gt;
@@ -152,7 +152,7 @@ export class Page1 {
 
 &lt;p&gt;If we were to use regular ES6, that would be the end of it. But since we&amp;rsquo;re using Typescript, we&amp;rsquo;ll get an error.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/lodash-typescript-error.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/lodash-typescript-error.png&#34; alt=&#34;lodash-typescript-error&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/lodash-typescript-error.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/lodash-typescript-error.png&#34; alt=&#34;lodash-typescript-error&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;This might lead you to believe that everything is broken, and Lodash is working. Your editor will also probably yell at you, too. But oddly enough, everything will still work. What gives?&lt;/p&gt;
 
@@ -205,10 +205,10 @@ export class Page1 {
     
     <item>
       <title>Setting Focus to an Input in Ionic 2</title>
-      <link>http://mhartington.io/post/setting-input-focus/</link>
+      <link>https://mhartington.io/post/setting-input-focus/</link>
       <pubDate>Wed, 03 Feb 2016 09:37:41 -0500</pubDate>
       
-      <guid>http://mhartington.io/post/setting-input-focus/</guid>
+      <guid>https://mhartington.io/post/setting-input-focus/</guid>
       <description>
 
 &lt;p&gt;A Question came up in the Ionic Worldwide Slack today about how to set focus to an input. Now normally you&amp;rsquo;d think you would be able to call &lt;code&gt;.focus()&lt;/code&gt; and call it day. But Ionic wraps native text inputs with custom Angular 2 components to better control the user experience.&lt;/p&gt;
@@ -292,10 +292,10 @@ export class Page1 {
     
     <item>
       <title>Object Fit</title>
-      <link>http://mhartington.io/post/object-fit/</link>
+      <link>https://mhartington.io/post/object-fit/</link>
       <pubDate>Thu, 14 Jan 2016 20:54:55 -0800</pubDate>
       
-      <guid>http://mhartington.io/post/object-fit/</guid>
+      <guid>https://mhartington.io/post/object-fit/</guid>
       <description>
 
 &lt;p&gt;Today I was watching a random video on ES6 tooling when I saw the author use a CSS property I&amp;rsquo;d never heard of. &lt;code&gt;object-fit&lt;/code&gt;, and it was pretty awesome.&lt;/p&gt;
@@ -349,10 +349,10 @@ Now according to &lt;a href=&#34;http://caniuse.com/#feat=object-fit&#34;&gt;Can
     
     <item>
       <title>Ionic IO app name</title>
-      <link>http://mhartington.io/post/ionic-io-app-name/</link>
+      <link>https://mhartington.io/post/ionic-io-app-name/</link>
       <pubDate>Fri, 08 Jan 2016 16:01:47 -0500</pubDate>
       
-      <guid>http://mhartington.io/post/ionic-io-app-name/</guid>
+      <guid>https://mhartington.io/post/ionic-io-app-name/</guid>
       <description>&lt;p&gt;A good question came up in the Ionic Slack today. A dev was looking to change the name of an app that was already uploaded to the Ionic platform portal.&lt;/p&gt;
 
 &lt;p&gt;When you start an ionic project from the CLI, along with all the html/css/js that you need, it creats an &lt;code&gt;ionic.project&lt;/code&gt; file. In here, you get your apps name and app_id
@@ -369,7 +369,7 @@ set, which gets used by the CLI&lt;/p&gt;
 
 &lt;p&gt;Now when I login to the Platform portal and upload my app, I&amp;rsquo;ll see it appear on my dash.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/too-many-tmps.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/too-many-tmps.png&#34; alt=&#34;too-many-tmps&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/too-many-tmps.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/too-many-tmps.png&#34; alt=&#34;too-many-tmps&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;As you can see, it&amp;rsquo;s not an original name and could be quite confusing.&lt;/p&gt;
 
@@ -385,16 +385,16 @@ set, which gets used by the CLI&lt;/p&gt;
 
 &lt;p&gt;When I upload the app again, it will change the displayed name, but keep everything else the same.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/new-name.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/new-name.png&#34; alt=&#34;new-name&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/new-name.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/new-name.png&#34; alt=&#34;new-name&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Automated Hugo Builds</title>
-      <link>http://mhartington.io/post/automated-hugo-builds/</link>
+      <link>https://mhartington.io/post/automated-hugo-builds/</link>
       <pubDate>Mon, 04 Jan 2016 22:48:59 -0500</pubDate>
       
-      <guid>http://mhartington.io/post/automated-hugo-builds/</guid>
+      <guid>https://mhartington.io/post/automated-hugo-builds/</guid>
       <description>
 
 &lt;p&gt;This is a static site built using &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt;. It&amp;rsquo;s similar to Jekyll in a few ways, but written in Go, so it&amp;rsquo;s super fast. Plus it&amp;rsquo;s not ruby so thats always a plus. Hugo is pretty simple to setup, especially on OSX. You can just &lt;code&gt;brew install&lt;/code&gt; it.&lt;/p&gt;
@@ -415,7 +415,7 @@ hugo new site mySite
 
 &lt;p&gt;So first I&amp;rsquo;m going to assume you&amp;rsquo;ve dug into Hugo a bit and maybe built a simple site with a page or two. So let&amp;rsquo;s push this to github!&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/blog-repo.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/blog-repo.png&#34; alt=&#34;blog-repo&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/blog-repo.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/blog-repo.png&#34; alt=&#34;blog-repo&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;One thing you may notice is that I&amp;rsquo;ve pushed this to a dev branch, and then made that the default branch for the repo. This is where the Hugo docs differ. Since this is a &lt;code&gt;user.github.io&lt;/code&gt; site, we&amp;rsquo;ll need to deploy the final output to master.&lt;/p&gt;
 
@@ -441,20 +441,20 @@ hugo new site mySite
 
 &lt;p&gt;Back on Wercker, navigate to your app and click the gear icon in the top&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/app-settings.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/app-settings.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/app-settings.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/app-settings.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;In the sidebar, click Targets and add a custom deploy method.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/custom-deploy.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/custom-deploy.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/custom-deploy.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/custom-deploy.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;We&amp;rsquo;ll just call this GithuPages for now, enable automatic builds, and set the target branch to build from to dev. Now in my case, dev is the name of the branch my site is developed on. It may be different for you so update the name to match what you used.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/gh-pages.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/gh-pages.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/gh-pages.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/gh-pages.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Click save and then add a new environment variable. This will be your github access token you just created.
 We&amp;rsquo;ll call it &lt;code&gt;GIT_TOKEN&lt;/code&gt;, add the token, click save and we should be good.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/token.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/token.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/token.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/token.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;the-wercker-yml-file:7818264fcd3e1b87043e534129824e35&#34;&gt;The &lt;code&gt;wercker.yml&lt;/code&gt; file&lt;/h2&gt;
 
@@ -482,10 +482,10 @@ deploy:
     
     <item>
       <title>A New Year</title>
-      <link>http://mhartington.io/post/a-new-year/</link>
+      <link>https://mhartington.io/post/a-new-year/</link>
       <pubDate>Sun, 03 Jan 2016 12:09:03 -0500</pubDate>
       
-      <guid>http://mhartington.io/post/a-new-year/</guid>
+      <guid>https://mhartington.io/post/a-new-year/</guid>
       <description>
 
 &lt;p&gt;This isn&amp;rsquo;t as much as a year in review for 2015, but all the things I look forward to doing in 2016.&lt;/p&gt;
@@ -534,10 +534,10 @@ deploy:
     
     <item>
       <title>My Dotfiles</title>
-      <link>http://mhartington.io/post/my-dotfiles/</link>
+      <link>https://mhartington.io/post/my-dotfiles/</link>
       <pubDate>Mon, 28 Dec 2015 10:30:41 -0500</pubDate>
       
-      <guid>http://mhartington.io/post/my-dotfiles/</guid>
+      <guid>https://mhartington.io/post/my-dotfiles/</guid>
       <description>
 
 &lt;p&gt;My dotfiles are my pride and joy. There are hundreds of hours spent tweaking them to create the best setup for me. Recently I&amp;rsquo;ve started working on three different machines, my Mac, a Windows machine, as well as Ubuntu. This introduced an interesting issue; how can I create a similar environment across all these platforms, but only store them in one location?&lt;/p&gt;
@@ -555,7 +555,7 @@ deploy:
 
 &lt;p&gt;In fact, this very blog post is being written using all 4 of these tools&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://mhartington.io/img/my-shell.png&#34;&gt;&lt;img src=&#34;http://mhartington.io/img/my-shell.png&#34; alt=&#34;my-shell&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/my-shell.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/my-shell.png&#34; alt=&#34;my-shell&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;the-problem:090900ff8df7a62498826c12b7a52bda&#34;&gt;The Problem&lt;/h2&gt;
 
@@ -585,10 +585,10 @@ For Mac, it&amp;rsquo;s fairly easy, just use homebrew and I can group these int
     
     <item>
       <title>Welcome</title>
-      <link>http://mhartington.io/post/welcome/</link>
+      <link>https://mhartington.io/post/welcome/</link>
       <pubDate>Mon, 28 Dec 2015 09:37:11 -0500</pubDate>
       
-      <guid>http://mhartington.io/post/welcome/</guid>
+      <guid>https://mhartington.io/post/welcome/</guid>
       <description>&lt;p&gt;Consider this my first post&lt;/p&gt;
 </description>
     </item>
