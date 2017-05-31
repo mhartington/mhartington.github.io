@@ -2,6 +2,7 @@
 date = "2017-05-31T09:55:05-04:00"
 tags = []
 title = "Custom Decorators"
+draft = true
 +++
 
 I've been getting more into decorators lately, especially since I used them in Angular/Ionic, but also in Python. But I realized that I really didn't know much about them or how they actually worked. So I spent some time last night and built a small decorator, `@platformReady()`.
