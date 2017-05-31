@@ -1,0 +1,307 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Mike Hartington&#39;s blog</title>
+        <meta name="author">
+        <meta name="description" content="The ramblings of a New Englander">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="generator" content="Hugo 0.15" />
+          <link href="https://mhartington.io/post/index.xml" rel="alternate" type="application/rss+xml" title="Mike Hartington&#39;s blog" />
+          <link href="https://mhartington.io/post/index.xml" rel="feed" type="application/rss+xml" title="Mike Hartington&#39;s blog" />
+        <link href='//fonts.googleapis.com/css?family=Roboto:400,300,700|Noto+Serif:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://mhartington.io/css/styles.css">
+        <link rel="icon" href="https://mhartington.io/favicon.ico">
+        <link rel="apple-touch-icon" href="https://mhartington.io/apple-touch-icon.png" />
+        <link rel="stylesheet" href="https://mhartington.io/css/highlightjs/monokai.css">
+        <script src="https://mhartington.io/js/vendor/modernizr-2.8.0.min.js"></script>
+        <style>
+        .site-header h2 .logo {
+        background: url(https://mhartington.io/img/desk.jpg) no-repeat 0 0;
+        }
+        @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+          .site-header h2 .logo {
+            background-image: url(https://mhartington.io/img/desk.jpg);
+        }}
+       .site-header {
+         background: #2a373d url(https://mhartington.io/img/desk.jpg) no-repeat center center;
+         z-index: -1;
+        }
+        </style>
+    </head>
+    <body>
+        
+        <header class="site-header">
+          <div class="transparent-layer">
+              <h2>Mike&#39;s Blog</h2>
+          </div>
+        </header>
+
+
+<div class="container clearfix">
+    <main role="main" class="content">
+        <article class="post">
+            
+<h1><a href="https://mhartington.io/post/custom-decorators/" title="Custom Decorators">Custom Decorators</a></h1>
+
+<footer class="post-info"> <span class="post-meta">
+<time datetime="2017.05.31">2017.05.31</time>
+
+</span>
+</footer>
+
+            
+
+<p>I&rsquo;ve been getting more into decorators lately, especially since I used them in Angular/Ionic, but also in Python. But I realized that I really didn&rsquo;t know much about them or how they actually worked. So I spent some time last night and built a small decorator, <code>@platformReady()</code>.</p>
+
+<h3 id="wth-is-a-decorators:3099c17143ca906089566decfc9edcc8">WTH is a decorators</h3>
+
+<p>Decorators can get confusing real fast, so we&rsquo;re going to try and stay pretty high level here. In it&rsquo;s simplest form, a decorator allows developers to perform higher-level functions on an annotated class or method. Python has these already so lets look at that for an example.</p>
+
+<pre><code class="language-python">class Client(object):
+
+    @property
+    def serverPath(self):
+        return self._serverPath
+
+    @serverPath.setter
+    def serverPath(self, value):
+        self._serverPath = value
+</code></pre>
+
+<p>Here we have a simple property getter/setter setup. The first method, <code>serverPath</code> is the getter, and it just returns a value. What&rsquo;s nice about this is when we want to get that value, we can just do <code>Client.serverPath</code> and it will know how to handle it. The second function is the setter for our property. So when we want to change the value of our property, we can just do <code>Client.serverPath = newValue</code>.</p>
+
+<p>Without getting into too much detail, we can see &ldquo;what&rdquo; decorators are, and how they can be used from a conceptual level. In JavaScript, they follow the same idea, annotate classes or methods to provide additional functionality. <a href="https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841">Addy wrote a blog post</a> going into some more detail, so be sure to give that a read as well.</p>
+
+<h3 id="our-decorator:3099c17143ca906089566decfc9edcc8">Our decorator</h3>
+
+<p>The decorator we&rsquo;ll build addresses an issue I have when trying to call Cordova plugins in my Ionic apps, I always forget to wrap them in a device ready callback. So we&rsquo;ll create a <code>platformReady()</code> decorator that automatically handles this. Before going into detail, here is the decorator in it&rsquo;s <a href="https://gist.github.com/mhartington/5fdb572a561cd2e39d3362f36760aa55">final form</a></p>
+
+<p>To start off, we&rsquo;re going to first want to create a function. We&rsquo;ll make a new file: <code>src/decorators/platform-ready.ts</code></p>
+
+<pre><code class="language-js">export function platformReady() {
+
+}
+</code></pre>
+
+<p>In this function, we&rsquo;re going to return a new function that has the information about our class/function. In this case, we&rsquo;ll just call it decorate, but you can name it what ever you want.</p>
+
+<pre><code class="language-js">  return function decorator(target, method, descriptor) {}
+</code></pre>
+
+<p>Now from these arguments, we have full access to our class and the method we&rsquo;re attached to. Inside of this function, we&rsquo;re going to do a bit of setup work for our decorator.</p>
+
+<pre><code class="language-js">return function decorator(target, method, descriptor) {
+  const {
+    ngOnInit = () =&gt; {},
+    ngOnDestroy = () =&gt;{}
+  } = target;
+
+  const symbolHandler = Symbol(method);
+}
+</code></pre>
+
+<p>So the first <code>const</code> is creating <code>ngOnInit</code> and <code>ngOnDestroy</code> method on the class. We set these to <code>noop</code>s  so we they don&rsquo;t really step on users code. Then, we create a <code>symbolHandler</code> by passing the <code>method</code> to the <code>Symbol</code> function. Now we can manually call our method when we need to.</p>
+
+<p>After our <code>symbolHandler</code> we&rsquo;ll add two more functions, just to setup our event listeners.</p>
+
+<pre><code class="language-js">function addListener() {
+  const handler = this[symbolHandler] = (...args) =&gt; {
+    descriptor.value.apply(this, args);
+  };
+  document.addEventListener(DEVICEREADYEVENT, handler);
+}
+function removeListener() {
+  document.addEventListener(DEVICEREADYEVENT, this[symbolHandler]);
+}
+</code></pre>
+
+<p>So this is a bit more involved, and could probably refactored. But the <code>addListener</code> function is setting up our event listener, and the <code>handler</code> is taking that, and passing the event to our method on the class. This is optional really, and doesn&rsquo;t need to be done, but was good to know it&rsquo;s possible.</p>
+
+<p>The <code>removeListener</code> is a bit more self-explanatory, we&rsquo;re simple removing the event listener.</p>
+
+<p>Our last bit of code is to wire up these event listeners so that they play nicely with Angular&rsquo;s event life cycle.</p>
+
+<pre><code class="language-js">target.ngOnInit = function() {
+  ngOnInit.call(this);
+  addListener.call(this);
+};
+
+target.ngOnDestroy = function() {
+  ngOnDestroy.call(this)
+  removeListener.call(this);
+}
+</code></pre>
+
+<p>Since our we mapped our <code>ngOnInit</code> and <code>ngOnDestroy</code> to <code>noop</code>s, we can just pass through what ever the developer has setup in their own code. Then to finish things up, we simple call our <code>addListener</code> and our <code>removeListen</code>.</p>
+
+<p>To better see what this looks like with some finishing touches, we have:</p>
+
+<pre><code class="language-js">const noop = () =&gt; { };
+const DEVICEREADYEVENT = window['cordova'] ? &quot;deviceready&quot; : &quot;DOMContentLoaded&quot;
+export function platformReady() {
+  return function decorator(target, method, descriptor) {
+
+    const { ngOnInit = noop, ngOnDestroy = noop } = target;
+    const symbolHandler = Symbol(method);
+
+    function addListener() {
+      const handler = this[symbolHandler] = (...args) =&gt; {
+        descriptor.value.apply(this, args);
+      };
+      document.addEventListener(DEVICEREADYEVENT, handler);
+    }
+
+    function removeListener() {
+      document.addEventListener(DEVICEREADYEVENT, this[symbolHandler]);
+    }
+
+    target.ngOnInit = function onInitWrapper() {
+      ngOnInit.call(this);
+      addListener.call(this);
+    };
+
+    target.ngOnDestroy = function onDestroyWrapper() {
+      ngOnDestroy.call(this)
+      removeListener.call(this);
+    }
+  }
+}
+</code></pre>
+
+<p>Then, when we want to use the decorator in our code, we can simply import it, and attach it to our method.</p>
+
+<pre><code class="language-js">import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { platformReady } from '../../decorators/platform-ready'
+import { StatusBar } from '@ionic-native/status-bar';
+@Component({
+  ...
+})
+export class HomePage {
+  constructor(
+    public navCtrl: NavController,
+    public statusbar: StatusBar
+  ) { }
+  ngOnInit(){
+    console.log('on init')
+  }
+  @platformReady()
+  onDeviceReady(event) {
+    console.log('device ready called', event)
+    this.statusbar.backgroundColorByName('red')
+  }
+}
+</code></pre>
+
+<p>Something to notice is that we&rsquo;re passing event through from our decorator to the method and that our <code>ngOnInit</code> will still log out &ldquo;on init&rdquo;.</p>
+
+<p>And to see it in action:</p>
+
+<p><center></p>
+
+<p><a href="/img/device-ready.gif"><img src="/img/device-ready-small.gif" alt="device-ready" /></a></p>
+
+<p></center></p>
+
+<h3 id="parting-words:3099c17143ca906089566decfc9edcc8">Parting words</h3>
+
+<p>This is just a quick exploration of decorators and what they can do. As I stated, I expect this decorator could be improved upon and refactored to be much simpler.</p>
+
+<p>If you&rsquo;re interested in some other decorators, or want to read the spec/proposal check the links down below.</p>
+
+<ul>
+<li><a href="http://tc39.github.io/proposal-decorators/">TC39 Docs</a></li>
+<li><a href="https://github.com/steelsojka/lodash-decorators">Lodash Decorators</a></li>
+<li><a href="https://github.com/jayphelps/core-decorators.js">Core Decorators</a></li>
+<li><a href="https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841">Addy&rsquo;s Decorator post</a></li>
+</ul>
+
+            <ul class="share-buttons">
+    <li></li>
+    <li>
+        <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fmhartington.io%2fpost%2fcustom-decorators%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title=""></a>
+    </li>
+    <li>
+        <a class="icon-twitter" href="https://twitter.com/share?text=Custom%20Decorators&amp;url=https%3a%2f%2fmhartington.io%2fpost%2fcustom-decorators%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title=""></a>
+    </li>
+    <li>
+        <a class="icon-gplus" href="https://plus.google.com/share?url=https%3a%2f%2fmhartington.io%2fpost%2fcustom-decorators%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title=""></a>
+    </li>
+    <li>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fmhartington.io%2fpost%2fcustom-decorators%2f&title=Custom%20Decorators" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title=""></a>
+    </li>
+</ul>
+
+            <a class="" href="https://mhartington.io/" title="">Back </a>
+        </article>
+        <div class="comments">
+            <h3></h3>
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'mhartington';
+    var disqus_identifier = 'https:\/\/mhartington.io\/post\/custom-decorators\/';
+    var disqus_title = 'Custom Decorators';
+    var disqus_url = 'https:\/\/mhartington.io\/post\/custom-decorators\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </main>
+    <aside class="author">
+  <img class="profile-image" src="https://www.gravatar.com/avatar/be834f0968111acbbc6f3bf67041c8d5?s=128" alt="Mike Hartington" />
+  <p class="name">
+  <strong>Mike Hartington</strong></p>
+  <p class="link"></p>
+  <ul class="social">
+    
+<li><a href="//twitter.com/mhartington" class="icon-twitter" target="_blank" title="Twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//github.com/mhartington" class="icon-github" target="_blank" title="Github"></a></li>
+
+
+
+
+<li><a href="https://mhartington.io/post/index.xml" class="icon-rss" target="_blank" title="RSS"></a></li>
+
+  </ul>
+  <br><br>
+</aside>
+
+
+</div>
+
+<footer class="main-footer">
+  <div class="container clearfix">
+        <a class="icon-rss" href="https://mhartington.io/post/index.xml" title="RSS"></a>
+        <p>&copy; 2017 &middot; Powered by <a href="https://gohugo.io">Hugo</a>.</p>
+  </div>
+</footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>window.jQuery || document.write('<script src="https:\/\/mhartington.io\/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+<script src="https://mhartington.io/js/plugins.js"></script>
+
+</body>
+</html>
+

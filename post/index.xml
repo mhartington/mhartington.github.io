@@ -6,8 +6,183 @@
     <description>Recent content in Posts on Mike Hartington&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Jun 2016 13:03:06 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 31 May 2017 09:55:05 -0400</lastBuildDate>
     <atom:link href="https://mhartington.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Custom Decorators</title>
+      <link>https://mhartington.io/post/custom-decorators/</link>
+      <pubDate>Wed, 31 May 2017 09:55:05 -0400</pubDate>
+      
+      <guid>https://mhartington.io/post/custom-decorators/</guid>
+      <description>
+
+&lt;p&gt;I&amp;rsquo;ve been getting more into decorators lately, especially since I used them in Angular/Ionic, but also in Python. But I realized that I really didn&amp;rsquo;t know much about them or how they actually worked. So I spent some time last night and built a small decorator, &lt;code&gt;@platformReady()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;wth-is-a-decorators:3099c17143ca906089566decfc9edcc8&#34;&gt;WTH is a decorators&lt;/h3&gt;
+
+&lt;p&gt;Decorators can get confusing real fast, so we&amp;rsquo;re going to try and stay pretty high level here. In it&amp;rsquo;s simplest form, a decorator allows developers to perform higher-level functions on an annotated class or method. Python has these already so lets look at that for an example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;class Client(object):
+
+    @property
+    def serverPath(self):
+        return self._serverPath
+
+    @serverPath.setter
+    def serverPath(self, value):
+        self._serverPath = value
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we have a simple property getter/setter setup. The first method, &lt;code&gt;serverPath&lt;/code&gt; is the getter, and it just returns a value. What&amp;rsquo;s nice about this is when we want to get that value, we can just do &lt;code&gt;Client.serverPath&lt;/code&gt; and it will know how to handle it. The second function is the setter for our property. So when we want to change the value of our property, we can just do &lt;code&gt;Client.serverPath = newValue&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Without getting into too much detail, we can see &amp;ldquo;what&amp;rdquo; decorators are, and how they can be used from a conceptual level. In JavaScript, they follow the same idea, annotate classes or methods to provide additional functionality. &lt;a href=&#34;https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841&#34;&gt;Addy wrote a blog post&lt;/a&gt; going into some more detail, so be sure to give that a read as well.&lt;/p&gt;
+
+&lt;h3 id=&#34;our-decorator:3099c17143ca906089566decfc9edcc8&#34;&gt;Our decorator&lt;/h3&gt;
+
+&lt;p&gt;The decorator we&amp;rsquo;ll build addresses an issue I have when trying to call Cordova plugins in my Ionic apps, I always forget to wrap them in a device ready callback. So we&amp;rsquo;ll create a &lt;code&gt;platformReady()&lt;/code&gt; decorator that automatically handles this. Before going into detail, here is the decorator in it&amp;rsquo;s &lt;a href=&#34;https://gist.github.com/mhartington/5fdb572a561cd2e39d3362f36760aa55&#34;&gt;final form&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;To start off, we&amp;rsquo;re going to first want to create a function. We&amp;rsquo;ll make a new file: &lt;code&gt;src/decorators/platform-ready.ts&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;export function platformReady() {
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this function, we&amp;rsquo;re going to return a new function that has the information about our class/function. In this case, we&amp;rsquo;ll just call it decorate, but you can name it what ever you want.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;  return function decorator(target, method, descriptor) {}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now from these arguments, we have full access to our class and the method we&amp;rsquo;re attached to. Inside of this function, we&amp;rsquo;re going to do a bit of setup work for our decorator.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;return function decorator(target, method, descriptor) {
+  const {
+    ngOnInit = () =&amp;gt; {},
+    ngOnDestroy = () =&amp;gt;{}
+  } = target;
+
+  const symbolHandler = Symbol(method);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So the first &lt;code&gt;const&lt;/code&gt; is creating &lt;code&gt;ngOnInit&lt;/code&gt; and &lt;code&gt;ngOnDestroy&lt;/code&gt; method on the class. We set these to &lt;code&gt;noop&lt;/code&gt;s  so we they don&amp;rsquo;t really step on users code. Then, we create a &lt;code&gt;symbolHandler&lt;/code&gt; by passing the &lt;code&gt;method&lt;/code&gt; to the &lt;code&gt;Symbol&lt;/code&gt; function. Now we can manually call our method when we need to.&lt;/p&gt;
+
+&lt;p&gt;After our &lt;code&gt;symbolHandler&lt;/code&gt; we&amp;rsquo;ll add two more functions, just to setup our event listeners.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;function addListener() {
+  const handler = this[symbolHandler] = (...args) =&amp;gt; {
+    descriptor.value.apply(this, args);
+  };
+  document.addEventListener(DEVICEREADYEVENT, handler);
+}
+function removeListener() {
+  document.addEventListener(DEVICEREADYEVENT, this[symbolHandler]);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So this is a bit more involved, and could probably refactored. But the &lt;code&gt;addListener&lt;/code&gt; function is setting up our event listener, and the &lt;code&gt;handler&lt;/code&gt; is taking that, and passing the event to our method on the class. This is optional really, and doesn&amp;rsquo;t need to be done, but was good to know it&amp;rsquo;s possible.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;removeListener&lt;/code&gt; is a bit more self-explanatory, we&amp;rsquo;re simple removing the event listener.&lt;/p&gt;
+
+&lt;p&gt;Our last bit of code is to wire up these event listeners so that they play nicely with Angular&amp;rsquo;s event life cycle.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;target.ngOnInit = function() {
+  ngOnInit.call(this);
+  addListener.call(this);
+};
+
+target.ngOnDestroy = function() {
+  ngOnDestroy.call(this)
+  removeListener.call(this);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Since our we mapped our &lt;code&gt;ngOnInit&lt;/code&gt; and &lt;code&gt;ngOnDestroy&lt;/code&gt; to &lt;code&gt;noop&lt;/code&gt;s, we can just pass through what ever the developer has setup in their own code. Then to finish things up, we simple call our &lt;code&gt;addListener&lt;/code&gt; and our &lt;code&gt;removeListen&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To better see what this looks like with some finishing touches, we have:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;const noop = () =&amp;gt; { };
+const DEVICEREADYEVENT = window[&#39;cordova&#39;] ? &amp;quot;deviceready&amp;quot; : &amp;quot;DOMContentLoaded&amp;quot;
+export function platformReady() {
+  return function decorator(target, method, descriptor) {
+
+    const { ngOnInit = noop, ngOnDestroy = noop } = target;
+    const symbolHandler = Symbol(method);
+
+    function addListener() {
+      const handler = this[symbolHandler] = (...args) =&amp;gt; {
+        descriptor.value.apply(this, args);
+      };
+      document.addEventListener(DEVICEREADYEVENT, handler);
+    }
+
+    function removeListener() {
+      document.addEventListener(DEVICEREADYEVENT, this[symbolHandler]);
+    }
+
+    target.ngOnInit = function onInitWrapper() {
+      ngOnInit.call(this);
+      addListener.call(this);
+    };
+
+    target.ngOnDestroy = function onDestroyWrapper() {
+      ngOnDestroy.call(this)
+      removeListener.call(this);
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, when we want to use the decorator in our code, we can simply import it, and attach it to our method.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import { Component } from &#39;@angular/core&#39;;
+import { NavController } from &#39;ionic-angular&#39;;
+import { platformReady } from &#39;../../decorators/platform-ready&#39;
+import { StatusBar } from &#39;@ionic-native/status-bar&#39;;
+@Component({
+  ...
+})
+export class HomePage {
+  constructor(
+    public navCtrl: NavController,
+    public statusbar: StatusBar
+  ) { }
+  ngOnInit(){
+    console.log(&#39;on init&#39;)
+  }
+  @platformReady()
+  onDeviceReady(event) {
+    console.log(&#39;device ready called&#39;, event)
+    this.statusbar.backgroundColorByName(&#39;red&#39;)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Something to notice is that we&amp;rsquo;re passing event through from our decorator to the method and that our &lt;code&gt;ngOnInit&lt;/code&gt; will still log out &amp;ldquo;on init&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;And to see it in action:&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/device-ready.gif&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/device-ready-small.gif&#34; alt=&#34;device-ready&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;parting-words:3099c17143ca906089566decfc9edcc8&#34;&gt;Parting words&lt;/h3&gt;
+
+&lt;p&gt;This is just a quick exploration of decorators and what they can do. As I stated, I expect this decorator could be improved upon and refactored to be much simpler.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;rsquo;re interested in some other decorators, or want to read the spec/proposal check the links down below.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://tc39.github.io/proposal-decorators/&#34;&gt;TC39 Docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/steelsojka/lodash-decorators&#34;&gt;Lodash Decorators&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/jayphelps/core-decorators.js&#34;&gt;Core Decorators&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841&#34;&gt;Addy&amp;rsquo;s Decorator post&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Revisiting Typings: Post 1.0</title>
@@ -386,97 +561,6 @@ set, which gets used by the CLI&lt;/p&gt;
 &lt;p&gt;When I upload the app again, it will change the displayed name, but keep everything else the same.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/new-name.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/new-name.png&#34; alt=&#34;new-name&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Automated Hugo Builds</title>
-      <link>https://mhartington.io/post/automated-hugo-builds/</link>
-      <pubDate>Mon, 04 Jan 2016 22:48:59 -0500</pubDate>
-      
-      <guid>https://mhartington.io/post/automated-hugo-builds/</guid>
-      <description>
-
-&lt;p&gt;This is a static site built using &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt;. It&amp;rsquo;s similar to Jekyll in a few ways, but written in Go, so it&amp;rsquo;s super fast. Plus it&amp;rsquo;s not ruby so thats always a plus. Hugo is pretty simple to setup, especially on OSX. You can just &lt;code&gt;brew install&lt;/code&gt; it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;brew install hugo
-
-# create a new site
-hugo new site mySite
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You can also run this on Linux or Windows, so another plus over Jekyll.&lt;/p&gt;
-
-&lt;p&gt;Posts are written in Markdown or HTML, what ever you prefer with some frontmatter that feels very familiar to Jekyll, so you should feel right at home.&lt;/p&gt;
-
-&lt;p&gt;A big selling point was that automated builds were dead simple to setup. They even have a section in their docs about setting it up for Github pages. Though, for their example, it assumes you&amp;rsquo;re using this for a projects gh-pages branch, and not a &lt;code&gt;user.github.io&lt;/code&gt; site. While the process is similar, it does have some important differences that you need to watch out for. Nothing against Hugo, but some thing that they could have made a bit clearer.&lt;/p&gt;
-
-&lt;h2 id=&#34;enabling-builds:7818264fcd3e1b87043e534129824e35&#34;&gt;Enabling builds&lt;/h2&gt;
-
-&lt;p&gt;So first I&amp;rsquo;m going to assume you&amp;rsquo;ve dug into Hugo a bit and maybe built a simple site with a page or two. So let&amp;rsquo;s push this to github!&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/blog-repo.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/blog-repo.png&#34; alt=&#34;blog-repo&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;One thing you may notice is that I&amp;rsquo;ve pushed this to a dev branch, and then made that the default branch for the repo. This is where the Hugo docs differ. Since this is a &lt;code&gt;user.github.io&lt;/code&gt; site, we&amp;rsquo;ll need to deploy the final output to master.&lt;/p&gt;
-
-&lt;h2 id=&#34;building-on-push:7818264fcd3e1b87043e534129824e35&#34;&gt;Building on Push&lt;/h2&gt;
-
-&lt;p&gt;Now that we have our code somewhere, we can use a automated build service to handle pushing the updates for us. For this we&amp;rsquo;ll use &lt;a href=&#34;http://wercker.com&#34;&gt;Wercker&lt;/a&gt;. Now this is similar to Travis or CircleCI, but it has a bunch of pre-built processors that you can use to make setup even easier.&lt;/p&gt;
-
-&lt;p&gt;Sign up for Wercker (don&amp;rsquo;t worry, it&amp;rsquo;s free) and create a new app from a github repo&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://gohugo.io/img/tutorials/wercker-add-app.png&#34;&gt;&lt;img src=&#34;https://gohugo.io/img/tutorials/wercker-add-app.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;image courtesy of Hugo&amp;rsquo;s offical docs&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Follow the steps and configure you access without SSH key&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://gohugo.io/img/tutorials/wercker-access.png&#34;&gt;&lt;img src=&#34;https://gohugo.io/img/tutorials/wercker-access.png&#34; alt=&#34;blog-repo&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;image courtesy of Hugo&amp;rsquo;s offical docs&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;This will give you a template &lt;code&gt;wercker.yml&lt;/code&gt; file, which you can ignore for now. We&amp;rsquo;ll be making our own later on.&lt;/p&gt;
-
-&lt;p&gt;Now that we have an app on Wercker, let&amp;rsquo;s configure our build. Head over to github and grab an &lt;a href=&#34;https://github.com/settings/tokens&#34;&gt;access token&lt;/a&gt;, the default setting will do fine. Copy the token somewhere like a blank text file.&lt;/p&gt;
-
-&lt;p&gt;Back on Wercker, navigate to your app and click the gear icon in the top&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/app-settings.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/app-settings.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;In the sidebar, click Targets and add a custom deploy method.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/custom-deploy.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/custom-deploy.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ll just call this GithuPages for now, enable automatic builds, and set the target branch to build from to dev. Now in my case, dev is the name of the branch my site is developed on. It may be different for you so update the name to match what you used.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/gh-pages.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/gh-pages.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Click save and then add a new environment variable. This will be your github access token you just created.
-We&amp;rsquo;ll call it &lt;code&gt;GIT_TOKEN&lt;/code&gt;, add the token, click save and we should be good.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/token.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/token.png&#34; alt=&#34;new-app&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;the-wercker-yml-file:7818264fcd3e1b87043e534129824e35&#34;&gt;The &lt;code&gt;wercker.yml&lt;/code&gt; file&lt;/h2&gt;
-
-&lt;p&gt;So back in our code base, let&amp;rsquo;s create a &lt;code&gt;wercker.yml&lt;/code&gt; file. This is how we&amp;rsquo;ll configure out build on Wercker and build the hugo site.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yml&#34;&gt;box: debian
-build:
-  steps:
-    - arjen/hugo-build:
-        version: &amp;quot;0.15&amp;quot;
-        theme: hugo-minimalist-theme
-        flags: --buildDrafts=true
-deploy:
-  steps:
-    - install-packages:
-        packages: git ssh-client
-    - uetchy/gh-pages:
-        token: $GIT_TOKEN
-        repo: mhartington/mhartington.github.io
-        path: public
-        domain: mhartington.io
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
