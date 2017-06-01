@@ -9,7 +9,7 @@ I've been getting more into decorators lately, especially since I used them in A
 
 ### WTH is a decorators
 
-Decorators can get confusing real fast, so we're going to try and stay pretty high level here. In it's simplest form, a decorator allows developers to perform higher-level functions on an annotated class or method. Python has these already so lets look at that for an example.
+Decorators can get confusing real fast, so we're going to try to stay pretty high level here. In its simplest form, a decorator allows developers to perform higher-level functions on an annotated class or method. Python has these already so Let's look at that for an example.
 
 ```python
 class Client(object):
@@ -63,7 +63,7 @@ return function decorator(target, method, descriptor) {
 
 So the first `const` is creating `ngOnInit` and `ngOnDestroy` method on the class. We set these to `noop`s  so we they don't really step on users code. Then, we create a `symbolHandler` by passing the `method` to the `Symbol` function. Now we can manually call our method when we need to.
 
-After our `symbolHandler` we'll add two more functions, just to setup our event listeners.
+After our `symbolHandler` we'll add two more functions, just to set up our event listeners.
 
 ```js
 function addListener() {
