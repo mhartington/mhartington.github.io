@@ -21,7 +21,7 @@
 
 &lt;h3 id=&#34;wth-is-a-decorators:3099c17143ca906089566decfc9edcc8&#34;&gt;WTH is a decorators&lt;/h3&gt;
 
-&lt;p&gt;Decorators can get confusing real fast, so we&amp;rsquo;re going to try and stay pretty high level here. In it&amp;rsquo;s simplest form, a decorator allows developers to perform higher-level functions on an annotated class or method. Python has these already so lets look at that for an example.&lt;/p&gt;
+&lt;p&gt;Decorators can get confusing real fast, so we&amp;rsquo;re going to try to stay pretty high level here. In its simplest form, a decorator allows developers to perform higher-level functions on an annotated class or method. Python has these already so Let&amp;rsquo;s look at that for an example.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;class Client(object):
 
@@ -68,7 +68,7 @@
 
 &lt;p&gt;So the first &lt;code&gt;const&lt;/code&gt; is creating &lt;code&gt;ngOnInit&lt;/code&gt; and &lt;code&gt;ngOnDestroy&lt;/code&gt; method on the class. We set these to &lt;code&gt;noop&lt;/code&gt;s  so we they don&amp;rsquo;t really step on users code. Then, we create a &lt;code&gt;symbolHandler&lt;/code&gt; by passing the &lt;code&gt;method&lt;/code&gt; to the &lt;code&gt;Symbol&lt;/code&gt; function. Now we can manually call our method when we need to.&lt;/p&gt;
 
-&lt;p&gt;After our &lt;code&gt;symbolHandler&lt;/code&gt; we&amp;rsquo;ll add two more functions, just to setup our event listeners.&lt;/p&gt;
+&lt;p&gt;After our &lt;code&gt;symbolHandler&lt;/code&gt; we&amp;rsquo;ll add two more functions, just to set up our event listeners.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;function addListener() {
   const handler = this[symbolHandler] = (...args) =&amp;gt; {

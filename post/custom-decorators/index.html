@@ -57,7 +57,7 @@
 
 <h3 id="wth-is-a-decorators:3099c17143ca906089566decfc9edcc8">WTH is a decorators</h3>
 
-<p>Decorators can get confusing real fast, so we&rsquo;re going to try and stay pretty high level here. In it&rsquo;s simplest form, a decorator allows developers to perform higher-level functions on an annotated class or method. Python has these already so lets look at that for an example.</p>
+<p>Decorators can get confusing real fast, so we&rsquo;re going to try to stay pretty high level here. In its simplest form, a decorator allows developers to perform higher-level functions on an annotated class or method. Python has these already so Let&rsquo;s look at that for an example.</p>
 
 <pre><code class="language-python">class Client(object):
 
@@ -104,7 +104,7 @@
 
 <p>So the first <code>const</code> is creating <code>ngOnInit</code> and <code>ngOnDestroy</code> method on the class. We set these to <code>noop</code>s  so we they don&rsquo;t really step on users code. Then, we create a <code>symbolHandler</code> by passing the <code>method</code> to the <code>Symbol</code> function. Now we can manually call our method when we need to.</p>
 
-<p>After our <code>symbolHandler</code> we&rsquo;ll add two more functions, just to setup our event listeners.</p>
+<p>After our <code>symbolHandler</code> we&rsquo;ll add two more functions, just to set up our event listeners.</p>
 
 <pre><code class="language-js">function addListener() {
   const handler = this[symbolHandler] = (...args) =&gt; {
