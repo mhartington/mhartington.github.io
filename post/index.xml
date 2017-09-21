@@ -1,13 +1,101 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Mike Hartington&#39;s blog</title>
+    <title>Posts on Mike Hartington</title>
     <link>https://mhartington.io/post/</link>
-    <description>Recent content in Posts on Mike Hartington&#39;s blog</description>
+    <description>Recent content in Posts on Mike Hartington</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 31 May 2017 09:55:05 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 21 Sep 2017 10:39:55 -0400</lastBuildDate>
     <atom:link href="https://mhartington.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>iPhoneX and The Notch</title>
+      <link>https://mhartington.io/post/iphonex-and-the-notch/</link>
+      <pubDate>Thu, 21 Sep 2017 10:39:55 -0400</pubDate>
+      
+      <guid>https://mhartington.io/post/iphonex-and-the-notch/</guid>
+      <description>
+
+&lt;p&gt;Every year Apple releases a new iPhone and a new iOS version to match. For the history of the iPhone, any changes that come with these new devices tend to be very small. Design changes in iOS7? Not a huge deal, as they&amp;rsquo;re fairly easy to design for, especially in a hybrid app context. This year however, Apple has introduce it&amp;rsquo;s most drastic change in iPhone history.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cdn.vox-cdn.com/thumbor/sReaaOYo1Lcl3-Hf73vByPPRBsg=/0x0:800x533/1200x800/filters:focal(336x203:464x331&#34; alt=&#34;&#34; /&gt;/cdn.vox-cdn.com/uploads/chorus_image/image/56641599/apple_iphone_2017_20170912_11670.0.jpeg)&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Introducing&amp;hellip; the Notch&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This, is frustrating, to say the least, and from a hybrid app perspective, it introduces several new challenges.&lt;/p&gt;
+
+&lt;h3 id=&#34;1-full-screen-support:98eff7ecee963d395c21446ebffcad2f&#34;&gt;1. Full screen support&lt;/h3&gt;
+
+&lt;p&gt;First thing we&amp;rsquo;ll want to address is the high resolution of the iPhoneX. This is not an entirely new issue, and iPad Pro also has a large resolution. With this high resolution, we need to provide a larger splashscreen image, but in a slightly different way then we&amp;rsquo;re used to. In Cordova-ios 4.3.1, there was support added for something called &amp;ldquo;Launch Storyboards&amp;rdquo;. Essentially, we can tell iOS that we&amp;rsquo;re providing a large image, and it will properly scale and crop it to fit our screen. I&amp;rsquo;ll be using an Ionic project as an example, but this is not tied to Ionic. In our &lt;code&gt;resouces&lt;/code&gt; folder, we&amp;rsquo;ll add an image that is &lt;code&gt;2732x2732px&lt;/code&gt; in size. We&amp;rsquo;ll add this as &lt;code&gt;resources/ios/splash/Default@2x~universal~anyany.png&lt;/code&gt;. Then, in our config.xml, we&amp;rsquo;ll add a new reference to the image.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;platform name=&amp;quot;ios&amp;quot;&amp;gt;
+  &amp;lt;allow-intent href=&amp;quot;itms:*&amp;quot; /&amp;gt;
+  &amp;lt;allow-intent href=&amp;quot;itms-apps:*&amp;quot; /&amp;gt;
+  &amp;lt;splash src=&amp;quot;resources/ios/splash/Default@2x~universal~anyany.png&amp;quot; /&amp;gt;
+&amp;lt;/platform&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The Ionic CLI will be updated in the coming weeks to generate this image and add the entry for you.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;A key thing to note here, is the &lt;code&gt;splash&lt;/code&gt; entry has no sizing added to it. This is key!&lt;/p&gt;
+
+&lt;p&gt;When we build our app and deploy to iPhoneX simulator, we should get something similar to this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://mhartington.io/img/iphonex-launch-image.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is a good first step so far, but you&amp;rsquo;ll notice we&amp;rsquo;re still not using all of the screen, we have some space at the bottom and top of the device.&lt;/p&gt;
+
+&lt;h3 id=&#34;2-adjusting-the-viewport:98eff7ecee963d395c21446ebffcad2f&#34;&gt;2. Adjusting the viewport&lt;/h3&gt;
+
+&lt;p&gt;The next piece we need to add is a small change to our viewport meta tag. By default, Ionic projects come with a viewport meta tag that looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;head&amp;gt;
+
+  &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&amp;quot;&amp;gt;
+&amp;lt;/head&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This has served us well for many years, but now we need to add a new entry, &lt;code&gt;viewport-fit&lt;/code&gt;. This new entry can tell a browser how it should scale/size it self. It can take 3 values.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Value&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;cover&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The viewport will scale to fill the entire screen, regardless of aspect ratio. Think css background-images&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;contain&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The viewport will scale until it hits an edge. This could be the sides of the screen, or top and bottom&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;There is a default &lt;code&gt;auto&lt;/code&gt; value as well, but it is the same thing as contain.&lt;/p&gt;
+
+&lt;p&gt;We want to add &lt;code&gt;cover&lt;/code&gt; to our viewport meta tag.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;head&amp;gt;
+
+  &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover&amp;quot;&amp;gt;
+&amp;lt;/head&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;3-css-changes:98eff7ecee963d395c21446ebffcad2f&#34;&gt;3. CSS Changes&lt;/h3&gt;
+
+&lt;p&gt;For the last pieces of changes, css needs to be modified to take advantage of&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Custom Decorators</title>
