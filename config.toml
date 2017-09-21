@@ -11,8 +11,6 @@ theme = "minimo"
   site_author = "Mike Hartington"
   site_description = "The ramblings of a New Englander"
   location = "USA"
-  # All paths are relative to the baseurl. Put your files
-  # somewhere in the static folder.
   avatar = "https://www.gravatar.com/avatar/be834f0968111acbbc6f3bf67041c8d5?s=128"
   header_background = "img/desk.jpg"
   header_title = "Mike's Blog"
