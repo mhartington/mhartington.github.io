@@ -1,30 +1,33 @@
 baseurl = "https://mhartington.io/"
 languageCode = "en-us"
-title = "Mike Hartington's blog"
+title = "Mike Hartington"
 # Define how many pages appear per site
 paginate = 10
 # Enable comments powered by Disqus by entering your disqus shortname
 disqusShortname = "mhartington"
-theme = "hugo-minimalist-theme"
-
+theme = "minimo"
 [params]
-    site_author = "Mike Hartington"
-    site_description = "The ramblings of a New Englander"
-    location = "USA"
-    # All paths are relative to the baseurl. Put your files
-    # somewhere in the static folder.
-    avatar = "https://www.gravatar.com/avatar/be834f0968111acbbc6f3bf67041c8d5?s=128"
-    header_background = "img/desk.jpg"
-    header_title = "Mike's Blog"
-    copyright = "Powered by [Hugo](https://gohugo.io)."
+  hideEntryNavigation = false
+  site_author = "Mike Hartington"
+  site_description = "The ramblings of a New Englander"
+  location = "USA"
+  # All paths are relative to the baseurl. Put your files
+  # somewhere in the static folder.
+  avatar = "https://www.gravatar.com/avatar/be834f0968111acbbc6f3bf67041c8d5?s=128"
+  header_background = "img/desk.jpg"
+  header_title = "Mike's Blog"
+  copyright = ""
+  customCSS = ["https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css", "css/highlight.css", "css/override.css"]
+  customJS = ["https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", "js/highlight.js"]
 
-    # Enable gogle analytics by entering your tracking code
-    google_analytics = ""
+  # Enable gogle analytics by entering your tracking code
+  google_analytics = ""
+  [author.social]
+    twitter   = "mhartington"
+    github    = "mhartington"
 
 [social]
     # Add your social network accounts to the profile section on the left
     # by entering your username. The links to your account will be
     # create automatically.
-    twitter   = "mhartington"
-    github    = "mhartington"
 
