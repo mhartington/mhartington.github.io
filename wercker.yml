@@ -3,7 +3,7 @@ build:
   steps:
     - arjen/hugo-build@1.21.1:
         theme: minimo
-        flags: --buildDrafts=true
+        flags: --buildDrafts=false
 deploy:
   steps:
     - uetchy/gh-pages:
