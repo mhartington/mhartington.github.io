@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://mhartington.io/</loc>
-    <lastmod>2016-01-03T12:09:03-05:00</lastmod>
-    <priority>0</priority>
+    <loc>https://mhartington.io/post/custom-decorators/</loc>
+    <lastmod>2017-05-31T09:55:05-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mhartington.io/post/typings-v1/</loc>
+    <lastmod>2016-06-02T13:03:06-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mhartington.io/post/ionic2-external-libraries/</loc>
+    <lastmod>2016-02-17T11:38:32-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mhartington.io/post/setting-input-focus/</loc>
+    <lastmod>2016-02-03T09:37:41-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mhartington.io/post/object-fit/</loc>
+    <lastmod>2016-01-14T20:54:55-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mhartington.io/post/ionic-io-app-name/</loc>
+    <lastmod>2016-01-08T16:01:47-05:00</lastmod>
   </url>
   
   <url>
@@ -20,6 +45,28 @@
   <url>
     <loc>https://mhartington.io/post/welcome/</loc>
     <lastmod>2015-12-28T09:37:11-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mhartington.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mhartington.io/</loc>
+    <lastmod>2017-05-31T09:55:05-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mhartington.io/post/</loc>
+    <lastmod>2017-05-31T09:55:05-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mhartington.io/tags/</loc>
+    <priority>0</priority>
   </url>
   
 </urlset>

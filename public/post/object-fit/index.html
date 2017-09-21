@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='Today I was watching a random video on ES6 tooling when I saw the author use a CSS property I&rsquo;d never heard of. object-fit, and it was pretty awesome.
+ Method of specifying how an object (image or video) should fit inside its box. object-fit options include &ldquo;contain&rdquo; (fit according to aspect ratio), &ldquo;fill&rdquo; (stretches object to fill) and &ldquo;cover&rdquo; (overflows box but maintains ratio), where object-position allows the object to be repositioned like background-image does.'>
+
+<meta property='og:title' content='Object Fit • Mike Hartington'>
+<meta property='og:description' content='Today I was watching a random video on ES6 tooling when I saw the author use a CSS property I&rsquo;d never heard of. object-fit, and it was pretty awesome.
+ Method of specifying how an object (image or video) should fit inside its box. object-fit options include &ldquo;contain&rdquo; (fit according to aspect ratio), &ldquo;fill&rdquo; (stretches object to fill) and &ldquo;cover&rdquo; (overflows box but maintains ratio), where object-position allows the object to be repositioned like background-image does.'>
+<meta property='og:url' content='https://mhartington.io/post/object-fit/'>
+<meta property='og:site_name' content='Mike Hartington'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:published_time' content='2016-01-14T20:54:55-08:00'/><meta property='article:modified_time' content='2016-01-14T20:54:55-08:00'/>
+
+<meta name="generator" content="Hugo 0.26" />
+
+  <title>Object Fit • Mike Hartington</title>
+  <link rel='canonical' href='https://mhartington.io/post/object-fit/'>
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700&subset=latin'>
+<link rel='stylesheet' href='/css/main.67a788c9.css'>
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css'>
+
+  <link rel='stylesheet' href='/css/highlight.css'>
+
+  <link rel='stylesheet' href='/css/override.css'>
+
+
+
+</head>
+
+
+<body class='page'>
+  <div class='site'>
+    <header id='header' class='header-container'>
+      <div class='site-header'>
+        <nav id='navmenu' aria-label='Main Menu'>
+  <ul class='main-menu'>
+    
+  </ul>
+</nav>
+
+        <div class='site-info'>
+          
+          <p class='site-title title'>Mike Hartington</p>
+          
+          <p class='site-description'></p>
+        </div>
+      </div>
+    </header>
+
+
+<main class='main'>
+  <article lang='en' class='entry'>
+    <header class='entry-header'>
+  <div class='entry-info'>
+    <h1 class='entry-title title'>Object Fit</h1>
+    
+  </div>
+  
+<div class='meta'>
+  <span class='posted-on'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+
+    <span class='screen-reader'>Posted on </span>
+    <time class='date' datetime='2016-01-14T20:54:55-08:00'>2016, Jan 14</time>
+  </span>
+  
+  
+</div>
+
+
+</header>
+
+    <div class='entry-content'>
+  
+
+<p>Today I was watching a random video on ES6 tooling when I saw the author use a CSS property I&rsquo;d never heard of. <code>object-fit</code>, and it was pretty awesome.</p>
+
+<blockquote>
+<p>Method of specifying how an object (image or video) should fit inside its box. object-fit options include &ldquo;contain&rdquo; (fit according to aspect ratio), &ldquo;fill&rdquo; (stretches object to fill) and &ldquo;cover&rdquo; (overflows box but maintains ratio), where object-position allows the object to be repositioned like background-image does.</p>
+</blockquote>
+
+<p><em>Or</em> It&rsquo;s similar to CSS background-size, where you can adjust how an image scales as you resize the page.</p>
+
+<p>This is something I&rsquo;d never even heard of before, so I decided to give it a test.
+Now according to <a href="http://caniuse.com/#feat=object-fit">Can I Use</a>, object-fit is supported on modern Firefox, Chrome, and has partial support on Safari. The partial support on Safari is due to it not supported <code>object-position</code>.</p>
+
+<h3 id="demo">Demo</h3>
+
+<p>Now the demo is pretty simple. I create a list of images and size them up to 50% of the viewport&rsquo;s width and height.</p>
+
+<pre><code class="language-html">&lt;ion-pane ng-controller=&quot;MainCtrl as main&quot;&gt;
+  &lt;ion-header-bar class=&quot;bar-positive&quot;&gt;
+    &lt;h1 class=&quot;title&quot;&gt;Blank Starter&lt;/h1&gt;
+  &lt;/ion-header-bar&gt;
+  &lt;ion-content&gt;
+    &lt;div class=&quot;row row-wrap&quot;&gt;
+      &lt;div class=&quot;col col-50&quot; ng-repeat=&quot;image in main.images&quot;&gt;
+        &lt;img src=&quot;https://unsplash.it/200/300/?random&quot; alt=&quot;&quot; /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/ion-content&gt;
+&lt;/ion-pane&gt;
+</code></pre>
+
+<p>There&rsquo;s some Angular behind there to just ease the process of creating all the images. The real magic comes from the CSS</p>
+
+<pre><code class="language-css">img{
+  display: block;
+  width: 50vw;
+  height: 50vh;
+  object-fit: cover
+
+}
+</code></pre>
+
+<p><code>object-fit: cover</code> will size the image so that no matter what the dimensions are, the images aspect ratio will always be preserved.</p>
+
+<p>This makes creating something like an image gallery so much easier since you don&rsquo;t have to worry about the images dimensions. You can just use <code>object-fit</code> and know everything will be work.</p>
+
+<p><p data-height="268" data-theme-id="0" data-slug-hash="xZXGGX" data-default-tab="result" data-user="mhartington" class='codepen'>See the Pen <a href='http://codepen.io/mhartington/pen/xZXGGX/'>Object-fit</a> by Mike Hartington (<a href='http://codepen.io/mhartington'>@mhartington</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script></p>
+
+</div>
+
+    
+<footer class='entry-footer'>
+  
+    
+  
+    
+  
+</footer>
+
+
+  </article>
+
+  
+    
+<nav class='entry-nav'>
+  <div class='entry-nav-links'><div class='prev-entry'>
+      <a href='https://mhartington.io/post/ionic-io-app-name/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader'>Previous post: </span>Ionic IO app name</a>
+    </div><div class='next-entry'>
+      <a href='https://mhartington.io/post/setting-input-focus/'>
+        <span class='screen-reader'>Next post: </span>Setting Focus to an Input in Ionic 2<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+
+  
+
+  
+    <div class='comments-container'>
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "mhartington" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  
+</main>
+
+    <footer id='footer' class='footer-container'>
+      <div class='footer'>
+        <div class='social'>
+  <nav aria-label='Social Menu'>
+    <ul class='social-menu'><li>
+        <a href='https://github.com/mhartington' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Github account in new tab</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='https://twitter.com/mhartington' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Twitter account in new tab</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+
+        </a>
+      </li></ul>
+  </nav>
+</div>
+
+        <div class='copyright'>
+          <p>
+  &copy; 2017 Mike Hartington</p>
+
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src='/js/main.af838dd5.js'></script>
+  
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
+  
+    <script src='/js/highlight.js'></script>
+  
+
+</body>
+
+</html>
+

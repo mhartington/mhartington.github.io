@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='I&rsquo;ve been getting more into decorators lately, especially since I used them in Angular/Ionic, but also in Python. But I realized that I really didn&rsquo;t know much about them or how they actually worked. So I spent some time last night and built a small decorator, @platformReady().
+WTH is a decorators Decorators can get confusing real fast, so we&rsquo;re going to try to stay pretty high level here. In its simplest form, a decorator allows developers to perform higher-level functions on an annotated class or method.'>
+
+<meta property='og:title' content='Custom Decorators • Mike Hartington'>
+<meta property='og:description' content='I&rsquo;ve been getting more into decorators lately, especially since I used them in Angular/Ionic, but also in Python. But I realized that I really didn&rsquo;t know much about them or how they actually worked. So I spent some time last night and built a small decorator, @platformReady().
+WTH is a decorators Decorators can get confusing real fast, so we&rsquo;re going to try to stay pretty high level here. In its simplest form, a decorator allows developers to perform higher-level functions on an annotated class or method.'>
+<meta property='og:url' content='https://mhartington.io/post/custom-decorators/'>
+<meta property='og:site_name' content='Mike Hartington'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:published_time' content='2017-05-31T09:55:05-04:00'/><meta property='article:modified_time' content='2017-05-31T09:55:05-04:00'/>
+
+<meta name="generator" content="Hugo 0.26" />
+
+  <title>Custom Decorators • Mike Hartington</title>
+  <link rel='canonical' href='https://mhartington.io/post/custom-decorators/'>
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700&subset=latin'>
+<link rel='stylesheet' href='/css/main.67a788c9.css'>
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css'>
+
+  <link rel='stylesheet' href='/css/highlight.css'>
+
+  <link rel='stylesheet' href='/css/override.css'>
+
+
+
+</head>
+
+
+<body class='page'>
+  <div class='site'>
+    <header id='header' class='header-container'>
+      <div class='site-header'>
+        <nav id='navmenu' aria-label='Main Menu'>
+  <ul class='main-menu'>
+    
+  </ul>
+</nav>
+
+        <div class='site-info'>
+          
+          <p class='site-title title'>Mike Hartington</p>
+          
+          <p class='site-description'></p>
+        </div>
+      </div>
+    </header>
+
+
+<main class='main'>
+  <article lang='en' class='entry'>
+    <header class='entry-header'>
+  <div class='entry-info'>
+    <h1 class='entry-title title'>Custom Decorators</h1>
+    
+  </div>
+  
+<div class='meta'>
+  <span class='posted-on'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+
+    <span class='screen-reader'>Posted on </span>
+    <time class='date' datetime='2017-05-31T09:55:05-04:00'>2017, May 31</time>
+  </span>
+  
+  
+</div>
+
+
+</header>
+
+    <div class='entry-content'>
+  
+
+<p>I&rsquo;ve been getting more into decorators lately, especially since I used them in Angular/Ionic, but also in Python. But I realized that I really didn&rsquo;t know much about them or how they actually worked. So I spent some time last night and built a small decorator, <code>@platformReady()</code>.</p>
+
+<h3 id="wth-is-a-decorators">WTH is a decorators</h3>
+
+<p>Decorators can get confusing real fast, so we&rsquo;re going to try to stay pretty high level here. In its simplest form, a decorator allows developers to perform higher-level functions on an annotated class or method. Python has these already so Let&rsquo;s look at that for an example.</p>
+
+<pre><code class="language-python">class Client(object):
+
+    @property
+    def serverPath(self):
+        return self._serverPath
+
+    @serverPath.setter
+    def serverPath(self, value):
+        self._serverPath = value
+</code></pre>
+
+<p>Here we have a simple property getter/setter setup. The first method, <code>serverPath</code> is the getter, and it just returns a value. What&rsquo;s nice about this is when we want to get that value, we can just do <code>Client.serverPath</code> and it will know how to handle it. The second function is the setter for our property. So when we want to change the value of our property, we can just do <code>Client.serverPath = newValue</code>.</p>
+
+<p>Without getting into too much detail, we can see &ldquo;what&rdquo; decorators are, and how they can be used from a conceptual level. In JavaScript, they follow the same idea, annotate classes or methods to provide additional functionality. <a href="https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841">Addy wrote a blog post</a> going into some more detail, so be sure to give that a read as well.</p>
+
+<h3 id="our-decorator">Our decorator</h3>
+
+<p>The decorator we&rsquo;ll build addresses an issue I have when trying to call Cordova plugins in my Ionic apps, I always forget to wrap them in a device ready callback. So we&rsquo;ll create a <code>platformReady()</code> decorator that automatically handles this. Before going into detail, here is the decorator in it&rsquo;s <a href="https://gist.github.com/mhartington/5fdb572a561cd2e39d3362f36760aa55">final form</a></p>
+
+<p>To start off, we&rsquo;re going to first want to create a function. We&rsquo;ll make a new file: <code>src/decorators/platform-ready.ts</code></p>
+
+<pre><code class="language-js">export function platformReady() {
+
+}
+</code></pre>
+
+<p>In this function, we&rsquo;re going to return a new function that has the information about our class/function. In this case, we&rsquo;ll just call it decorate, but you can name it what ever you want.</p>
+
+<pre><code class="language-js">  return function decorator(target, method, descriptor) {}
+</code></pre>
+
+<p>Now from these arguments, we have full access to our class and the method we&rsquo;re attached to. Inside of this function, we&rsquo;re going to do a bit of setup work for our decorator.</p>
+
+<pre><code class="language-js">return function decorator(target, method, descriptor) {
+  const {
+    ngOnInit = () =&gt; {},
+    ngOnDestroy = () =&gt;{}
+  } = target;
+
+  const symbolHandler = Symbol(method);
+}
+</code></pre>
+
+<p>So the first <code>const</code> is creating <code>ngOnInit</code> and <code>ngOnDestroy</code> method on the class. We set these to <code>noop</code>s  so we they don&rsquo;t really step on users code. Then, we create a <code>symbolHandler</code> by passing the <code>method</code> to the <code>Symbol</code> function. Now we can manually call our method when we need to.</p>
+
+<p>After our <code>symbolHandler</code> we&rsquo;ll add two more functions, just to set up our event listeners.</p>
+
+<pre><code class="language-js">function addListener() {
+  const handler = this[symbolHandler] = (...args) =&gt; {
+    descriptor.value.apply(this, args);
+  };
+  document.addEventListener(DEVICEREADYEVENT, handler);
+}
+function removeListener() {
+  document.addEventListener(DEVICEREADYEVENT, this[symbolHandler]);
+}
+</code></pre>
+
+<p>So this is a bit more involved, and could probably refactored. But the <code>addListener</code> function is setting up our event listener, and the <code>handler</code> is taking that, and passing the event to our method on the class. This is optional really, and doesn&rsquo;t need to be done, but was good to know it&rsquo;s possible.</p>
+
+<p>The <code>removeListener</code> is a bit more self-explanatory, we&rsquo;re simple removing the event listener.</p>
+
+<p>Our last bit of code is to wire up these event listeners so that they play nicely with Angular&rsquo;s event life cycle.</p>
+
+<pre><code class="language-js">target.ngOnInit = function() {
+  ngOnInit.call(this);
+  addListener.call(this);
+};
+
+target.ngOnDestroy = function() {
+  ngOnDestroy.call(this)
+  removeListener.call(this);
+}
+</code></pre>
+
+<p>Since our we mapped our <code>ngOnInit</code> and <code>ngOnDestroy</code> to <code>noop</code>s, we can just pass through what ever the developer has setup in their own code. Then to finish things up, we simple call our <code>addListener</code> and our <code>removeListen</code>.</p>
+
+<p>To better see what this looks like with some finishing touches, we have:</p>
+
+<pre><code class="language-js">const noop = () =&gt; { };
+const DEVICEREADYEVENT = window['cordova'] ? &quot;deviceready&quot; : &quot;DOMContentLoaded&quot;
+export function platformReady() {
+  return function decorator(target, method, descriptor) {
+
+    const { ngOnInit = noop, ngOnDestroy = noop } = target;
+    const symbolHandler = Symbol(method);
+
+    function addListener() {
+      const handler = this[symbolHandler] = (...args) =&gt; {
+        descriptor.value.apply(this, args);
+      };
+      document.addEventListener(DEVICEREADYEVENT, handler);
+    }
+
+    function removeListener() {
+      document.addEventListener(DEVICEREADYEVENT, this[symbolHandler]);
+    }
+
+    target.ngOnInit = function onInitWrapper() {
+      ngOnInit.call(this);
+      addListener.call(this);
+    };
+
+    target.ngOnDestroy = function onDestroyWrapper() {
+      ngOnDestroy.call(this)
+      removeListener.call(this);
+    }
+  }
+}
+</code></pre>
+
+<p>Then, when we want to use the decorator in our code, we can simply import it, and attach it to our method.</p>
+
+<pre><code class="language-js">import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { platformReady } from '../../decorators/platform-ready'
+import { StatusBar } from '@ionic-native/status-bar';
+@Component({
+  ...
+})
+export class HomePage {
+  constructor(
+    public navCtrl: NavController,
+    public statusbar: StatusBar
+  ) { }
+  ngOnInit(){
+    console.log('on init')
+  }
+  @platformReady()
+  onDeviceReady(event) {
+    console.log('device ready called', event)
+    this.statusbar.backgroundColorByName('red')
+  }
+}
+</code></pre>
+
+<p>Something to notice is that we&rsquo;re passing event through from our decorator to the method and that our <code>ngOnInit</code> will still log out &ldquo;on init&rdquo;.</p>
+
+<p>And to see it in action:</p>
+
+<p><center></p>
+
+<p><a href="/img/device-ready.gif"><img src="/img/device-ready-small.gif" alt="device-ready" /></a></p>
+
+<p></center></p>
+
+<h3 id="parting-words">Parting words</h3>
+
+<p>This is just a quick exploration of decorators and what they can do. As I stated, I expect this decorator could be improved upon and refactored to be much simpler.</p>
+
+<p>If you&rsquo;re interested in some other decorators, or want to read the spec/proposal check the links down below.</p>
+
+<ul>
+<li><a href="http://tc39.github.io/proposal-decorators/">TC39 Docs</a></li>
+<li><a href="https://github.com/steelsojka/lodash-decorators">Lodash Decorators</a></li>
+<li><a href="https://github.com/jayphelps/core-decorators.js">Core Decorators</a></li>
+<li><a href="https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841">Addy&rsquo;s Decorator post</a></li>
+</ul>
+
+</div>
+
+    
+<footer class='entry-footer'>
+  
+    
+  
+    
+  
+</footer>
+
+
+  </article>
+
+  
+    
+<nav class='entry-nav'>
+  <div class='entry-nav-links'><div class='prev-entry'>
+      <a href='https://mhartington.io/post/typings-v1/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader'>Previous post: </span>Revisiting Typings: Post 1.0</a>
+    </div></div>
+</nav>
+
+
+  
+
+  
+    <div class='comments-container'>
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "mhartington" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  
+</main>
+
+    <footer id='footer' class='footer-container'>
+      <div class='footer'>
+        <div class='social'>
+  <nav aria-label='Social Menu'>
+    <ul class='social-menu'><li>
+        <a href='https://github.com/mhartington' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Github account in new tab</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='https://twitter.com/mhartington' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Twitter account in new tab</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+
+        </a>
+      </li></ul>
+  </nav>
+</div>
+
+        <div class='copyright'>
+          <p>
+  &copy; 2017 Mike Hartington</p>
+
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src='/js/main.af838dd5.js'></script>
+  
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
+  
+    <script src='/js/highlight.js'></script>
+  
+
+</body>
+
+</html>
+
