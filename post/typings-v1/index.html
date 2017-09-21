@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='Typings hits 1.0! Typings finally hit its 1.0 recently (well more like a month or so ago), and with this it brought some drastic change to the API. So my previous post is now out of date. This is a perfect chance to go over these changes and how it may affect your project.
+What&rsquo;s new? So a simple overview what&rsquo;s changed from 0.X to 1.X has been provided in the README.'>
+
+<meta property='og:title' content='Revisiting Typings: Post 1.0 • Mike Hartington'>
+<meta property='og:description' content='Typings hits 1.0! Typings finally hit its 1.0 recently (well more like a month or so ago), and with this it brought some drastic change to the API. So my previous post is now out of date. This is a perfect chance to go over these changes and how it may affect your project.
+What&rsquo;s new? So a simple overview what&rsquo;s changed from 0.X to 1.X has been provided in the README.'>
+<meta property='og:url' content='https://mhartington.io/post/typings-v1/'>
+<meta property='og:site_name' content='Mike Hartington'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:published_time' content='2016-06-02T13:03:06-04:00'/><meta property='article:modified_time' content='2016-06-02T13:03:06-04:00'/>
+
+<meta name="generator" content="Hugo 0.27.1" />
+
+  <title>Revisiting Typings: Post 1.0 • Mike Hartington</title>
+  <link rel='canonical' href='https://mhartington.io/post/typings-v1/'>
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700&subset=latin'>
+<link rel='stylesheet' href='/css/main.67a788c9.css'>
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css'>
+
+  <link rel='stylesheet' href='/css/highlight.css'>
+
+  <link rel='stylesheet' href='/css/override.css'>
+
+
+
+</head>
+
+
+<body class='page'>
+  <div class='site'>
+    <header id='header' class='header-container'>
+      <div class='site-header'>
+        <nav id='navmenu' aria-label='Main Menu'>
+  <ul class='main-menu'>
+    
+  </ul>
+</nav>
+
+        <div class='site-info'>
+          
+          <p class='site-title title'>Mike Hartington</p>
+          
+          <p class='site-description'></p>
+        </div>
+      </div>
+    </header>
+
+
+<main class='main'>
+  <article lang='en' class='entry'>
+    <header class='entry-header'>
+  <div class='entry-info'>
+    <h1 class='entry-title title'>Revisiting Typings: Post 1.0</h1>
+    
+  </div>
+  
+<div class='meta'>
+  <span class='posted-on'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+
+    <span class='screen-reader'>Posted on </span>
+    <time class='date' datetime='2016-06-02T13:03:06-04:00'>2016, Jun 02</time>
+  </span>
+  
+  
+</div>
+
+
+</header>
+
+    <div class='entry-content'>
+  
+
+<h3 id="typings-hits-1-0">Typings hits 1.0!</h3>
+
+<p>Typings finally hit its 1.0 recently (well more like a month or so ago), and with this it brought some drastic change to the API. So my previous post is now out of date.
+This is a perfect chance to go over these changes and how it may affect your project.</p>
+
+<h3 id="what-s-new">What&rsquo;s new?</h3>
+
+<p>So a simple overview what&rsquo;s changed from 0.X to 1.X has been provided in the <a href="https://github.com/typings/typings#updating-from-0x-to-10">README.md</a></p>
+
+<h2 id="updating-from-0-x-to-1-0">Updating From <code>0.x</code> to <code>1.0</code>?</h2>
+
+<ul>
+<li><code>rm -rf typings/</code>
+
+<ul>
+<li>The directory contains &ldquo;main&rdquo;, by default</li>
+<li>Update <code>tsconfig.json</code> to match (the bundle file is <code>typings/index.d.ts</code>)</li>
+</ul></li>
+<li>Want <code>main</code> and/or <code>browser</code> output again? See <a href="https://github.com/typings/typings/blob/master/docs/faq.md#where-do-the-type-definitions-install">where the typings install</a> in the FAQ</li>
+<li>Usages of <code>ambient</code> are now <code>global</code>
+
+<ul>
+<li>That means in <code>typings.json</code> any <code>ambientDependencies</code> should be renamed <code>globalDependencies</code> and any <code>ambientDevDependencies</code> should be renamed <code>globalDevDependencies</code>.</li>
+<li>It also means <code>--ambient</code> is now <code>--global</code></li>
+</ul></li>
+<li>Removed <code>defaultAmbientSource</code>
+
+<ul>
+<li>If you want to install from DefinitelyTyped, be explicit (use <code>dt~&lt;pkg&gt; --global</code>). For example: <code>typings install dt~angular-component-router --global --save</code></li>
+</ul></li>
+<li>See <a href="https://github.com/typings/typings/releases/tag/v1.0.0">the release notes</a> for more information!</li>
+</ul>
+
+<p>While this is great, it also helps to go over some of the changes one by one.</p>
+
+<h3 id="no-more-main-and-browser">No more <code>main</code> and <code>browser</code></h3>
+
+<p>One the of the more confusing parts about typings was the use of <code>main</code> and <code>browser</code> typings. I&rsquo;ll be honest, I never <em>really</em> understood the difference, and it often confused many new users in Ionic 2. Thankfully, this is gone, and we now have a much more familiar <code>index</code>. This is just much easier to understand and follows convention already out there in the JS/TS ecosystem.</p>
+
+<h3 id="ambient-becomes-global">Ambient becomes Global</h3>
+
+<p>Ambient typings always are a pain point when first being introduced to TypeScript.
+But what are they?</p>
+
+<blockquote>
+<p>An ambient declaration introduces a variable into a TypeScript scope, but has zero impact on the emitted JavaScript program. Programmers can use ambient declarations to tell the TypeScript compiler that some other component will supply a variable. For example, by default the TypeScript compiler will print an error for uses of undefined variables. To add some of the common variables defined by browsers, a TypeScript programmer can use ambient declarations</p>
+</blockquote>
+
+<p>Basically these types are there to tell the compiler that something will at runtime will have these APIS.</p>
+
+<p>Imagine if you are writing code that uses jQuery. If you just try to write $() TypeScript will think you are using an undeclared variable $ and will throw an error. Ambient declarations like declare var $ tell the TS compiler that, even though $ isn&rsquo;t visible to the compiler, it will exist when the JS is executed.</p>
+
+<p>So why change the name?</p>
+
+<p>I can&rsquo;t speak for the maintainers of typings, but Global makes more sense to me than Ambient as a choice of word. I hear global types, I think globals in terms of JavaScript.</p>
+
+<p>So a little terminology change, and we get a better understanding of the types mean and do.</p>
+
+<h3 id="you-must-define-a-source">You must define a source</h3>
+
+<p>While most types live in the DefinitelyTyped repo, many authors are publishing types to npm, bower, or directly with the module.
+Since we have more sources, we need to specify which source we want pull from.</p>
+
+<p>Take Lodash for example. A quick search in typings will reveal that we have multiple sources for Lodash.</p>
+
+<pre><code class="language-bash">typings search lodash
+Viewing 4 of 4
+
+NAME              SOURCE HOMEPAGE                                        DESCRIPTION VERSIONS UPDATED
+lodash            dt     http://lodash.com/                                          2        2016-05-24T13:56:08.000Z
+lodash            npm    https://www.npmjs.com/package/lodash                        1        2016-04-16T21:15:19.000Z
+lodash            global                                                             1        2016-04-12T19:14:14.000Z
+lodash-decorators dt     https://github.com/steelsojka/lodash-decorators             1        2016-03-16T15:55:26.000Z
+</code></pre>
+
+<p>How is typings supposed to know which one you want? Now we can specify which source we want to pull from.</p>
+
+<pre><code class="language-bash">typings i npm~lodash --save
+</code></pre>
+
+<p>I suggest always searching typings before trying to install anything.</p>
+
+<h2 id="overview">Overview</h2>
+
+<p>So while these changes can seem confusing or drastic, they&rsquo;re really not that bad. Typings now seems much easier to approach and you understand where you&rsquo;re getting your types from.</p>
+
+</div>
+
+    
+<footer class='entry-footer'>
+  
+    
+  
+    
+  
+</footer>
+
+
+  </article>
+
+  
+    
+<nav class='entry-nav'>
+  <div class='entry-nav-links'><div class='prev-entry'>
+      <a href='https://mhartington.io/post/ionic2-external-libraries/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader'>Previous post: </span>Ionic 2 and External Libraries</a>
+    </div><div class='next-entry'>
+      <a href='https://mhartington.io/post/custom-decorators/'>
+        <span class='screen-reader'>Next post: </span>Custom Decorators<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+
+  
+
+  
+    <div class='comments-container'>
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "mhartington" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  
+</main>
+
+    <footer id='footer' class='footer-container'>
+      <div class='footer'>
+        <div class='social'>
+  <nav aria-label='Social Menu'>
+    <ul class='social-menu'><li>
+        <a href='https://github.com/mhartington' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Github account in new tab</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='https://twitter.com/mhartington' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Twitter account in new tab</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+
+        </a>
+      </li></ul>
+  </nav>
+</div>
+
+        <div class='copyright'>
+          <p>
+  &copy; 2017 Mike Hartington</p>
+
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src='/js/main.af838dd5.js'></script>
+  
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
+  
+    <script src='/js/highlight.js'></script>
+  
+
+</body>
+
+</html>
+

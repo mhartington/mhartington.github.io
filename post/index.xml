@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 21 Sep 2017 10:39:55 -0400</lastBuildDate>
-    <atom:link href="https://mhartington.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://mhartington.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>iPhoneX and The Notch</title>
@@ -15,86 +17,8 @@
       <pubDate>Thu, 21 Sep 2017 10:39:55 -0400</pubDate>
       
       <guid>https://mhartington.io/post/iphonex-and-the-notch/</guid>
-      <description>
-
-&lt;p&gt;Every year Apple releases a new iPhone and a new iOS version to match. For the history of the iPhone, any changes that come with these new devices tend to be very small. Design changes in iOS7? Not a huge deal, as they&amp;rsquo;re fairly easy to design for, especially in a hybrid app context. This year however, Apple has introduce it&amp;rsquo;s most drastic change in iPhone history.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://cdn.vox-cdn.com/thumbor/sReaaOYo1Lcl3-Hf73vByPPRBsg=/0x0:800x533/1200x800/filters:focal(336x203:464x331&#34; alt=&#34;&#34; /&gt;/cdn.vox-cdn.com/uploads/chorus_image/image/56641599/apple_iphone_2017_20170912_11670.0.jpeg)&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Introducing&amp;hellip; the Notch&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;This, is frustrating, to say the least, and from a hybrid app perspective, it introduces several new challenges.&lt;/p&gt;
-
-&lt;h3 id=&#34;1-full-screen-support:98eff7ecee963d395c21446ebffcad2f&#34;&gt;1. Full screen support&lt;/h3&gt;
-
-&lt;p&gt;First thing we&amp;rsquo;ll want to address is the high resolution of the iPhoneX. This is not an entirely new issue, and iPad Pro also has a large resolution. With this high resolution, we need to provide a larger splashscreen image, but in a slightly different way then we&amp;rsquo;re used to. In Cordova-ios 4.3.1, there was support added for something called &amp;ldquo;Launch Storyboards&amp;rdquo;. Essentially, we can tell iOS that we&amp;rsquo;re providing a large image, and it will properly scale and crop it to fit our screen. I&amp;rsquo;ll be using an Ionic project as an example, but this is not tied to Ionic. In our &lt;code&gt;resouces&lt;/code&gt; folder, we&amp;rsquo;ll add an image that is &lt;code&gt;2732x2732px&lt;/code&gt; in size. We&amp;rsquo;ll add this as &lt;code&gt;resources/ios/splash/Default@2x~universal~anyany.png&lt;/code&gt;. Then, in our config.xml, we&amp;rsquo;ll add a new reference to the image.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;platform name=&amp;quot;ios&amp;quot;&amp;gt;
-  &amp;lt;allow-intent href=&amp;quot;itms:*&amp;quot; /&amp;gt;
-  &amp;lt;allow-intent href=&amp;quot;itms-apps:*&amp;quot; /&amp;gt;
-  &amp;lt;splash src=&amp;quot;resources/ios/splash/Default@2x~universal~anyany.png&amp;quot; /&amp;gt;
-&amp;lt;/platform&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;The Ionic CLI will be updated in the coming weeks to generate this image and add the entry for you.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;A key thing to note here, is the &lt;code&gt;splash&lt;/code&gt; entry has no sizing added to it. This is key!&lt;/p&gt;
-
-&lt;p&gt;When we build our app and deploy to iPhoneX simulator, we should get something similar to this.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://mhartington.io/img/iphonex-launch-image.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This is a good first step so far, but you&amp;rsquo;ll notice we&amp;rsquo;re still not using all of the screen, we have some space at the bottom and top of the device.&lt;/p&gt;
-
-&lt;h3 id=&#34;2-adjusting-the-viewport:98eff7ecee963d395c21446ebffcad2f&#34;&gt;2. Adjusting the viewport&lt;/h3&gt;
-
-&lt;p&gt;The next piece we need to add is a small change to our viewport meta tag. By default, Ionic projects come with a viewport meta tag that looks like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;head&amp;gt;
-
-  &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&amp;quot;&amp;gt;
-&amp;lt;/head&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This has served us well for many years, but now we need to add a new entry, &lt;code&gt;viewport-fit&lt;/code&gt;. This new entry can tell a browser how it should scale/size it self. It can take 3 values.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Value&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;cover&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;The viewport will scale to fill the entire screen, regardless of aspect ratio. Think css background-images&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;contain&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;The viewport will scale until it hits an edge. This could be the sides of the screen, or top and bottom&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;There is a default &lt;code&gt;auto&lt;/code&gt; value as well, but it is the same thing as contain.&lt;/p&gt;
-
-&lt;p&gt;We want to add &lt;code&gt;cover&lt;/code&gt; to our viewport meta tag.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;head&amp;gt;
-
-  &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover&amp;quot;&amp;gt;
-&amp;lt;/head&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;3-css-changes:98eff7ecee963d395c21446ebffcad2f&#34;&gt;3. CSS Changes&lt;/h3&gt;
-
-&lt;p&gt;For the last pieces of changes, css needs to be modified to take advantage of&lt;/p&gt;
-</description>
+      <description>Every year Apple releases a new iPhone and a new iOS version to match. For the history of the iPhone, any changes that come with these new devices tend to be very small. Design changes in iOS7? Not a huge deal, as they&amp;rsquo;re fairly easy to design for, especially in a hybrid app context. This year however, Apple has introduce it&amp;rsquo;s most drastic change in iPhone history.
+Introducing&amp;hellip; the Notch</description>
     </item>
     
     <item>
@@ -103,173 +27,8 @@
       <pubDate>Wed, 31 May 2017 09:55:05 -0400</pubDate>
       
       <guid>https://mhartington.io/post/custom-decorators/</guid>
-      <description>
-
-&lt;p&gt;I&amp;rsquo;ve been getting more into decorators lately, especially since I used them in Angular/Ionic, but also in Python. But I realized that I really didn&amp;rsquo;t know much about them or how they actually worked. So I spent some time last night and built a small decorator, &lt;code&gt;@platformReady()&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;wth-is-a-decorators:3099c17143ca906089566decfc9edcc8&#34;&gt;WTH is a decorators&lt;/h3&gt;
-
-&lt;p&gt;Decorators can get confusing real fast, so we&amp;rsquo;re going to try to stay pretty high level here. In its simplest form, a decorator allows developers to perform higher-level functions on an annotated class or method. Python has these already so Let&amp;rsquo;s look at that for an example.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;class Client(object):
-
-    @property
-    def serverPath(self):
-        return self._serverPath
-
-    @serverPath.setter
-    def serverPath(self, value):
-        self._serverPath = value
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here we have a simple property getter/setter setup. The first method, &lt;code&gt;serverPath&lt;/code&gt; is the getter, and it just returns a value. What&amp;rsquo;s nice about this is when we want to get that value, we can just do &lt;code&gt;Client.serverPath&lt;/code&gt; and it will know how to handle it. The second function is the setter for our property. So when we want to change the value of our property, we can just do &lt;code&gt;Client.serverPath = newValue&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Without getting into too much detail, we can see &amp;ldquo;what&amp;rdquo; decorators are, and how they can be used from a conceptual level. In JavaScript, they follow the same idea, annotate classes or methods to provide additional functionality. &lt;a href=&#34;https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841&#34;&gt;Addy wrote a blog post&lt;/a&gt; going into some more detail, so be sure to give that a read as well.&lt;/p&gt;
-
-&lt;h3 id=&#34;our-decorator:3099c17143ca906089566decfc9edcc8&#34;&gt;Our decorator&lt;/h3&gt;
-
-&lt;p&gt;The decorator we&amp;rsquo;ll build addresses an issue I have when trying to call Cordova plugins in my Ionic apps, I always forget to wrap them in a device ready callback. So we&amp;rsquo;ll create a &lt;code&gt;platformReady()&lt;/code&gt; decorator that automatically handles this. Before going into detail, here is the decorator in it&amp;rsquo;s &lt;a href=&#34;https://gist.github.com/mhartington/5fdb572a561cd2e39d3362f36760aa55&#34;&gt;final form&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;To start off, we&amp;rsquo;re going to first want to create a function. We&amp;rsquo;ll make a new file: &lt;code&gt;src/decorators/platform-ready.ts&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;export function platformReady() {
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In this function, we&amp;rsquo;re going to return a new function that has the information about our class/function. In this case, we&amp;rsquo;ll just call it decorate, but you can name it what ever you want.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;  return function decorator(target, method, descriptor) {}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now from these arguments, we have full access to our class and the method we&amp;rsquo;re attached to. Inside of this function, we&amp;rsquo;re going to do a bit of setup work for our decorator.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;return function decorator(target, method, descriptor) {
-  const {
-    ngOnInit = () =&amp;gt; {},
-    ngOnDestroy = () =&amp;gt;{}
-  } = target;
-
-  const symbolHandler = Symbol(method);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;So the first &lt;code&gt;const&lt;/code&gt; is creating &lt;code&gt;ngOnInit&lt;/code&gt; and &lt;code&gt;ngOnDestroy&lt;/code&gt; method on the class. We set these to &lt;code&gt;noop&lt;/code&gt;s  so we they don&amp;rsquo;t really step on users code. Then, we create a &lt;code&gt;symbolHandler&lt;/code&gt; by passing the &lt;code&gt;method&lt;/code&gt; to the &lt;code&gt;Symbol&lt;/code&gt; function. Now we can manually call our method when we need to.&lt;/p&gt;
-
-&lt;p&gt;After our &lt;code&gt;symbolHandler&lt;/code&gt; we&amp;rsquo;ll add two more functions, just to set up our event listeners.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;function addListener() {
-  const handler = this[symbolHandler] = (...args) =&amp;gt; {
-    descriptor.value.apply(this, args);
-  };
-  document.addEventListener(DEVICEREADYEVENT, handler);
-}
-function removeListener() {
-  document.addEventListener(DEVICEREADYEVENT, this[symbolHandler]);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;So this is a bit more involved, and could probably refactored. But the &lt;code&gt;addListener&lt;/code&gt; function is setting up our event listener, and the &lt;code&gt;handler&lt;/code&gt; is taking that, and passing the event to our method on the class. This is optional really, and doesn&amp;rsquo;t need to be done, but was good to know it&amp;rsquo;s possible.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code&gt;removeListener&lt;/code&gt; is a bit more self-explanatory, we&amp;rsquo;re simple removing the event listener.&lt;/p&gt;
-
-&lt;p&gt;Our last bit of code is to wire up these event listeners so that they play nicely with Angular&amp;rsquo;s event life cycle.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;target.ngOnInit = function() {
-  ngOnInit.call(this);
-  addListener.call(this);
-};
-
-target.ngOnDestroy = function() {
-  ngOnDestroy.call(this)
-  removeListener.call(this);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Since our we mapped our &lt;code&gt;ngOnInit&lt;/code&gt; and &lt;code&gt;ngOnDestroy&lt;/code&gt; to &lt;code&gt;noop&lt;/code&gt;s, we can just pass through what ever the developer has setup in their own code. Then to finish things up, we simple call our &lt;code&gt;addListener&lt;/code&gt; and our &lt;code&gt;removeListen&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;To better see what this looks like with some finishing touches, we have:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;const noop = () =&amp;gt; { };
-const DEVICEREADYEVENT = window[&#39;cordova&#39;] ? &amp;quot;deviceready&amp;quot; : &amp;quot;DOMContentLoaded&amp;quot;
-export function platformReady() {
-  return function decorator(target, method, descriptor) {
-
-    const { ngOnInit = noop, ngOnDestroy = noop } = target;
-    const symbolHandler = Symbol(method);
-
-    function addListener() {
-      const handler = this[symbolHandler] = (...args) =&amp;gt; {
-        descriptor.value.apply(this, args);
-      };
-      document.addEventListener(DEVICEREADYEVENT, handler);
-    }
-
-    function removeListener() {
-      document.addEventListener(DEVICEREADYEVENT, this[symbolHandler]);
-    }
-
-    target.ngOnInit = function onInitWrapper() {
-      ngOnInit.call(this);
-      addListener.call(this);
-    };
-
-    target.ngOnDestroy = function onDestroyWrapper() {
-      ngOnDestroy.call(this)
-      removeListener.call(this);
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then, when we want to use the decorator in our code, we can simply import it, and attach it to our method.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import { Component } from &#39;@angular/core&#39;;
-import { NavController } from &#39;ionic-angular&#39;;
-import { platformReady } from &#39;../../decorators/platform-ready&#39;
-import { StatusBar } from &#39;@ionic-native/status-bar&#39;;
-@Component({
-  ...
-})
-export class HomePage {
-  constructor(
-    public navCtrl: NavController,
-    public statusbar: StatusBar
-  ) { }
-  ngOnInit(){
-    console.log(&#39;on init&#39;)
-  }
-  @platformReady()
-  onDeviceReady(event) {
-    console.log(&#39;device ready called&#39;, event)
-    this.statusbar.backgroundColorByName(&#39;red&#39;)
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Something to notice is that we&amp;rsquo;re passing event through from our decorator to the method and that our &lt;code&gt;ngOnInit&lt;/code&gt; will still log out &amp;ldquo;on init&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;And to see it in action:&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/device-ready.gif&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/device-ready-small.gif&#34; alt=&#34;device-ready&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;parting-words:3099c17143ca906089566decfc9edcc8&#34;&gt;Parting words&lt;/h3&gt;
-
-&lt;p&gt;This is just a quick exploration of decorators and what they can do. As I stated, I expect this decorator could be improved upon and refactored to be much simpler.&lt;/p&gt;
-
-&lt;p&gt;If you&amp;rsquo;re interested in some other decorators, or want to read the spec/proposal check the links down below.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://tc39.github.io/proposal-decorators/&#34;&gt;TC39 Docs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/steelsojka/lodash-decorators&#34;&gt;Lodash Decorators&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/jayphelps/core-decorators.js&#34;&gt;Core Decorators&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841&#34;&gt;Addy&amp;rsquo;s Decorator post&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>I&amp;rsquo;ve been getting more into decorators lately, especially since I used them in Angular/Ionic, but also in Python. But I realized that I really didn&amp;rsquo;t know much about them or how they actually worked. So I spent some time last night and built a small decorator, @platformReady().
+WTH is a decorators Decorators can get confusing real fast, so we&amp;rsquo;re going to try to stay pretty high level here. In its simplest form, a decorator allows developers to perform higher-level functions on an annotated class or method.</description>
     </item>
     
     <item>
@@ -278,94 +37,8 @@ export class HomePage {
       <pubDate>Thu, 02 Jun 2016 13:03:06 -0400</pubDate>
       
       <guid>https://mhartington.io/post/typings-v1/</guid>
-      <description>
-
-&lt;h3 id=&#34;typings-hits-1-0:abfa24ffd91f709388d4be021c500a40&#34;&gt;Typings hits 1.0!&lt;/h3&gt;
-
-&lt;p&gt;Typings finally hit its 1.0 recently (well more like a month or so ago), and with this it brought some drastic change to the API. So my previous post is now out of date.
-This is a perfect chance to go over these changes and how it may affect your project.&lt;/p&gt;
-
-&lt;h3 id=&#34;what-s-new:abfa24ffd91f709388d4be021c500a40&#34;&gt;What&amp;rsquo;s new?&lt;/h3&gt;
-
-&lt;p&gt;So a simple overview what&amp;rsquo;s changed from 0.X to 1.X has been provided in the &lt;a href=&#34;https://github.com/typings/typings#updating-from-0x-to-10&#34;&gt;README.md&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;updating-from-0-x-to-1-0:abfa24ffd91f709388d4be021c500a40&#34;&gt;Updating From &lt;code&gt;0.x&lt;/code&gt; to &lt;code&gt;1.0&lt;/code&gt;?&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;rm -rf typings/&lt;/code&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The directory contains &amp;ldquo;main&amp;rdquo;, by default&lt;/li&gt;
-&lt;li&gt;Update &lt;code&gt;tsconfig.json&lt;/code&gt; to match (the bundle file is &lt;code&gt;typings/index.d.ts&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Want &lt;code&gt;main&lt;/code&gt; and/or &lt;code&gt;browser&lt;/code&gt; output again? See &lt;a href=&#34;https://github.com/typings/typings/blob/master/docs/faq.md#where-do-the-type-definitions-install&#34;&gt;where the typings install&lt;/a&gt; in the FAQ&lt;/li&gt;
-&lt;li&gt;Usages of &lt;code&gt;ambient&lt;/code&gt; are now &lt;code&gt;global&lt;/code&gt;
-
-&lt;ul&gt;
-&lt;li&gt;That means in &lt;code&gt;typings.json&lt;/code&gt; any &lt;code&gt;ambientDependencies&lt;/code&gt; should be renamed &lt;code&gt;globalDependencies&lt;/code&gt; and any &lt;code&gt;ambientDevDependencies&lt;/code&gt; should be renamed &lt;code&gt;globalDevDependencies&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;It also means &lt;code&gt;--ambient&lt;/code&gt; is now &lt;code&gt;--global&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Removed &lt;code&gt;defaultAmbientSource&lt;/code&gt;
-
-&lt;ul&gt;
-&lt;li&gt;If you want to install from DefinitelyTyped, be explicit (use &lt;code&gt;dt~&amp;lt;pkg&amp;gt; --global&lt;/code&gt;). For example: &lt;code&gt;typings install dt~angular-component-router --global --save&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;See &lt;a href=&#34;https://github.com/typings/typings/releases/tag/v1.0.0&#34;&gt;the release notes&lt;/a&gt; for more information!&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;While this is great, it also helps to go over some of the changes one by one.&lt;/p&gt;
-
-&lt;h3 id=&#34;no-more-main-and-browser:abfa24ffd91f709388d4be021c500a40&#34;&gt;No more &lt;code&gt;main&lt;/code&gt; and &lt;code&gt;browser&lt;/code&gt;&lt;/h3&gt;
-
-&lt;p&gt;One the of the more confusing parts about typings was the use of &lt;code&gt;main&lt;/code&gt; and &lt;code&gt;browser&lt;/code&gt; typings. I&amp;rsquo;ll be honest, I never &lt;em&gt;really&lt;/em&gt; understood the difference, and it often confused many new users in Ionic 2. Thankfully, this is gone, and we now have a much more familiar &lt;code&gt;index&lt;/code&gt;. This is just much easier to understand and follows convention already out there in the JS/TS ecosystem.&lt;/p&gt;
-
-&lt;h3 id=&#34;ambient-becomes-global:abfa24ffd91f709388d4be021c500a40&#34;&gt;Ambient becomes Global&lt;/h3&gt;
-
-&lt;p&gt;Ambient typings always are a pain point when first being introduced to TypeScript.
-But what are they?&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;An ambient declaration introduces a variable into a TypeScript scope, but has zero impact on the emitted JavaScript program. Programmers can use ambient declarations to tell the TypeScript compiler that some other component will supply a variable. For example, by default the TypeScript compiler will print an error for uses of undefined variables. To add some of the common variables defined by browsers, a TypeScript programmer can use ambient declarations&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Basically these types are there to tell the compiler that something will at runtime will have these APIS.&lt;/p&gt;
-
-&lt;p&gt;Imagine if you are writing code that uses jQuery. If you just try to write $() TypeScript will think you are using an undeclared variable $ and will throw an error. Ambient declarations like declare var $ tell the TS compiler that, even though $ isn&amp;rsquo;t visible to the compiler, it will exist when the JS is executed.&lt;/p&gt;
-
-&lt;p&gt;So why change the name?&lt;/p&gt;
-
-&lt;p&gt;I can&amp;rsquo;t speak for the maintainers of typings, but Global makes more sense to me than Ambient as a choice of word. I hear global types, I think globals in terms of JavaScript.&lt;/p&gt;
-
-&lt;p&gt;So a little terminology change, and we get a better understanding of the types mean and do.&lt;/p&gt;
-
-&lt;h3 id=&#34;you-must-define-a-source:abfa24ffd91f709388d4be021c500a40&#34;&gt;You must define a source&lt;/h3&gt;
-
-&lt;p&gt;While most types live in the DefinitelyTyped repo, many authors are publishing types to npm, bower, or directly with the module.
-Since we have more sources, we need to specify which source we want pull from.&lt;/p&gt;
-
-&lt;p&gt;Take Lodash for example. A quick search in typings will reveal that we have multiple sources for Lodash.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;typings search lodash
-Viewing 4 of 4
-
-NAME              SOURCE HOMEPAGE                                        DESCRIPTION VERSIONS UPDATED
-lodash            dt     http://lodash.com/                                          2        2016-05-24T13:56:08.000Z
-lodash            npm    https://www.npmjs.com/package/lodash                        1        2016-04-16T21:15:19.000Z
-lodash            global                                                             1        2016-04-12T19:14:14.000Z
-lodash-decorators dt     https://github.com/steelsojka/lodash-decorators             1        2016-03-16T15:55:26.000Z
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;How is typings supposed to know which one you want? Now we can specify which source we want to pull from.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;typings i npm~lodash --save
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I suggest always searching typings before trying to install anything.&lt;/p&gt;
-
-&lt;h2 id=&#34;overview:abfa24ffd91f709388d4be021c500a40&#34;&gt;Overview&lt;/h2&gt;
-
-&lt;p&gt;So while these changes can seem confusing or drastic, they&amp;rsquo;re really not that bad. Typings now seems much easier to approach and you understand where you&amp;rsquo;re getting your types from.&lt;/p&gt;
-</description>
+      <description>Typings hits 1.0! Typings finally hit its 1.0 recently (well more like a month or so ago), and with this it brought some drastic change to the API. So my previous post is now out of date. This is a perfect chance to go over these changes and how it may affect your project.
+What&amp;rsquo;s new? So a simple overview what&amp;rsquo;s changed from 0.X to 1.X has been provided in the README.</description>
     </item>
     
     <item>
@@ -374,96 +47,7 @@ lodash-decorators dt     https://github.com/steelsojka/lodash-decorators        
       <pubDate>Wed, 17 Feb 2016 11:38:32 -0500</pubDate>
       
       <guid>https://mhartington.io/post/ionic2-external-libraries/</guid>
-      <description>
-
-&lt;p&gt;Now that Ionic 2 is out in beta, people are setting aside some time to give it a shot and investigate everything it has to offer. Ionic 2 and Angular 2 bring a lot of improvements, but it&amp;rsquo;s a fairly different style of developing that what people were used to before. Now, since everything needs to be imported and libraries aren’t global, it can be tricky to figure out how to integrate with other libraries.&lt;/p&gt;
-
-&lt;h3 id=&#34;npm-all-the-things:d834b3a935d8b800dc38a39c51f874d9&#34;&gt;NPM all the things&lt;/h3&gt;
-
-&lt;p&gt;So, how do you add third-party-libraries, such as Lodash? In Ionic 22, we&amp;rsquo;ve moved over to NPM for all our package management. So for our case, if we had a project setup, we could just install Lodash though npm&amp;rsquo;s CLI.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ionic start myApp --v2 --ts
-$ cd myApp
-$ npm install lodash --save
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now, this is going to give us a starter tabs project, so let’s open our &lt;code&gt;page1.ts&lt;/code&gt; file.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import {Page} from &#39;ionic-framework/ionic&#39;;
-@Page({
-  templateUrl: &#39;build/pages/page1/page1.html&#39;,
-})
-export class Page1 {
-  constructor() {
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now, we can import individual methods from Lodash, using the typical import method that we&amp;rsquo;re seeing. Note, this would be the same import state if we were to use Javascript or Typescript.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import {Page} from &#39;ionic-framework/ionic&#39;;
-import {sum} from &#39;lodash&#39;
-@Page({
-  templateUrl: &#39;build/pages/page1/page1.html&#39;,
-})
-export class Page1 {
-  constructor() {
-    console.log(sum)
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If we were to use regular ES6, that would be the end of it. But since we&amp;rsquo;re using Typescript, we&amp;rsquo;ll get an error.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/lodash-typescript-error.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/lodash-typescript-error.png&#34; alt=&#34;lodash-typescript-error&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;This might lead you to believe that everything is broken, and Lodash is working. Your editor will also probably yell at you, too. But oddly enough, everything will still work. What gives?&lt;/p&gt;
-
-&lt;p&gt;So, Typescript needs to analyze the code, in order to do its type checking. Normal Javascript libraries typically don&amp;rsquo;t include any definition files, which means Typescript won&amp;rsquo;t be able to understand them.&lt;/p&gt;
-
-&lt;p&gt;To circumvent this, we can use &lt;a href=&#34;https://www.npmjs.com/package/typings&#34;&gt;Typings&lt;/a&gt; which allow us to install definition files for various libraries.&lt;/p&gt;
-
-&lt;h3 id=&#34;typings:d834b3a935d8b800dc38a39c51f874d9&#34;&gt;Typings&lt;/h3&gt;
-
-&lt;p&gt;We&amp;rsquo;ll install Typings globally on our system.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install -g typings
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now we have the &lt;code&gt;typings&lt;/code&gt; command to install the necessary files. So we can install the Lodash definitions with&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;typings install lodash --ambient --save
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We should now have a &lt;code&gt;typings&lt;/code&gt; directory looking like this&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;├── typings
-│   ├── browser
-│   │   └── ambient
-│   │       └── lodash
-│   │           └── lodash.d.ts
-│   ├── browser.d.ts
-│   ├── main
-│   │   └── ambient
-│   │       └── lodash
-│   │           └── lodash.d.ts
-│   └── main.d.ts
-├── typings.json
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Last thing we need to do, is add a reference to this main &lt;code&gt;main.d.ts&lt;/code&gt; file.&lt;/p&gt;
-
-&lt;p&gt;Now we could do this two ways, either adding a &lt;code&gt;reference&lt;/code&gt; tag, which most people are probably familiar with, or we can add it to our &lt;code&gt;files&lt;/code&gt; array in our tsconfig. We&amp;rsquo;ll use this option because as our application grows, we don&amp;rsquo;t have to worry about adding more reference tags all over the place.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;
-  &amp;quot;files&amp;quot;: [
-    &amp;quot;app/app.ts&amp;quot;,
-    &amp;quot;typings/main.d.ts&amp;quot;
-  ],
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now when we start up our server, no errors!&lt;/p&gt;
-</description>
+      <description>Now that Ionic 2 is out in beta, people are setting aside some time to give it a shot and investigate everything it has to offer. Ionic 2 and Angular 2 bring a lot of improvements, but it&amp;rsquo;s a fairly different style of developing that what people were used to before. Now, since everything needs to be imported and libraries aren’t global, it can be tricky to figure out how to integrate with other libraries.</description>
     </item>
     
     <item>
@@ -472,85 +56,9 @@ export class Page1 {
       <pubDate>Wed, 03 Feb 2016 09:37:41 -0500</pubDate>
       
       <guid>https://mhartington.io/post/setting-input-focus/</guid>
-      <description>
+      <description>&lt;p&gt;A Question came up in the Ionic Worldwide Slack today about how to set focus to an input. Now normally you&amp;rsquo;d think you would be able to call &lt;code&gt;.focus()&lt;/code&gt; and call it day. But Ionic wraps native text inputs with custom Angular 2 components to better control the user experience.&lt;/p&gt;
 
-&lt;p&gt;A Question came up in the Ionic Worldwide Slack today about how to set focus to an input. Now normally you&amp;rsquo;d think you would be able to call &lt;code&gt;.focus()&lt;/code&gt; and call it day. But Ionic wraps native text inputs with custom Angular 2 components to better control the user experience.&lt;/p&gt;
-
-&lt;h3 id=&#34;the-markup:0bcda7bfc7e8ee0885f9b60dc564d639&#34;&gt;The markup&lt;/h3&gt;
-
-&lt;p&gt;Let&amp;rsquo;s take this simple Ionic 2 page&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;
-import {Page} from &#39;ionic-framework/ionic&#39;;
-@Page({
-  template: `
-  &amp;lt;ion-navbar *navbar&amp;gt;
-    &amp;lt;ion-title&amp;gt;Tab 1&amp;lt;/ion-title&amp;gt;
-  &amp;lt;/ion-navbar&amp;gt;
-  &amp;lt;ion-content&amp;gt;
-  &amp;lt;ion-list&amp;gt;
-    &amp;lt;ion-item&amp;gt;
-      &amp;lt;ion-label&amp;gt;Home&amp;lt;/ion-label&amp;gt;
-      &amp;lt;ion-input #input type=&amp;quot;text&amp;quot;&amp;gt;&amp;lt;/ion-input&amp;gt;
-    &amp;lt;/ion-item&amp;gt;
-    &amp;lt;button&amp;gt;Focus&amp;lt;/button&amp;gt;
-  &amp;lt;/ion-list&amp;gt;
-&amp;lt;/ion-content&amp;gt;`
-})
-
-export class Page1 {
-  constructor() { }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now we really just want to focus on this little part&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;ion-item&amp;gt;
-  &amp;lt;ion-label&amp;gt;Home&amp;lt;/ion-label&amp;gt;
-  &amp;lt;ion-input #input type=&amp;quot;text&amp;quot;&amp;gt;&amp;lt;/ion-input&amp;gt;
-&amp;lt;/ion-item&amp;gt;
-&amp;lt;button&amp;gt;Focus&amp;lt;/button&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now that &lt;code&gt;#input&lt;/code&gt; is setting a local variable of input to this page, and we can interact with it when we click our button&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;ion-item&amp;gt;
-  &amp;lt;ion-label&amp;gt;Home&amp;lt;/ion-label&amp;gt;
-  &amp;lt;ion-input #input type=&amp;quot;text&amp;quot;&amp;gt;&amp;lt;/ion-input&amp;gt;
-&amp;lt;/ion-item&amp;gt;
-&amp;lt;button (click)=&amp;quot;focusInput(input)&amp;quot;&amp;gt;Focus&amp;lt;/button&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;the-method-call:0bcda7bfc7e8ee0885f9b60dc564d639&#34;&gt;The method call&lt;/h3&gt;
-
-&lt;p&gt;Since our button is calling &lt;code&gt;focusInput(input)&lt;/code&gt;, passing along the input we have, we can use that in our method.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;export class Page1 {
-  constructor() { }
-  focusInput(input) {}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You could &lt;code&gt;console.log&lt;/code&gt; and see all the properties that are on ion-input, but we only care about a method on it called &lt;code&gt;setFocus&lt;/code&gt;. From it&amp;rsquo;s name, you can kind of guess what it does.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  focusInput(input) {
-    input.setFocus();
-  }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now when we run this, if we click our button, it will set focus to the input.&lt;/p&gt;
-
-&lt;h3 id=&#34;bonus-making-the-keyboard-appear-on-a-device:0bcda7bfc7e8ee0885f9b60dc564d639&#34;&gt;Bonus: Making the keyboard appear on a device&lt;/h3&gt;
-
-&lt;p&gt;Now setting focus to an input and getting the keyboard to appear on a device can be quite a pain. But it&amp;rsquo;s rather simple to get it to work. Just add the following to your cordova&amp;rsquo;s config.xml&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;
-&amp;lt;preference name=&amp;quot;KeyboardDisplayRequiresUserAction&amp;quot; value=&amp;quot;false&amp;quot; /&amp;gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now when you call &lt;code&gt;focusInput&lt;/code&gt;, the keyboard will display as well.&lt;/p&gt;
-</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -559,55 +67,8 @@ export class Page1 {
       <pubDate>Thu, 14 Jan 2016 20:54:55 -0800</pubDate>
       
       <guid>https://mhartington.io/post/object-fit/</guid>
-      <description>
-
-&lt;p&gt;Today I was watching a random video on ES6 tooling when I saw the author use a CSS property I&amp;rsquo;d never heard of. &lt;code&gt;object-fit&lt;/code&gt;, and it was pretty awesome.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Method of specifying how an object (image or video) should fit inside its box. object-fit options include &amp;ldquo;contain&amp;rdquo; (fit according to aspect ratio), &amp;ldquo;fill&amp;rdquo; (stretches object to fill) and &amp;ldquo;cover&amp;rdquo; (overflows box but maintains ratio), where object-position allows the object to be repositioned like background-image does.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;em&gt;Or&lt;/em&gt; It&amp;rsquo;s similar to CSS background-size, where you can adjust how an image scales as you resize the page.&lt;/p&gt;
-
-&lt;p&gt;This is something I&amp;rsquo;d never even heard of before, so I decided to give it a test.
-Now according to &lt;a href=&#34;http://caniuse.com/#feat=object-fit&#34;&gt;Can I Use&lt;/a&gt;, object-fit is supported on modern Firefox, Chrome, and has partial support on Safari. The partial support on Safari is due to it not supported &lt;code&gt;object-position&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;demo:52cb11d9528274108a7d1828c62eb9c0&#34;&gt;Demo&lt;/h3&gt;
-
-&lt;p&gt;Now the demo is pretty simple. I create a list of images and size them up to 50% of the viewport&amp;rsquo;s width and height.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;ion-pane ng-controller=&amp;quot;MainCtrl as main&amp;quot;&amp;gt;
-  &amp;lt;ion-header-bar class=&amp;quot;bar-positive&amp;quot;&amp;gt;
-    &amp;lt;h1 class=&amp;quot;title&amp;quot;&amp;gt;Blank Starter&amp;lt;/h1&amp;gt;
-  &amp;lt;/ion-header-bar&amp;gt;
-  &amp;lt;ion-content&amp;gt;
-    &amp;lt;div class=&amp;quot;row row-wrap&amp;quot;&amp;gt;
-      &amp;lt;div class=&amp;quot;col col-50&amp;quot; ng-repeat=&amp;quot;image in main.images&amp;quot;&amp;gt;
-        &amp;lt;img src=&amp;quot;https://unsplash.it/200/300/?random&amp;quot; alt=&amp;quot;&amp;quot; /&amp;gt;
-      &amp;lt;/div&amp;gt;
-    &amp;lt;/div&amp;gt;
-  &amp;lt;/ion-content&amp;gt;
-&amp;lt;/ion-pane&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;There&amp;rsquo;s some Angular behind there to just ease the process of creating all the images. The real magic comes from the CSS&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;img{
-  display: block;
-  width: 50vw;
-  height: 50vh;
-  object-fit: cover
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;object-fit: cover&lt;/code&gt; will size the image so that no matter what the dimensions are, the images aspect ratio will always be preserved.&lt;/p&gt;
-
-&lt;p&gt;This makes creating something like an image gallery so much easier since you don&amp;rsquo;t have to worry about the images dimensions. You can just use &lt;code&gt;object-fit&lt;/code&gt; and know everything will be work.&lt;/p&gt;
-
-&lt;p&gt;&lt;p data-height=&#34;268&#34; data-theme-id=&#34;0&#34; data-slug-hash=&#34;xZXGGX&#34; data-default-tab=&#34;result&#34; data-user=&#34;mhartington&#34; class=&#39;codepen&#39;&gt;See the Pen &lt;a href=&#39;http://codepen.io/mhartington/pen/xZXGGX/&#39;&gt;Object-fit&lt;/a&gt; by Mike Hartington (&lt;a href=&#39;http://codepen.io/mhartington&#39;&gt;@mhartington&lt;/a&gt;) on &lt;a href=&#39;http://codepen.io&#39;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
-&lt;script async src=&#34;//assets.codepen.io/assets/embed/ei.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-</description>
+      <description>Today I was watching a random video on ES6 tooling when I saw the author use a CSS property I&amp;rsquo;d never heard of. object-fit, and it was pretty awesome.
+ Method of specifying how an object (image or video) should fit inside its box. object-fit options include &amp;ldquo;contain&amp;rdquo; (fit according to aspect ratio), &amp;ldquo;fill&amp;rdquo; (stretches object to fill) and &amp;ldquo;cover&amp;rdquo; (overflows box but maintains ratio), where object-position allows the object to be repositioned like background-image does.</description>
     </item>
     
     <item>
@@ -616,40 +77,9 @@ Now according to &lt;a href=&#34;http://caniuse.com/#feat=object-fit&#34;&gt;Can
       <pubDate>Fri, 08 Jan 2016 16:01:47 -0500</pubDate>
       
       <guid>https://mhartington.io/post/ionic-io-app-name/</guid>
-      <description>&lt;p&gt;A good question came up in the Ionic Slack today. A dev was looking to change the name of an app that was already uploaded to the Ionic platform portal.&lt;/p&gt;
-
-&lt;p&gt;When you start an ionic project from the CLI, along with all the html/css/js that you need, it creats an &lt;code&gt;ionic.project&lt;/code&gt; file. In here, you get your apps name and app_id
-set, which gets used by the CLI&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;
-{
-  &amp;quot;name&amp;quot;: &amp;quot;tmp&amp;quot;,
-  &amp;quot;app_id&amp;quot;: &amp;quot;9cf2c890&amp;quot;
-}
-
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now when I login to the Platform portal and upload my app, I&amp;rsquo;ll see it appear on my dash.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/too-many-tmps.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/too-many-tmps.png&#34; alt=&#34;too-many-tmps&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;As you can see, it&amp;rsquo;s not an original name and could be quite confusing.&lt;/p&gt;
-
-&lt;p&gt;So to change the name, I can just edit the name property in my &lt;code&gt;ionic.project&lt;/code&gt; file.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;
-{
-  &amp;quot;name&amp;quot;: &amp;quot;newName&amp;quot;,
-  &amp;quot;app_id&amp;quot;: &amp;quot;9cf2c890&amp;quot;
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;When I upload the app again, it will change the displayed name, but keep everything else the same.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/new-name.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/new-name.png&#34; alt=&#34;new-name&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>A good question came up in the Ionic Slack today. A dev was looking to change the name of an app that was already uploaded to the Ionic platform portal.
+When you start an ionic project from the CLI, along with all the html/css/js that you need, it creats an ionic.project file. In here, you get your apps name and app_id set, which gets used by the CLI
+{ &amp;quot;name&amp;quot;: &amp;quot;tmp&amp;quot;, &amp;quot;app_id&amp;quot;: &amp;quot;9cf2c890&amp;quot; }  Now when I login to the Platform portal and upload my app, I&amp;rsquo;ll see it appear on my dash.</description>
     </item>
     
     <item>
@@ -658,50 +88,8 @@ set, which gets used by the CLI&lt;/p&gt;
       <pubDate>Sun, 03 Jan 2016 12:09:03 -0500</pubDate>
       
       <guid>https://mhartington.io/post/a-new-year/</guid>
-      <description>
-
-&lt;p&gt;This isn&amp;rsquo;t as much as a year in review for 2015, but all the things I look forward to doing in 2016.&lt;/p&gt;
-
-&lt;h2 id=&#34;2015:b67d1d6d125631768b0b19907cac5760&#34;&gt;2015&lt;/h2&gt;
-
-&lt;p&gt;So 2015 was a big year for me. I gave so many talks and got to meet a whole bunch of other speakers. This was definitly a year where I felt like I grew the most as a speaker and developer. If you&amp;rsquo;re looking to become a better speaker or get into being a dev advocate, defintily checkout this talk by &lt;a href=&#34;https://twitter.com/r00k&#34;&gt;Ben Orenstein&lt;/a&gt;&lt;/p&gt;
-
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/l9JXH7JPjR4&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
- &lt;/div&gt;
-
-
-&lt;p&gt;I also got to be on a bunch of podcasts, Adventurs In Angular, AngularAir, as well as the Web Platform Podcast. All of which were really fun and felt like a big growth for me personally.&lt;/p&gt;
-
-&lt;p&gt;Finally one of the coolest things to happen was being accepted into the Google Developer Experts program.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Go figure, I&amp;rsquo;m an expert&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s an amazing program, filled with other amazing developers and it&amp;rsquo;s quite an honour to be a part of.&lt;/p&gt;
-
-&lt;h2 id=&#34;2016:b67d1d6d125631768b0b19907cac5760&#34;&gt;2016&lt;/h2&gt;
-
-&lt;p&gt;Now while 2015 was great, 2016 is shaping up to be an even better year with big changes to my life.&lt;/p&gt;
-
-&lt;h4 id=&#34;i-m-moving:b67d1d6d125631768b0b19907cac5760&#34;&gt;I&amp;rsquo;m moving&lt;/h4&gt;
-
-&lt;p&gt;As much as I love Rhode Island, I am moving out west to the Bay Area. This is something that I thought would be pretty easy for me but is turning out to be really hard. Rhode Island has been the only home I&amp;rsquo;ve known so it&amp;rsquo;s hard for to leave, but it&amp;rsquo;s something I feel like I need to do. No apartment yet, but will be heading out soon to find one and eventually start my new life out there.&lt;/p&gt;
-
-&lt;h3 id=&#34;more-speaking:b67d1d6d125631768b0b19907cac5760&#34;&gt;More Speaking&lt;/h3&gt;
-
-&lt;p&gt;As busy as last year was with conferences, this year is already shaping up to be just as busy. I head out the California to go apartment hunting, then on my way back, I make a quick stop in Utah for Phonegap Day. There&amp;rsquo;s a whole bunch of conferences going on as well, plus some other GDE related events that I&amp;rsquo;ll be attending so life will be very busy, but I&amp;rsquo;ll love every bit of it.&lt;/p&gt;
-
-&lt;h3 id=&#34;more-open-source:b67d1d6d125631768b0b19907cac5760&#34;&gt;More Open Source&lt;/h3&gt;
-
-&lt;p&gt;While working for Ionic, I get to participate in open source every day. While that may seem to be enogh for some, I really want to step up my contribution to any open source project. Whether it&amp;rsquo;s helping out with issues, making PRs, or even helping fund the development, like I currently do for NeoVim. I just want to do more for this community&lt;/p&gt;
-
-&lt;h3 id=&#34;more-time-for-myself:b67d1d6d125631768b0b19907cac5760&#34;&gt;More Time for myself&lt;/h3&gt;
-
-&lt;p&gt;Open source if great and very rewarding&amp;hellip;. but very exhausting. Now this seem very contradictory to what I said before, but I want to spend more time away from my laptop. Since I&amp;rsquo;ll be out in California, maybe plan for a few days away, with no phone or anything, but just to hangout and do some rock climbing. Who knows, but at least something to enjoy MY time. I have this fear of burning out way to early in life and never being able to contribute as much as I could.&lt;/p&gt;
-
-&lt;p&gt;So that&amp;rsquo;s all for now. It is the weekend so, time to close the laptop and enjoy the Sun&lt;/p&gt;
-</description>
+      <description>This isn&amp;rsquo;t as much as a year in review for 2015, but all the things I look forward to doing in 2016.
+2015 So 2015 was a big year for me. I gave so many talks and got to meet a whole bunch of other speakers. This was definitly a year where I felt like I grew the most as a speaker and developer. If you&amp;rsquo;re looking to become a better speaker or get into being a dev advocate, defintily checkout this talk by Ben Orenstein</description>
     </item>
     
     <item>
@@ -710,49 +98,9 @@ set, which gets used by the CLI&lt;/p&gt;
       <pubDate>Mon, 28 Dec 2015 10:30:41 -0500</pubDate>
       
       <guid>https://mhartington.io/post/my-dotfiles/</guid>
-      <description>
+      <description>&lt;p&gt;My dotfiles are my pride and joy. There are hundreds of hours spent tweaking them to create the best setup for me. Recently I&amp;rsquo;ve started working on three different machines, my Mac, a Windows machine, as well as Ubuntu. This introduced an interesting issue; how can I create a similar environment across all these platforms, but only store them in one location?&lt;/p&gt;
 
-&lt;p&gt;My dotfiles are my pride and joy. There are hundreds of hours spent tweaking them to create the best setup for me. Recently I&amp;rsquo;ve started working on three different machines, my Mac, a Windows machine, as well as Ubuntu. This introduced an interesting issue; how can I create a similar environment across all these platforms, but only store them in one location?&lt;/p&gt;
-
-&lt;h2 id=&#34;tools:090900ff8df7a62498826c12b7a52bda&#34;&gt;Tools&lt;/h2&gt;
-
-&lt;p&gt;In my workflow, I have the following tools setup:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Neovim&lt;/li&gt;
-&lt;li&gt;Git&lt;/li&gt;
-&lt;li&gt;tmux&lt;/li&gt;
-&lt;li&gt;zsh&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;In fact, this very blog post is being written using all 4 of these tools&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://mhartington.io/img/my-shell.png&#34;&gt;&lt;img src=&#34;https://mhartington.io/img/my-shell.png&#34; alt=&#34;my-shell&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;the-problem:090900ff8df7a62498826c12b7a52bda&#34;&gt;The Problem&lt;/h2&gt;
-
-&lt;p&gt;Each of these tools has to be installed at some point for each environment I want to run, but each environment has different ways to install these tools.
-For Mac, it&amp;rsquo;s fairly easy, just use homebrew and I can group these into one install command.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install neovim git tmux zsh
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then I can sit back and just relax while the real work is done.&lt;/p&gt;
-
-&lt;p&gt;For linux on the other hand, it&amp;rsquo;s not so easy. While there is linuxbrew, the linix port of homebrew, it&amp;rsquo;s often out of date and requires a lengthy &lt;code&gt;agt-get&lt;/code&gt; install for any dependencies. Then add a few lines to my shells &lt;code&gt;rc&lt;/code&gt; file&amp;hellip;.THEN I can install things.&lt;/p&gt;
-
-&lt;p&gt;Don&amp;rsquo;t even get me started on windows&amp;hellip;.I seriously haven&amp;rsquo;t thought about how much of a pain it will be to get things setup on windows.&lt;/p&gt;
-
-&lt;h2 id=&#34;solution:090900ff8df7a62498826c12b7a52bda&#34;&gt;Solution&lt;/h2&gt;
-
-&lt;p&gt;So while all of these have a slightly different problem, I can write a simple &lt;a href=&#34;https://github.com/mhartington/dotfiles/blob/master/install.sh&#34;&gt;install script&lt;/a&gt; in bash to handle most of it.&lt;/p&gt;
-
-&lt;p&gt;In that script, it handles my setup for a fresh Mac machine.&lt;/p&gt;
-
-&lt;p&gt;But what about Ubuntu? Well, I just write another script.&lt;/p&gt;
-
-&lt;p&gt;It may not be the most elegant solution, but for me and what I need, it works great.&lt;/p&gt;
-</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -761,8 +109,7 @@ For Mac, it&amp;rsquo;s fairly easy, just use homebrew and I can group these int
       <pubDate>Mon, 28 Dec 2015 09:37:11 -0500</pubDate>
       
       <guid>https://mhartington.io/post/welcome/</guid>
-      <description>&lt;p&gt;Consider this my first post&lt;/p&gt;
-</description>
+      <description>Consider this my first post</description>
     </item>
     
   </channel>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='Every year Apple releases a new iPhone and a new iOS version to match. For the history of the iPhone, any changes that come with these new devices tend to be very small. Design changes in iOS7? Not a huge deal, as they&rsquo;re fairly easy to design for, especially in a hybrid app context. This year however, Apple has introduce it&rsquo;s most drastic change in iPhone history.
+Introducing&hellip; the Notch'>
+
+<meta property='og:title' content='iPhoneX and The Notch • Mike Hartington'>
+<meta property='og:description' content='Every year Apple releases a new iPhone and a new iOS version to match. For the history of the iPhone, any changes that come with these new devices tend to be very small. Design changes in iOS7? Not a huge deal, as they&rsquo;re fairly easy to design for, especially in a hybrid app context. This year however, Apple has introduce it&rsquo;s most drastic change in iPhone history.
+Introducing&hellip; the Notch'>
+<meta property='og:url' content='https://mhartington.io/post/iphonex-and-the-notch/'>
+<meta property='og:site_name' content='Mike Hartington'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:published_time' content='2017-09-21T10:39:55-04:00'/><meta property='article:modified_time' content='2017-09-21T10:39:55-04:00'/>
+
+<meta name="generator" content="Hugo 0.27.1" />
+
+  <title>iPhoneX and The Notch • Mike Hartington</title>
+  <link rel='canonical' href='https://mhartington.io/post/iphonex-and-the-notch/'>
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700&subset=latin'>
+<link rel='stylesheet' href='/css/main.67a788c9.css'>
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css'>
+
+  <link rel='stylesheet' href='/css/highlight.css'>
+
+  <link rel='stylesheet' href='/css/override.css'>
+
+
+
+</head>
+
+
+<body class='page'>
+  <div class='site'>
+    <header id='header' class='header-container'>
+      <div class='site-header'>
+        <nav id='navmenu' aria-label='Main Menu'>
+  <ul class='main-menu'>
+    
+  </ul>
+</nav>
+
+        <div class='site-info'>
+          
+          <p class='site-title title'>Mike Hartington</p>
+          
+          <p class='site-description'></p>
+        </div>
+      </div>
+    </header>
+
+
+<main class='main'>
+  <article lang='en' class='entry'>
+    <header class='entry-header'>
+  <div class='entry-info'>
+    <h1 class='entry-title title'>iPhoneX and The Notch</h1>
+    
+  </div>
+  
+<div class='meta'>
+  <span class='posted-on'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+
+    <span class='screen-reader'>Posted on </span>
+    <time class='date' datetime='2017-09-21T10:39:55-04:00'>2017, Sep 21</time>
+  </span>
+  
+  
+</div>
+
+
+</header>
+
+    <div class='entry-content'>
+  
+
+<p>Every year Apple releases a new iPhone and a new iOS version to match. For the history of the iPhone, any changes that come with these new devices tend to be very small. Design changes in iOS7? Not a huge deal, as they&rsquo;re fairly easy to design for, especially in a hybrid app context. This year however, Apple has introduce it&rsquo;s most drastic change in iPhone history.</p>
+
+<p><img src="https://cdn.vox-cdn.com/thumbor/sReaaOYo1Lcl3-Hf73vByPPRBsg=/0x0:800x533/1200x800/filters:focal(336x203:464x331)/cdn.vox-cdn.com/uploads/chorus_image/image/56641599/apple_iphone_2017_20170912_11670.0.jpeg" alt="" /></p>
+
+<p><em>Introducing&hellip; the Notch</em></p>
+
+<p>This, is frustrating, to say the least, and from a hybrid app perspective, it introduces several new challenges.</p>
+
+<h3 id="1-full-screen-support">1. Full screen support</h3>
+
+<p>First thing we&rsquo;ll want to address is the high resolution of the iPhoneX. This is not an entirely new issue, and iPad Pro also has a large resolution. With this high resolution, we need to provide a larger splashscreen image, but in a slightly different way then we&rsquo;re used to. In Cordova-ios 4.3.1, there was support added for something called &ldquo;Launch Storyboards&rdquo;. Essentially, we can tell iOS that we&rsquo;re providing a large image, and it will properly scale and crop it to fit our screen. I&rsquo;ll be using an Ionic project as an example, but this is not tied to Ionic. In our <code>resouces</code> folder, we&rsquo;ll add an image that is <code>2732x2732px</code> in size. We&rsquo;ll add this as <code>resources/ios/splash/Default@2x~universal~anyany.png</code>. Then, in our config.xml, we&rsquo;ll add a new reference to the image.</p>
+
+<pre><code class="language-xml">&lt;platform name=&quot;ios&quot;&gt;
+  &lt;allow-intent href=&quot;itms:*&quot; /&gt;
+  &lt;allow-intent href=&quot;itms-apps:*&quot; /&gt;
+  &lt;splash src=&quot;resources/ios/splash/Default@2x~universal~anyany.png&quot; /&gt;
+&lt;/platform&gt;
+</code></pre>
+
+<blockquote>
+<p>The Ionic CLI will be updated in the coming weeks to generate this image and add the entry for you.</p>
+</blockquote>
+
+<p>A key thing to note here, is the <code>splash</code> entry has no sizing added to it. This is key!</p>
+
+<p>When we build our app and deploy to iPhoneX simulator, we should get something similar to this.</p>
+
+<p><img src="/img/iphonex-launch-image.png" alt="" /></p>
+
+<p>This is a good first step so far, but you&rsquo;ll notice we&rsquo;re still not using all of the screen, we have some space at the bottom and top of the device.</p>
+
+<h3 id="2-adjusting-the-viewport">2. Adjusting the viewport</h3>
+
+<p>The next piece we need to add is a small change to our viewport meta tag. By default, Ionic projects come with a viewport meta tag that looks like this:</p>
+
+<pre><code class="language-html">&lt;head&gt;
+
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;&gt;
+&lt;/head&gt;
+</code></pre>
+
+<p>This has served us well for many years, but now we need to add a new entry, <code>viewport-fit</code>. This new entry can tell a browser how it should scale/size it self. It can take 3 values.</p>
+
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>cover</code></td>
+<td>The viewport will scale to fill the entire screen, regardless of aspect ratio. Think css background-images</td>
+</tr>
+
+<tr>
+<td><code>contain</code></td>
+<td>The viewport will scale until it hits an edge. This could be the sides of the screen, or top and bottom</td>
+</tr>
+</tbody>
+</table>
+
+<p>There is a default <code>auto</code> value as well, but it is the same thing as contain.</p>
+
+<p>We want to add <code>cover</code> to our viewport meta tag.</p>
+
+<pre><code class="language-html">&lt;head&gt;
+
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover&quot;&gt;
+&lt;/head&gt;
+</code></pre>
+
+<h3 id="3-css-changes">3. CSS Changes</h3>
+
+<p>For the last pieces of changes, css needs to be modified to take advantage of</p>
+
+</div>
+
+    
+<footer class='entry-footer'>
+  
+    
+  
+    
+  
+</footer>
+
+
+  </article>
+
+  
+    
+<nav class='entry-nav'>
+  <div class='entry-nav-links'><div class='prev-entry'>
+      <a href='https://mhartington.io/post/custom-decorators/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader'>Previous post: </span>Custom Decorators</a>
+    </div></div>
+</nav>
+
+
+  
+
+  
+    <div class='comments-container'>
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "mhartington" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  
+</main>
+
+    <footer id='footer' class='footer-container'>
+      <div class='footer'>
+        <div class='social'>
+  <nav aria-label='Social Menu'>
+    <ul class='social-menu'><li>
+        <a href='https://github.com/mhartington' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Github account in new tab</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='https://twitter.com/mhartington' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Twitter account in new tab</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+
+        </a>
+      </li></ul>
+  </nav>
+</div>
+
+        <div class='copyright'>
+          <p>
+  &copy; 2017 Mike Hartington</p>
+
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src='/js/main.af838dd5.js'></script>
+  
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
+  
+    <script src='/js/highlight.js'></script>
+  
+
+</body>
+
+</html>
+

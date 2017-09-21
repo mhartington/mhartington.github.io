@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='Now that Ionic 2 is out in beta, people are setting aside some time to give it a shot and investigate everything it has to offer. Ionic 2 and Angular 2 bring a lot of improvements, but it&rsquo;s a fairly different style of developing that what people were used to before. Now, since everything needs to be imported and libraries aren’t global, it can be tricky to figure out how to integrate with other libraries.'>
+
+<meta property='og:title' content='Ionic 2 and External Libraries • Mike Hartington'>
+<meta property='og:description' content='Now that Ionic 2 is out in beta, people are setting aside some time to give it a shot and investigate everything it has to offer. Ionic 2 and Angular 2 bring a lot of improvements, but it&rsquo;s a fairly different style of developing that what people were used to before. Now, since everything needs to be imported and libraries aren’t global, it can be tricky to figure out how to integrate with other libraries.'>
+<meta property='og:url' content='https://mhartington.io/post/ionic2-external-libraries/'>
+<meta property='og:site_name' content='Mike Hartington'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:published_time' content='2016-02-17T11:38:32-05:00'/><meta property='article:modified_time' content='2016-02-17T11:38:32-05:00'/>
+
+<meta name="generator" content="Hugo 0.27.1" />
+
+  <title>Ionic 2 and External Libraries • Mike Hartington</title>
+  <link rel='canonical' href='https://mhartington.io/post/ionic2-external-libraries/'>
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700&subset=latin'>
+<link rel='stylesheet' href='/css/main.67a788c9.css'>
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css'>
+
+  <link rel='stylesheet' href='/css/highlight.css'>
+
+  <link rel='stylesheet' href='/css/override.css'>
+
+
+
+</head>
+
+
+<body class='page'>
+  <div class='site'>
+    <header id='header' class='header-container'>
+      <div class='site-header'>
+        <nav id='navmenu' aria-label='Main Menu'>
+  <ul class='main-menu'>
+    
+  </ul>
+</nav>
+
+        <div class='site-info'>
+          
+          <p class='site-title title'>Mike Hartington</p>
+          
+          <p class='site-description'></p>
+        </div>
+      </div>
+    </header>
+
+
+<main class='main'>
+  <article lang='en' class='entry'>
+    <header class='entry-header'>
+  <div class='entry-info'>
+    <h1 class='entry-title title'>Ionic 2 and External Libraries</h1>
+    
+  </div>
+  
+<div class='meta'>
+  <span class='posted-on'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+
+    <span class='screen-reader'>Posted on </span>
+    <time class='date' datetime='2016-02-17T11:38:32-05:00'>2016, Feb 17</time>
+  </span>
+  
+  
+</div>
+
+
+</header>
+
+    <div class='entry-content'>
+  
+
+<p>Now that Ionic 2 is out in beta, people are setting aside some time to give it a shot and investigate everything it has to offer. Ionic 2 and Angular 2 bring a lot of improvements, but it&rsquo;s a fairly different style of developing that what people were used to before. Now, since everything needs to be imported and libraries aren’t global, it can be tricky to figure out how to integrate with other libraries.</p>
+
+<h3 id="npm-all-the-things">NPM all the things</h3>
+
+<p>So, how do you add third-party-libraries, such as Lodash? In Ionic 22, we&rsquo;ve moved over to NPM for all our package management. So for our case, if we had a project setup, we could just install Lodash though npm&rsquo;s CLI.</p>
+
+<pre><code class="language-bash">$ ionic start myApp --v2 --ts
+$ cd myApp
+$ npm install lodash --save
+</code></pre>
+
+<p>Now, this is going to give us a starter tabs project, so let’s open our <code>page1.ts</code> file.</p>
+
+<pre><code class="language-javascript">import {Page} from 'ionic-framework/ionic';
+@Page({
+  templateUrl: 'build/pages/page1/page1.html',
+})
+export class Page1 {
+  constructor() {
+  }
+}
+</code></pre>
+
+<p>Now, we can import individual methods from Lodash, using the typical import method that we&rsquo;re seeing. Note, this would be the same import state if we were to use Javascript or Typescript.</p>
+
+<pre><code class="language-javascript">import {Page} from 'ionic-framework/ionic';
+import {sum} from 'lodash'
+@Page({
+  templateUrl: 'build/pages/page1/page1.html',
+})
+export class Page1 {
+  constructor() {
+    console.log(sum)
+  }
+}
+</code></pre>
+
+<p>If we were to use regular ES6, that would be the end of it. But since we&rsquo;re using Typescript, we&rsquo;ll get an error.</p>
+
+<p><a href="/img/lodash-typescript-error.png"><img src="/img/lodash-typescript-error.png" alt="lodash-typescript-error" /></a></p>
+
+<p>This might lead you to believe that everything is broken, and Lodash is working. Your editor will also probably yell at you, too. But oddly enough, everything will still work. What gives?</p>
+
+<p>So, Typescript needs to analyze the code, in order to do its type checking. Normal Javascript libraries typically don&rsquo;t include any definition files, which means Typescript won&rsquo;t be able to understand them.</p>
+
+<p>To circumvent this, we can use <a href="https://www.npmjs.com/package/typings">Typings</a> which allow us to install definition files for various libraries.</p>
+
+<h3 id="typings">Typings</h3>
+
+<p>We&rsquo;ll install Typings globally on our system.</p>
+
+<pre><code class="language-bash">$ npm install -g typings
+</code></pre>
+
+<p>Now we have the <code>typings</code> command to install the necessary files. So we can install the Lodash definitions with</p>
+
+<pre><code>typings install lodash --ambient --save
+</code></pre>
+
+<p>We should now have a <code>typings</code> directory looking like this</p>
+
+<pre><code class="language-bash">├── typings
+│   ├── browser
+│   │   └── ambient
+│   │       └── lodash
+│   │           └── lodash.d.ts
+│   ├── browser.d.ts
+│   ├── main
+│   │   └── ambient
+│   │       └── lodash
+│   │           └── lodash.d.ts
+│   └── main.d.ts
+├── typings.json
+</code></pre>
+
+<p>Last thing we need to do, is add a reference to this main <code>main.d.ts</code> file.</p>
+
+<p>Now we could do this two ways, either adding a <code>reference</code> tag, which most people are probably familiar with, or we can add it to our <code>files</code> array in our tsconfig. We&rsquo;ll use this option because as our application grows, we don&rsquo;t have to worry about adding more reference tags all over the place.</p>
+
+<pre><code class="language-json">
+  &quot;files&quot;: [
+    &quot;app/app.ts&quot;,
+    &quot;typings/main.d.ts&quot;
+  ],
+</code></pre>
+
+<p>Now when we start up our server, no errors!</p>
+
+</div>
+
+    
+<footer class='entry-footer'>
+  
+    
+  
+    
+  
+</footer>
+
+
+  </article>
+
+  
+    
+<nav class='entry-nav'>
+  <div class='entry-nav-links'><div class='prev-entry'>
+      <a href='https://mhartington.io/post/setting-input-focus/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader'>Previous post: </span>Setting Focus to an Input in Ionic 2</a>
+    </div><div class='next-entry'>
+      <a href='https://mhartington.io/post/typings-v1/'>
+        <span class='screen-reader'>Next post: </span>Revisiting Typings: Post 1.0<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+
+  
+
+  
+    <div class='comments-container'>
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "mhartington" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  
+</main>
+
+    <footer id='footer' class='footer-container'>
+      <div class='footer'>
+        <div class='social'>
+  <nav aria-label='Social Menu'>
+    <ul class='social-menu'><li>
+        <a href='https://github.com/mhartington' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Github account in new tab</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='https://twitter.com/mhartington' target='_blank' rel='noopener'>
+          <span class='screen-reader'>Open Twitter account in new tab</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+
+        </a>
+      </li></ul>
+  </nav>
+</div>
+
+        <div class='copyright'>
+          <p>
+  &copy; 2017 Mike Hartington</p>
+
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src='/js/main.af838dd5.js'></script>
+  
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
+  
+    <script src='/js/highlight.js'></script>
+  
+
+</body>
+
+</html>
+
