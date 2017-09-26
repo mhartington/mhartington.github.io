@@ -6,10 +6,20 @@
     <description>Recent content on Mike Hartington</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 31 May 2017 09:55:05 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 21 Sep 2017 10:39:55 -0400</lastBuildDate>
     
 	<atom:link href="https://mhartington.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>iPhoneX and The Notch</title>
+      <link>https://mhartington.io/post/iphonex-and-the-notch/</link>
+      <pubDate>Thu, 21 Sep 2017 10:39:55 -0400</pubDate>
+      
+      <guid>https://mhartington.io/post/iphonex-and-the-notch/</guid>
+      <description>Every year Apple releases a new iPhone and a new iOS version to match. For the history of the iPhone, any changes that come with these new devices tend to be very small. Design changes in iOS7? Not a huge deal, as they&amp;rsquo;re fairly easy to design for, especially in a hybrid app context. This year however, Apple has introduce it&amp;rsquo;s most drastic change in iPhone history.
+Introducing… the Notch</description>
+    </item>
     
     <item>
       <title>Custom Decorators</title>

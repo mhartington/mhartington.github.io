@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
   
-  <title>Ionic IO app name</title>
-  <meta property="og:title" content="Ionic IO app name" />
-  <meta name="twitter:title" content="Ionic IO app name" />
+  <title>iPhoneX and The Notch</title>
+  <meta property="og:title" content="iPhoneX and The Notch" />
+  <meta name="twitter:title" content="iPhoneX and The Notch" />
   
 
   
@@ -17,7 +17,7 @@
 
   <meta name="author" content="mhartington"/>
   <meta property="og:site_name" content="Mike Hartington" />
-  <meta property="og:url" content="https://mhartington.io/post/ionic-io-app-name/" />
+  <meta property="og:url" content="https://mhartington.io/post/iphonex-and-the-notch/" />
 
   
   <meta name="twitter:card" content="summary" />
@@ -60,12 +60,12 @@
 
 <article class="p-article">
   <header>
-    <h1>Ionic IO app name</h1>
+    <h1>iPhoneX and The Notch</h1>
     <div>
       <div class="c-time">
         Posted on
-        <time datetime="2016-01-08T16:01:47-05:00">
-          Jan 8, 2016
+        <time datetime="2017-09-21T10:39:55-04:00">
+          Sep 21, 2017
         </time>
       </div>
       
@@ -73,39 +73,89 @@
   </header>
   
   <section id="js-article" class="p-article__body">
-    <p>A good question came up in the Ionic Slack today. A dev was looking to change the name of an app that was already uploaded to the Ionic platform portal.</p>
+    
 
-<p>When you start an ionic project from the CLI, along with all the html/css/js that you need, it creats an <code>ionic.project</code> file. In here, you get your apps name and app_id
-set, which gets used by the CLI</p>
+<p>Every year Apple releases a new iPhone and a new iOS version to match. For the history of the iPhone, any changes that come with these new devices tend to be very small. Design changes in iOS7? Not a huge deal, as they&rsquo;re fairly easy to design for, especially in a hybrid app context. This year however, Apple has introduce it&rsquo;s most drastic change in iPhone history.</p>
 
-<pre><code class="language-json">
-{
-  &quot;name&quot;: &quot;tmp&quot;,
-  &quot;app_id&quot;: &quot;9cf2c890&quot;
-}
+<p><img src="https://cdn.vox-cdn.com/thumbor/sReaaOYo1Lcl3-Hf73vByPPRBsg=/0x0:800x533/1200x800/filters:focal(336x203:464x331)/cdn.vox-cdn.com/uploads/chorus_image/image/56641599/apple_iphone_2017_20170912_11670.0.jpeg" alt="" /></p>
 
+<p><em>Introducing… the Notch</em></p>
 
+<p>This, is frustrating, to say the least, and from a hybrid app perspective, it introduces several new challenges.</p>
+
+<h3 id="1-full-screen-support">1. Full screen support</h3>
+
+<p>First thing we&rsquo;ll want to address is the high resolution of the iPhoneX. This is not an entirely new issue, and iPad Pro also has a large resolution. With this high resolution, we need to provide a larger splashscreen image, but in a slightly different way then we&rsquo;re used to. In Cordova-ios 4.3.1, there was support added for something called &ldquo;Launch Storyboards&rdquo;. Essentially, we can tell iOS that we&rsquo;re providing a large image, and it will properly scale and crop it to fit our screen. I&rsquo;ll be using an Ionic project as an example, but this is not tied to Ionic. In our <code>resouces</code> folder, we&rsquo;ll add an image that is <code>2732x2732px</code> in size. We&rsquo;ll add this as <code>resources/ios/splash/Default@2x~universal~anyany.png</code>. Then, in our config.xml, we&rsquo;ll add a new reference to the image.</p>
+
+<pre><code class="language-xml">&lt;platform name=&quot;ios&quot;&gt;
+  &lt;allow-intent href=&quot;itms:*&quot; /&gt;
+  &lt;allow-intent href=&quot;itms-apps:*&quot; /&gt;
+  &lt;splash src=&quot;resources/ios/splash/Default@2x~universal~anyany.png&quot; /&gt;
+&lt;/platform&gt;
 </code></pre>
 
-<p>Now when I login to the Platform portal and upload my app, I&rsquo;ll see it appear on my dash.</p>
+<blockquote>
+<p>The Ionic CLI has been updated to generate this image for you</p>
+</blockquote>
 
-<p><a href="/img/too-many-tmps.png"><img src="/img/too-many-tmps.png" alt="too-many-tmps" /></a></p>
+<p>When we build our app and deploy to iPhoneX simulator, we should get something similar to this.</p>
 
-<p>As you can see, it&rsquo;s not an original name and could be quite confusing.</p>
+<p><img src="/img/iphonex-launch-image.png" alt="" /></p>
 
-<p>So to change the name, I can just edit the name property in my <code>ionic.project</code> file.</p>
+<p>This is a good first step so far, but you&rsquo;ll notice we&rsquo;re still not using all of the screen, we have some space at the bottom and top of the device.</p>
 
-<pre><code class="language-json">
-{
-  &quot;name&quot;: &quot;newName&quot;,
-  &quot;app_id&quot;: &quot;9cf2c890&quot;
-}
+<h3 id="2-adjusting-the-viewport">2. Adjusting the viewport</h3>
 
+<p>The next piece we need to add is a small change to our viewport meta tag. By default, Ionic projects come with a viewport meta tag that looks like this:</p>
+
+<pre><code class="language-html">&lt;head&gt;
+
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;&gt;
+&lt;/head&gt;
 </code></pre>
 
-<p>When I upload the app again, it will change the displayed name, but keep everything else the same.</p>
+<p>This has served us well for many years, but now we need to add a new entry, <code>viewport-fit</code>. This new entry can tell a browser how it should scale/size it self. It can take 3 values.</p>
 
-<p><a href="/img/new-name.png"><img src="/img/new-name.png" alt="new-name" /></a></p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>cover</code></td>
+<td>The viewport will scale to fill the entire screen, regardless of aspect ratio. Think css background-images</td>
+</tr>
+
+<tr>
+<td><code>contain</code></td>
+<td>The viewport will scale until it hits an edge. This could be the sides of the screen, or top and bottom</td>
+</tr>
+</tbody>
+</table>
+
+<p>There is a default <code>auto</code> value as well, but it is the same thing as contain.</p>
+
+<p>We want to add <code>cover</code> to our viewport meta tag.</p>
+
+<pre><code class="language-html">&lt;head&gt;
+
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover&quot;&gt;
+&lt;/head&gt;
+</code></pre>
+
+<h3 id="3-css-changes">3. CSS Changes</h3>
+
+<p>For the last pieces of changes is centered around CSS changes, and really depends on your framework. But the concepts will be centered around a new <code>safe-area</code> margins that are available in iOS11 and Webkit. The Webkit team wrote a <a href="https://webkit.org/blog/7929/designing-websites-for-iphone-x/">great post</a> about the safe-area insets and how you can use them. We at Ionic are in the process of <a href="https://github.com/ionic-team/ionic/pull/12933">updating our styles</a> to take advantage of these as well. This can be a tedious process are requires careful planing/design changes in order to work with the new form factor.</p>
+
+<p>This will definitely be the more difficult part as it is really up to how you made your app. It could just a framework update, like it will be with Ionic, or lots of changes to your own CSS.</p>
+
+<h3 id="parting-words">Parting words</h3>
+
+<p>Overall, there are only 3 concepts/new features to take care of the new iPhoneX form factor. The Viewport and the splashscreen image really are straightforward, but the CSS changes will because confusing as time goes one. Good Luck!</p>
 
   </section>
   <footer>
@@ -114,12 +164,11 @@ set, which gets used by the CLI</p>
       <div class="c-pagination__ctrl">
         <div class="c-pagination__newer">
           
-          <a href="https://mhartington.io/post/object-fit/">Newer</a>
           
         </div>
         <div class="c-pagination__older">
           
-          <a href="https://mhartington.io/post/a-new-year/">Older</a>
+          <a href="https://mhartington.io/post/custom-decorators/">Older</a>
           
         </div>
       </div>
