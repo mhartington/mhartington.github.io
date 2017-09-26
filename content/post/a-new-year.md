@@ -2,7 +2,6 @@
 date = "2016-01-03T12:09:03-05:00"
 tags = []
 title = "A New Year"
-
 +++
 
 This isn't as much as a year in review for 2015, but all the things I look forward to doing in 2016.

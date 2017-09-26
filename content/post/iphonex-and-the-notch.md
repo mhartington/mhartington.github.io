@@ -1,7 +1,7 @@
 ---
 title: "iPhoneX and The Notch"
 date: "2017-09-21T10:39:55-04:00"
-draft: true
+draft: false
 ---
 
 
@@ -9,7 +9,7 @@ Every year Apple releases a new iPhone and a new iOS version to match. For the h
 
 ![](https://cdn.vox-cdn.com/thumbor/sReaaOYo1Lcl3-Hf73vByPPRBsg=/0x0:800x533/1200x800/filters:focal(336x203:464x331)/cdn.vox-cdn.com/uploads/chorus_image/image/56641599/apple_iphone_2017_20170912_11670.0.jpeg)
 
-_Introducing... the Notch_
+_Introducing… the Notch_
 
 
 This, is frustrating, to say the least, and from a hybrid app perspective, it introduces several new challenges.
@@ -28,9 +28,7 @@ First thing we'll want to address is the high resolution of the iPhoneX. This is
 </platform>
 ```
 
-> The Ionic CLI will be updated in the coming weeks to generate this image and add the entry for you.
-
-A key thing to note here, is the `splash` entry has no sizing added to it. This is key!
+> The Ionic CLI has been updated to generate this image for you
 
 When we build our app and deploy to iPhoneX simulator, we should get something similar to this.
 
@@ -74,4 +72,12 @@ We want to add `cover` to our viewport meta tag.
 
 ### 3. CSS Changes
 
-For the last pieces of changes, css needs to be modified to take advantage of
+For the last pieces of changes is centered around CSS changes, and really depends on your framework. But the concepts will be centered around a new `safe-area` margins that are available in iOS11 and Webkit. The Webkit team wrote a [great post](https://webkit.org/blog/7929/designing-websites-for-iphone-x/) about the safe-area insets and how you can use them. We at Ionic are in the process of [updating our styles](https://github.com/ionic-team/ionic/pull/12933) to take advantage of these as well. This can be a tedious process are requires careful planing/design changes in order to work with the new form factor.
+
+
+This will definitely be the more difficult part as it is really up to how you made your app. It could just a framework update, like it will be with Ionic, or lots of changes to your own CSS.
+
+
+### Parting words
+
+Overall, there are only 3 concepts/new features to take care of the new iPhoneX form factor. The Viewport and the splashscreen image really are straightforward, but the CSS changes will because confusing as time goes one. Good Luck!
