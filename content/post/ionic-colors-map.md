@@ -1,14 +1,12 @@
 ---
 title: "Ionic Colors Map: How to use them correctly"
 date: 2017-09-27T16:15:09-04:00
-thumbnail: "path/thumbnail.jpg"
-draft: true
 ---
 
 
 If you jumped from Ionic 1 to Ionic 2 when it was first released, a new thing that was added was this concept of `$colors`. Something that looks like this :
 
-```scss
+```css
 $colors: (
   primary:    #488aff,
   secondary:  #32db64,
@@ -20,7 +18,7 @@ $colors: (
 
 This was a big change from how we did styles in Ionic 1, where all of our theme colors were defined upfront:
 
-```scss
+```css
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
 $positive:                        #387ef5 !default;
@@ -40,7 +38,7 @@ From both a framework developer and consumer of a framework, this is great! Now 
 
 So how can this be misused? Well, consider having a `$colors` map that looks like this:
 
-```scss
+```css
 $colors: (
   primary: #387ef5,
   secondary: #32db64,
