@@ -45,7 +45,6 @@ The next piece we need to add is a small change to our viewport meta tag. By def
 
 ```html
 <head>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 ```
@@ -64,7 +63,6 @@ We want to add `cover` to our viewport meta tag.
 
 ```html
 <head>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 </head>
 ```

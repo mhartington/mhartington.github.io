@@ -165,7 +165,7 @@ And to see it in action:
 
 <center>
 
- [![device-ready](/img/device-ready-small.gif)](/img/device-ready.gif)
+ ![device-ready](/img/device-ready-small.gif)
 
 </center>
 

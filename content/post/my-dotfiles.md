@@ -20,7 +20,7 @@ In my workflow, I have the following tools setup:
 
 In fact, this very blog post is being written using all 4 of these tools
 
- [![my-shell](/img/my-shell.png)](/img/my-shell.png)
+ ![my-shell](/img/my-shell.png)
 
 
 

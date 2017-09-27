@@ -24,7 +24,7 @@ set, which gets used by the CLI
 Now when I login to the Platform portal and upload my app, I'll see it appear on my dash.
 
 
- [![too-many-tmps](/img/too-many-tmps.png)](/img/too-many-tmps.png)
+ ![too-many-tmps](/img/too-many-tmps.png)
 
 
  As you can see, it's not an original name and could be quite confusing.
@@ -45,5 +45,5 @@ Now when I login to the Platform portal and upload my app, I'll see it appear on
 When I upload the app again, it will change the displayed name, but keep everything else the same.
 
 
- [![new-name](/img/new-name.png)](/img/new-name.png)
+ ![new-name](/img/new-name.png)
 
