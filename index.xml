@@ -6,10 +6,21 @@
     <description>Recent content on Mike Hartington</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Sep 2017 10:39:55 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 27 Sep 2017 16:15:09 -0400</lastBuildDate>
     
 	<atom:link href="https://mhartington.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ionic Colors Map: How to use them correctly</title>
+      <link>https://mhartington.io/post/ionic-colors-map/</link>
+      <pubDate>Wed, 27 Sep 2017 16:15:09 -0400</pubDate>
+      
+      <guid>https://mhartington.io/post/ionic-colors-map/</guid>
+      <description>If you jumped from Ionic 1 to Ionic 2 when it was first released, a new thing that was added was this concept of $colors. Something that looks like this :
+$colors: ( primary: #488aff, secondary: #32db64, danger: #f53d3d, light: #f4f4f4, dark: #222 );  This was a big change from how we did styles in Ionic 1, where all of our theme colors were defined upfront:
+$light: #fff !</description>
+    </item>
     
     <item>
       <title>iPhoneX and The Notch</title>
