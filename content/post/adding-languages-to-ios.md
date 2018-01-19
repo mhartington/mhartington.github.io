@@ -1,6 +1,7 @@
 ---
 title: "Adding Languages to iOS"
 date: 2018-01-19T07:24:04-05:00
+thumbnail: "/img/thumbnails/adding-languages-to-ios/i8n-v2.png"
 draft: false
 ---
 

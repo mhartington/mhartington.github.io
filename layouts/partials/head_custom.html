@@ -2,3 +2,13 @@
 <link rel="stylesheet" href="/css/highlight.css">
 <link rel="stylesheet" href="/css/override.css">
 
+{{ if .IsPage }}
+<meta name="twitter:description" content="{{ .Summary }}" />
+<meta name="twitter:title" content="{{ .Title }}" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="{{ .Params.thumbnail }}" />
+{{ else }}
+<meta name="twitter:title" content="{{ .Site.Title }}" />
+<meta name="twitter:description" content="{{ .Description }}" />
+{{ end }}
+
