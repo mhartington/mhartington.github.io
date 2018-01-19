@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
   
-  <title>Ionic Colors Map: How to use them correctly</title>
-  <meta property="og:title" content="Ionic Colors Map: How to use them correctly" />
-  <meta name="twitter:title" content="Ionic Colors Map: How to use them correctly" />
+  <title>Adding Languages to iOS</title>
+  <meta property="og:title" content="Adding Languages to iOS" />
+  <meta name="twitter:title" content="Adding Languages to iOS" />
   
 
   
@@ -17,7 +17,7 @@
 
   <meta name="author" content="mhartington"/>
   <meta property="og:site_name" content="Mike Hartington" />
-  <meta property="og:url" content="https://mhartington.io/post/ionic-colors-map/" />
+  <meta property="og:url" content="https://mhartington.io/post/adding-languages-to-ios/" />
 
   
   <meta name="twitter:card" content="summary" />
@@ -60,12 +60,12 @@
 
 <article class="p-article">
   <header>
-    <h1>Ionic Colors Map: How to use them correctly</h1>
+    <h1>Adding Languages to iOS</h1>
     <div>
       <div class="c-time">
         Posted on
-        <time datetime="2017-09-27T16:15:09-04:00">
-          Sep 27, 2017
+        <time datetime="2018-01-19T07:24:04-05:00">
+          Jan 19, 2018
         </time>
       </div>
       
@@ -75,90 +75,39 @@
   <section id="js-article" class="p-article__body">
     
 
-<p>If you jumped from Ionic 1 to Ionic 2 when it was first released, a new thing that was added was this concept of <code>$colors</code>. Something that looks like this :</p>
+<p>In hybrid apps, when we want to add support for different languages, we tend to rely on JavaScript libraries to make this possible. This is perfect when we need to deploy a PWA, but when it comes to the App Store, we then have a different challenge. How do we tell the App Store that we support different languages as well?</p>
 
-<pre><code class="language-css">$colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
-);
+<h3 id="how-ios-checks-this">How iOS Checks this</h3>
+
+<p>For native iOS project, the process is actually quite similar to how we manage localization in web-based apps. We setup a string file that is for the languages we want to support and create a mapping of keywords and their translated version. Then the translated value can be accessed in the app via <code>NSLocalizedString</code>. But for hybrid apps that do not use native code, what do we do?</p>
+
+<p>Well turns out, we can trick Xcode/iOS App store by declaring supported languages in a plist file.</p>
+
+<p><img src="/img/xcode-multiple-languages.png" alt="Xcode screen shot showing supported languages" /></p>
+
+<p>In this plist file, we have an entry called <code>Localizations</code>, which is an array. With this entry, we can add list out the languages our app supports.</p>
+
+<p><img src="/img/english-and-italian.png" alt="screen shot with English and Italian" /></p>
+
+<p>Perfect! Now we can just add the languages we want to support in there and be off to the races! But we can take this even further and make the whole process simpler.</p>
+
+<h3 id="plugins-ftw">Plugins FTW</h3>
+
+<p>For some people, opening up xcode is not ideal, and I am one of those people. Plus, once we add the language support in XCode, we need to commit the entire project in git, which isn&rsquo;t ideal. Instead, we can rely on a plugin to do the work for us. Enter the <a href="https://github.com/enricodeleo/cordova-plugin-ios-localized-strings">localized-strings</a> plugin.</p>
+
+<p>This plugin, has zero native code, no JS interface, and is not loaded at runtime (how sweet is that), but instead is a simple hook that runs during <code>cordova build</code>. To install this plugin you can run:</p>
+
+<pre><code class="language-bash">cordova plugin add cordova-plugin-ios-localized-strings --variable MAIN_LANGUAGE=English --variable ADDITIONAL_LANGUAGES=en-US,es,it
 </code></pre>
 
-<p>This was a big change from how we did styles in Ionic 1, where all of our theme colors were defined upfront:</p>
+<p>Now our two variables are:</p>
 
-<pre><code class="language-css">$light:                           #fff !default;
-$stable:                          #f8f8f8 !default;
-$positive:                        #387ef5 !default;
-$calm:                            #11c1f3 !default;
-$balanced:                        #33cd5f !default;
-$energized:                       #ffc900 !default;
-$assertive:                       #ef473a !default;
-$royal:                           #886aea !default;
-$dark:                            #444 !default;
-</code></pre>
+<p><code>MAIN_LANGUAGE</code>: The projects main language
+<code>ADDITIONAL_LANGUAGES</code>: The locales we want to support</p>
 
-<p>The major difference here is that at compile time, we can generate the css rule using the map, instead of having to manually write the rules for each variable.</p>
+<p>Once this plugin is installed and we build iOS, it will take care of all that manual work we would have had to do before.</p>
 
-<p>From both a framework developer and consumer of a framework, this is great! Now we&rsquo;ll only get the correct css rules, for any entry in <code>$colors</code>.</p>
-
-<h3 id="where-this-can-go-wrong">Where this can go wrong</h3>
-
-<p>So how can this be misused? Well, consider having a <code>$colors</code> map that looks like this:</p>
-
-<pre><code class="language-css">$colors: (
-  primary: #387ef5,
-  secondary: #32db64,
-  danger: #f53d3d,
-  light: #f4f4f4,
-  dark: #222,
-  dark1: #222,
-  dark2: #222,
-  dark3: #222,
-  dark4: #222,
-  dark5: #222,
-  dark6: #222,
-  dark7: #222,
-  dark8: #222,
-  dark9: #222,
-  darka: #222,
-  darkz: #222,
-  darke: #222,
-  darkr: #222,
-  darkt: #222,
-  darky: #222,
-  darku: #222,
-  darki: #222,
-  darko: #222,
-  darkp: #222,
-  darkq: #222,
-  darks: #222,
-  darkd: #222,
-  darkf: #222,
-  darkg: #222,
-);
-</code></pre>
-
-<blockquote>
-<p>Don&rsquo;t worry about the dark entries being the same, it&rsquo;s just an example</p>
-</blockquote>
-
-<p>Where we have 10+ entries in our map. Remember, the compiled css will depend on how many entries you have in <code>$colors</code>, so now we&rsquo;ll get all the rules for every single color entry. So our css could go from being very optimized, to <strong>reallly</strong> heavy.</p>
-
-<p>Ok, so we get a heavy css file as an output, this can&rsquo;t be that bad, can it? Well it turns out that it can be very bad!</p>
-
-<p>At some point, browsers will just stop trying to render a page if there&rsquo;s just too much css to parse. This can lead to loading a &ldquo;blank&rdquo; page. It&rsquo;s not actually blank, just that there&rsquo;s so much css, the page will not display.</p>
-
-<p>As far as to a why this happens, &ldquo;too much css&rdquo; is all I can really provide. I&rsquo;m not sure what happens internally in the browser when this happens.</p>
-
-<h3 id="so-what-can-we-do">So, what can we do?</h3>
-
-<p>A common reason why we see this is that there is a misunderstanding with <code>$colors</code>. It&rsquo;s not meant to be a &ldquo;catch all&rdquo; place to define sass variables, it&rsquo;s meant to generate app-level themes that are tied to your branding. If you need to have a few sass variables that are not going to be used with UI components, then they don&rsquo;t belong in the colors map.</p>
-
-<p>Even better, instead of adding additional colors to the map, override the values of the map. It&rsquo;s main purpose wasn&rsquo;t to be a &ldquo;here are the Ionic colors, do not touch&rdquo;, but an approachable way to creating some sort of application theme.</p>
-
-<p>So rule of thumb, if you need a color that is going to be used in UI components, replace an existing value, else use standard sass variables instead.</p>
+<p><img src="/img/ipones-localized.png" alt="screen shot of 2 iphones localized" /></p>
 
   </section>
   <footer>
@@ -179,12 +128,11 @@ $dark:                            #444 !default;
       <div class="c-pagination__ctrl">
         <div class="c-pagination__newer">
           
-          <a href="https://mhartington.io/post/adding-languages-to-ios/">Newer</a>
           
         </div>
         <div class="c-pagination__older">
           
-          <a href="https://mhartington.io/post/iphonex-and-the-notch/">Older</a>
+          <a href="https://mhartington.io/post/ionic-colors-map/">Older</a>
           
         </div>
       </div>
