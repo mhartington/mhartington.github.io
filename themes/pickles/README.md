@@ -8,11 +8,18 @@ Pickles is a modern, simple and beautiful Hugo theme.
 
 * Modern, Simple and beautiful design
 * Medium's Image Zoom（[zoom.js](https://github.com/fat/zoom.js/))
-* Social links（Twitter,Facebook,Instagram,Google+,GitHub,npm,Codepen,Dribbble,500px,Flickr,Pinterest,Tumblr,Vimeo,YouTube,Linkedin）
+* Social links（Twitter,Facebook,Instagram,Google+,GitHub,GitLab,npm,Codepen,Dribbble,500px,Flickr,Pinterest,Tumblr,Vimeo,YouTube,Linkedin）
+* Support for Related Content
 * Support for tags
 * Analytics with Google Analytics
 * Responsive design
 * SVG Sprite
+
+Use short code for Image Zoom.
+
+```
+{{% zoom-img src="/images/default.jpg" %}}
+```
 
 ## Features
 

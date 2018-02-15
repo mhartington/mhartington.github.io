@@ -1,6 +1,0 @@
-/node_modules
-/content
-/svgpack
-yarn-error.log
-config.toml
-!/exampleSite/config.toml

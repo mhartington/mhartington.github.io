@@ -1,4 +1,5 @@
 {{ partial "header.html" . }}
+
 <!-- <h2 class="c&#45;title p&#45;tag&#45;title">{{ .Title }}</h2> -->
 {{ range $index, $page := (.Paginate (where .Data.Pages "Type" "post")).Pages }}
 {{ if ne $index 0 }}
