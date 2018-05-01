@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://mhartington.io/post/ionic-4-alpha-test/</loc>
+    <lastmod>2018-05-01T08:17:01-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mhartington.io/post/adding-languages-to-ios/</loc>
     <lastmod>2018-01-19T07:24:04-05:00</lastmod>
   </url>
@@ -69,13 +74,13 @@
   
   <url>
     <loc>https://mhartington.io/</loc>
-    <lastmod>2018-01-19T07:24:04-05:00</lastmod>
+    <lastmod>2018-05-01T08:17:01-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://mhartington.io/post/</loc>
-    <lastmod>2018-01-19T07:24:04-05:00</lastmod>
+    <lastmod>2018-05-01T08:17:01-05:00</lastmod>
     <priority>0</priority>
   </url>
   

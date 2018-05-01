@@ -6,10 +6,21 @@
     <description>Recent content on Mike Hartington</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 19 Jan 2018 07:24:04 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 01 May 2018 08:17:01 -0500</lastBuildDate>
     
 	<atom:link href="https://mhartington.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ionic 4 Alpha Test</title>
+      <link>https://mhartington.io/post/ionic-4-alpha-test/</link>
+      <pubDate>Tue, 01 May 2018 08:17:01 -0500</pubDate>
+      
+      <guid>https://mhartington.io/post/ionic-4-alpha-test/</guid>
+      <description>IONIC 4! It&amp;rsquo;s a thing that we (the Ionic team) have been hard at work on for the last few months. While we&amp;rsquo;re currently finishing up our testing, I wanted to touch a bit on how to actually setup up and start initially testing 4.0.
+Warning, Ionic 4 is ALPHA, meaning things are not finalized and ready for production. Use with caution
+CLI Update It just so happens that the Ionic CLI is also nearing it&amp;rsquo;s 4.</description>
+    </item>
     
     <item>
       <title>Adding Languages to iOS</title>
