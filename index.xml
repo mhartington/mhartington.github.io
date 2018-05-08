@@ -6,10 +6,19 @@
     <description>Recent content on Mike Hartington</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 May 2018 08:17:01 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 08 May 2018 18:07:00 -0400</lastBuildDate>
     
 	<atom:link href="https://mhartington.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Angular Schematics and Dynamic Content</title>
+      <link>https://mhartington.io/post/angular-schematics-and-dynamic-content/</link>
+      <pubDate>Tue, 08 May 2018 18:07:00 -0400</pubDate>
+      
+      <guid>https://mhartington.io/post/angular-schematics-and-dynamic-content/</guid>
+      <description>Recently, I&amp;rsquo;ve been diving into the new tooling setup being worked on for upcoming ionic/angular@4.0. Since we&amp;rsquo;ve moved all of our tooling over to the Angular CLI, we get to take advantage of new features, like Angular&amp;rsquo;s Schematics. Schematics is a pipeline for building out new files/features in an app. What&amp;rsquo;s even more impressive, is that schematics itself can be used in a non-angular project. In theory, you could have a Vue or P/React project, and it could also use schematics, though without some utility libs that exist for Angular.</description>
+    </item>
     
     <item>
       <title>Ionic 4 Alpha Test</title>
