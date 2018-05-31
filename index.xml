@@ -6,10 +6,19 @@
     <description>Recent content on Mike Hartington</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 May 2018 18:07:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 30 May 2018 20:35:22 -0400</lastBuildDate>
     
 	<atom:link href="https://mhartington.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>nvim-typescript</title>
+      <link>https://mhartington.io/post/nvim-typescript/</link>
+      <pubDate>Wed, 30 May 2018 20:35:22 -0400</pubDate>
+      
+      <guid>https://mhartington.io/post/nvim-typescript/</guid>
+      <description>These days it seems like everyone is using VSCode as their main editor, and with good reasons. VScode offers a lot of cool features, and if you&amp;rsquo;re using TypeScript, you get great support out of the box. But, I&amp;rsquo;m a vim person, and more specifically, I use Neovim. Since, I write mostly TypeScript, I needed something that offered all the feature of VSCode, but for Noevim. So I created nvim-typescript.</description>
+    </item>
     
     <item>
       <title>Angular Schematics and Dynamic Content</title>
