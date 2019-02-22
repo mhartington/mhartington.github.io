@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://mhartington.io/post/typescript-eslint-setup/</loc>
+    <lastmod>2019-02-21T21:10:20-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mhartington.io/post/nvim-typescript/</loc>
     <lastmod>2018-05-30T20:35:22-04:00</lastmod>
   </url>
@@ -84,13 +89,13 @@
   
   <url>
     <loc>https://mhartington.io/</loc>
-    <lastmod>2018-05-30T20:35:22-04:00</lastmod>
+    <lastmod>2019-02-21T21:10:20-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://mhartington.io/post/</loc>
-    <lastmod>2018-05-30T20:35:22-04:00</lastmod>
+    <lastmod>2019-02-21T21:10:20-05:00</lastmod>
     <priority>0</priority>
   </url>
   

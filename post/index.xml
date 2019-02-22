@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Mike Hartington</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 May 2018 20:35:22 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 21 Feb 2019 21:10:20 -0500</lastBuildDate>
     
 	<atom:link href="https://mhartington.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TypeScript ESLint Setup</title>
+      <link>https://mhartington.io/post/typescript-eslint-setup/</link>
+      <pubDate>Thu, 21 Feb 2019 21:10:20 -0500</pubDate>
+      
+      <guid>https://mhartington.io/post/typescript-eslint-setup/</guid>
+      <description>I was digging into ESLint tonight to see if there was a Language Service plugin available for TypeScript. In doing so, I realized I had no clue how to setup ESLint, especially considering the changes with regard to @typescript-eslint.
+Last time I used ESLint, I was still writing AngularJS and ES6 was still far away. So, somethings have changed.
+Installing First, we&amp;rsquo;ll want to install the necessary packages, ESLint, the parser, and the plugin itself.</description>
+    </item>
     
     <item>
       <title>nvim-typescript</title>

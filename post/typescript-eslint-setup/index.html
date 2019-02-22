@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
   
-  <title>My Dotfiles</title>
-  <meta property="og:title" content="My Dotfiles" />
-  <meta name="twitter:title" content="My Dotfiles" />
+  <title>TypeScript ESLint Setup</title>
+  <meta property="og:title" content="TypeScript ESLint Setup" />
+  <meta name="twitter:title" content="TypeScript ESLint Setup" />
   
 
   
@@ -17,7 +17,7 @@
 
   <meta name="author" content="mhartington"/>
   <meta property="og:site_name" content="Mike Hartington" />
-  <meta property="og:url" content="https://mhartington.io/post/my-dotfiles/" />
+  <meta property="og:url" content="https://mhartington.io/post/typescript-eslint-setup/" />
 
   
   <meta name="twitter:card" content="summary" />
@@ -40,10 +40,10 @@
 <link rel="stylesheet" href="/css/override.css">
 
 
-<meta name="twitter:description" content="My dotfiles are my pride and joy. There are hundreds of hours spent tweaking them to create the best setup for me. Recently I&rsquo;ve started working on three different machines, my Mac, a Windows machine, as well as Ubuntu. This introduced an interesting issue; how can I create a similar environment across all these platforms, but only store them in one location?
-
-" />
-<meta name="twitter:title" content="My Dotfiles" />
+<meta name="twitter:description" content="I was digging into ESLint tonight to see if there was a Language Service plugin available for TypeScript. In doing so, I realized I had no clue how to setup ESLint, especially considering the changes with regard to @typescript-eslint.
+Last time I used ESLint, I was still writing AngularJS and ES6 was still far away. So, somethings have changed.
+Installing First, we&rsquo;ll want to install the necessary packages, ESLint, the parser, and the plugin itself." />
+<meta name="twitter:title" content="TypeScript ESLint Setup" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="" />
 
@@ -69,12 +69,12 @@
 
 <article class="p-article">
   <header>
-    <h1>My Dotfiles</h1>
+    <h1>TypeScript ESLint Setup</h1>
     <div>
       <div class="c-time">
         Posted on
-        <time datetime="2015-12-28T10:30:41-05:00">
-          Dec 28, 2015
+        <time datetime="2019-02-21T21:10:20-05:00">
+          Feb 21, 2019
         </time>
       </div>
       
@@ -82,48 +82,97 @@
   </header>
   
   <section id="js-article" class="p-article__body">
-    <p>My dotfiles are my pride and joy. There are hundreds of hours spent tweaking them to create the best setup for me. Recently I&rsquo;ve started working on three different machines, my Mac, a Windows machine, as well as Ubuntu. This introduced an interesting issue; how can I create a similar environment across all these platforms, but only store them in one location?</p>
+    
 
-<p></p>
+<p>I was digging into ESLint tonight to see if there was a Language Service plugin available for TypeScript. In doing so, I realized I had no clue how to setup ESLint, especially considering the changes with regard to <code>@typescript-eslint</code>.</p>
 
-<h2 id="tools">Tools</h2>
+<p>Last time I used ESLint, I was still writing AngularJS and ES6 was still far away. So, somethings have changed.</p>
 
-<p>In my workflow, I have the following tools setup:</p>
+<h2 id="installing">Installing</h2>
 
-<ol>
-<li>Neovim</li>
-<li>Git</li>
-<li>tmux</li>
-<li>zsh</li>
-</ol>
+<p>First, we&rsquo;ll want to install the necessary packages, ESLint, the parser, and the plugin itself.</p>
 
-<p>In fact, this very blog post is being written using all 4 of these tools</p>
-
-<p><img src="/img/my-shell.png" alt="my-shell" /></p>
-
-<h2 id="the-problem">The Problem</h2>
-
-<p>Each of these tools has to be installed at some point for each environment I want to run, but each environment has different ways to install these tools.
-For Mac, it&rsquo;s fairly easy, just use homebrew and I can group these into one install command.</p>
-
-<pre><code class="language-bash">$ brew install neovim git tmux zsh
+<pre><code class="language-shell">npm i eslint -D
+npm i @typescript-eslint/parser -D
+npm i @typescript-eslint/eslint-plugin -D
 </code></pre>
 
-<p>Then I can sit back and just relax while the real work is done.</p>
+<p>As noted on the TypeScript/ESLint plugin repo, if you have ESLint installed globally, you&rsquo;ll need to install the plugin globally as well.</p>
 
-<p>For linux on the other hand, it&rsquo;s not so easy. While there is linuxbrew, the linix port of homebrew, it&rsquo;s often out of date and requires a lengthy <code>agt-get</code> install for any dependencies. Then add a few lines to my shells <code>rc</code> file&hellip;.THEN I can install things.</p>
+<h2 id="set-up">Set Up</h2>
 
-<p>Don&rsquo;t even get me started on windows&hellip;.I seriously haven&rsquo;t thought about how much of a pain it will be to get things setup on windows.</p>
+<p>With things installed, we need to setup an RC file for ESLint to read. This can be generated with</p>
 
-<h2 id="solution">Solution</h2>
+<pre><code>npx eslint --init
+</code></pre>
 
-<p>So while all of these have a slightly different problem, I can write a simple <a href="https://github.com/mhartington/dotfiles/blob/master/install.sh">install script</a> in bash to handle most of it.</p>
+<p>You will be prompted with different question about what you want to do with ESLint, most of which you can ignore for now. The last question will ask you how do you want to store your ESLint settings, a JavaScript file, JSON, or YAML. This is up to you, but for the rest of this post, I&rsquo;ll assume JavaScript.</p>
 
-<p>In that script, it handles my setup for a fresh Mac machine.</p>
+<p>With our config file created, we&rsquo;ll want to edit it and remove the unnecessary settings.</p>
 
-<p>But what about Ubuntu? Well, I just write another script.</p>
+<p>We should have something like this</p>
 
-<p>It may not be the most elegant solution, but for me and what I need, it works great.</p>
+<pre><code class="language-js">module.exports = {};
+</code></pre>
+
+<p>At a bare minimum, we need to include the correct parser and plugin for ESLint to work.</p>
+
+<pre><code class="language-js">module.exports = {
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint']
+};
+</code></pre>
+
+<p>This will let us lint any TypeScript file, but it won&rsquo;t be really helpful. By default, ESLint doesn&rsquo;t read any project configuration from a <code>tsconfig.json</code>, you need to specify the path to your <code>tsconfig.json</code> in a <code>parserOptions</code> object.</p>
+
+<pre><code class="language-js">module.exports = {
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: './tsconfig.json'
+  },
+  plugins: ['@typescript-eslint']
+};
+</code></pre>
+
+<p>Now if we run ESLint, it will understand how we have configured our project.</p>
+
+<h2 id="rules-and-extends">Rules and Extends</h2>
+
+<p>Like TSLint, ESLint offers different rules and packages we can use to quickly enforce code style. The <code>@typescript-eslint</code> plugin ships with recommended rules that can be used.</p>
+
+<pre><code class="language-js">module.exports = {
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: './tsconfig.json'
+  },
+  plugins: ['@typescript-eslint'],
+  extends: ['plugin:@typescript-eslint/recommended']
+};
+</code></pre>
+
+<p>This is nice to get up and running, but what if you need to customize the rules?</p>
+
+<p>To do this, we just add a <code>rules</code> entry, and configure the rules available</p>
+
+<pre><code class="language-js">module.exports = {
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: './tsconfig.json'
+  },
+  plugins: ['@typescript-eslint'],
+  extends: ['plugin:@typescript-eslint/recommended'],
+  rules: {
+    '@typescript-eslint/restrict-plus-operands': 'error'
+  }
+};
+</code></pre>
+
+<p>To see what rules are available, you can read <a href="https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin#supported-rules">the docs</a>.</p>
+
+<h3 id="closing">Closing</h3>
+
+<p>I&rsquo;m excited to see where ESLint goes and start integrating it in my projects.</p>
+
   </section>
   <footer>
     
@@ -143,12 +192,11 @@ For Mac, it&rsquo;s fairly easy, just use homebrew and I can group these into on
       <div class="c-pagination__ctrl">
         <div class="c-pagination__newer">
           
-          <a href="https://mhartington.io/post/a-new-year/">Newer</a>
           
         </div>
         <div class="c-pagination__older">
           
-          <a href="https://mhartington.io/post/welcome/">Older</a>
+          <a href="https://mhartington.io/post/nvim-typescript/">Older</a>
           
         </div>
       </div>
