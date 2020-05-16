@@ -1,0 +1,198 @@
+.chroma .hll {  background-color: var(--base02);
+}
+.chroma {
+  background:var(--base00);
+  color: var(--base07);
+}
+.chroma .c {
+  color: var(--base03);
+} /* Comment */
+.chroma .err {
+  color: var(--baseRed);
+} /* Error */
+.chroma .k {
+  color: var(--basePurple);
+} /* Keyword */
+.chroma .l {
+  color: var(--baseOrange);
+} /* Literal */
+.chroma .n {
+  color: var(--base07);
+} /* Name */
+.chroma .o {
+  color: var(--baseCyan);
+} /* Operator */
+.chroma .p {
+  color: var(--base07);
+} /* Punctuation */
+.chroma .cm {
+  color: var(--base03);
+} /* Comment.Multiline */
+.chroma .cp {
+  color: var(--base03);
+} /* Comment.Preproc */
+.chroma .c1 {
+  color: var(--base03);
+} /* Comment.Single */
+.chroma .cs {
+  color: var(--base03);
+} /* Comment.Special */
+.chroma .gd {
+  color: var(--baseRed);
+} /* Generic.Deleted */
+.chroma .ge {
+  font-style: italic;
+} /* Generic.Emph */
+.chroma .gh {
+  color: var(--base07);
+  font-weight: bold;
+} /* Generic.Heading */
+.chroma .gi {
+  color: var(--baseGreen);
+} /* Generic.Inserted */
+.chroma .gp {
+  color: var(--base03);
+  font-weight: bold;
+} /* Generic.Prompt */
+.chroma .gs {
+  font-weight: bold;
+} /* Generic.Strong */
+.chroma .gu {
+  color: var(--baseCyan);
+  font-weight: bold;
+} /* Generic.Subheading */
+.chroma .kc {
+  color: var(--basePurple);
+} /* Keyword.Constant */
+.chroma .kd {
+  color: var(--basePurple);
+} /* Keyword.Declaration */
+.chroma .kn {
+  color: var(--baseCyan);
+} /* Keyword.Namespace */
+.chroma .kp {
+  color: var(--basePurple);
+} /* Keyword.Pseudo */
+.chroma .kr {
+  color: var(--basePurple);
+} /* Keyword.Reserved */
+.chroma .kt {
+  color: var(--baseYellow);
+} /* Keyword.Type */
+.chroma .ld {
+  color: var(--baseGreen);
+} /* Literal.Date */
+.chroma .m {
+  color: var(--baseOrange);
+} /* Literal.Number */
+.chroma .s {
+  color: var(--baseGreen);
+} /* Literal.String */
+.chroma .na {
+  color: var(--baseBlue);
+} /* Name.Attribute */
+.chroma .nb {
+  color: var(--base07);
+} /* Name.Builtin */
+.chroma .nc {
+  color: var(--baseYellow);
+} /* Name.Class */
+.chroma .no {
+  color: var(--baseRed);
+} /* Name.Constant */
+.chroma .nd {
+  color: var(--baseCyan);
+} /* Name.Decorator */
+.chroma .ni {
+  color: var(--base07);
+} /* Name.Entity */
+.chroma .ne {
+  color: var(--baseRed);
+} /* Name.Exception */
+.chroma .nf {
+  color: var(--baseBlue);
+} /* Name.Function */
+.chroma .nl {
+  color: var(--base07);
+} /* Name.Label */
+.chroma .nn {
+  color: var(--baseYellow);
+} /* Name.Namespace */
+.chroma .nx {
+  color: var(--baseBlue);
+} /* Name.Other */
+.chroma .py {
+  color: var(--base07);
+} /* Name.Property */
+.chroma .nt {
+  color: var(--baseCyan);
+} /* Name.Tag */
+.chroma .nv {
+  color: var(--baseRed);
+} /* Name.Variable */
+.chroma .ow {
+  color: var(--baseCyan);
+} /* Operator.Word */
+.chroma .w {
+  color: var(--base07);
+} /* Text.Whitespace */
+.chroma .mf {
+  color: var(--baseOrange);
+} /* Literal.Number.Float */
+.chroma .mh {
+  color: var(--baseOrange);
+} /* Literal.Number.Hex */
+.chroma .mi {
+  color: var(--baseOrange);
+} /* Literal.Number.Integer */
+.chroma .mo {
+  color: var(--baseOrange);
+} /* Literal.Number.Oct */
+.chroma .sb {
+  color: var(--baseGreen);
+} /* Literal.String.Backtick */
+.chroma .sc {
+  color: var(--base07);
+} /* Literal.String.Char */
+.chroma .sd {
+  color: var(--base03);
+} /* Literal.String.Doc */
+.chroma .s2 {
+  color: var(--baseGreen);
+} /* Literal.String.Double */
+.chroma .se {
+  color: var(--baseOrange);
+} /* Literal.String.Escape */
+.chroma .sh {
+  color: var(--baseGreen);
+} /* Literal.String.Heredoc */
+.chroma .si {
+  color: var(--baseOrange);
+} /* Literal.String.Interpol */
+.chroma .sx {
+  color: var(--baseGreen);
+} /* Literal.String.Other */
+.chroma .sr {
+  color: var(--baseGreen);
+} /* Literal.String.Regex */
+.chroma .s1 {
+  color: var(--baseGreen);
+} /* Literal.String.Single */
+.chroma .ss {
+  color: var(--baseGreen);
+} /* Literal.String.Symbol */
+.chroma .bp {
+  color: var(--base07);
+} /* Name.Builtin.Pseudo */
+.chroma .vc {
+  color: var(--baseRed);
+} /* Name.Variable.Class */
+.chroma .vg {
+  color: var(--baseRed);
+} /* Name.Variable.Global */
+.chroma .vi {
+  color: var(--baseRed);
+} /* Name.Variable.Instance */
+.chroma .il {
+  color: var(--baseOrange);
+} /* Literal.Number.Integer.Long */

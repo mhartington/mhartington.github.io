@@ -1,19 +1,19 @@
-pre {
-  background: #282c34;
-  word-break: break-all;
-  word-wrap: break-word;
-  display: block;
-  white-space: pre-wrap;
-  margin: 24px 0px 28px;
-  padding: 16px 24px;
-  border-radius: 4px;
-}
-
-code.hljs {
-  overflow-x: auto;
-  word-wrap: normal;
-  white-space: pre;
-  box-sizing: border-box;
-  font-size: 14px;
-  line-height: 20px;
-}
+/* pre { */
+/*   background: #282c34; */
+/*   word-break: break-all; */
+/*   word-wrap: break-word; */
+/*   display: block; */
+/*   white-space: pre-wrap; */
+/*   margin: 24px 0px 28px; */
+/*   padding: 16px 24px; */
+/*   border-radius: 4px; */
+/* } */
+/*  */
+/* code.hljs { */
+/*   overflow-x: auto; */
+/*   word-wrap: normal; */
+/*   white-space: pre; */
+/*   box-sizing: border-box; */
+/*   font-size: 14px; */
+/*   line-height: 20px; */
+/* } */
