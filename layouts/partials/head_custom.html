@@ -1,14 +1,17 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/atom&#45;one&#45;dark.min.css" media="(prefers&#45;color&#45;scheme: dark)"> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/atom&#45;one&#45;light.min.css" media="(prefers&#45;color&#45;scheme: light)"> -->
+
 <link rel="stylesheet" href="/css/highlight.css">
 <link rel="stylesheet" href="/css/override.css">
+<link rel="stylesheet" href="/css/syntax.css">
 
 {{ if .IsPage }}
-<meta name="twitter:description" content="{{ .Summary }}" />
-<meta name="twitter:title" content="{{ .Title }}" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="{{ .Params.thumbnail }}" />
-{{ else }}
-<meta name="twitter:title" content="{{ .Site.Title }}" />
-<meta name="twitter:description" content="{{ .Description }}" />
+  <meta name="twitter:description" content="{{ .Summary }}" />
+  <meta name="twitter:title" content="{{ .Title }}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="{{ .Params.thumbnail }}" />
+  {{ else }}
+  <meta name="twitter:title" content="{{ .Site.Title }}" />
+  <meta name="twitter:description" content="{{ .Description }}" />
 {{ end }}
 

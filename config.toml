@@ -3,7 +3,6 @@ languageCode = "en-us"
 title = "Mike Hartington"
 # Define how many pages appear per site
 # Enable comments powered by Disqus by entering your disqus shortname
-# theme = "minimo"
 theme = 'pickles'
 [params]
   bio = "Developer, Advocate, Teacher"
@@ -14,17 +13,21 @@ theme = 'pickles'
 
   author = "mhartington"
   authorwebsite = "https://mhartington.io" # site_author = "Mike Hartington"
-  # site_description = "The ramblings of a New Englander"
 
   avatar = "https://www.gravatar.com/avatar/be834f0968111acbbc6f3bf67041c8d5?s=128"
 
-  customCSS = ["https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css", "css/highlight.css", "css/override.css"]
-  customJS = ["https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", "js/highlight.js"]
+  customCSS = [ "css/highlight.css", "css/override.css", "css/syntax.css"]
+  customJS = ["js/highlight.js"]
+
+
   #
-  # Enable gogle analytics by entering your tracking code
   google_analytics = ""
   # [author.social]
   twitter   = "mhartington"
   github    = "mhartington"
 
 
+[markup]
+  [markup.highlight]
+    pygmentsUseClasses=false
+    noClasses = false

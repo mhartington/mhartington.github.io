@@ -23,7 +23,7 @@ As noted on the TypeScript/ESLint plugin repo, if you have ESLint installed glob
 
 With things installed, we need to setup an RC file for ESLint to read. This can be generated with
 
-```
+```shell
 npx eslint --init
 ```
 

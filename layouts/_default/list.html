@@ -2,10 +2,11 @@
 
 <!-- <h2 class="c&#45;title p&#45;tag&#45;title">{{ .Title }}</h2> -->
 {{ range $index, $page := (.Paginate (where .Data.Pages "Type" "post")).Pages }}
-{{ if ne $index 0 }}
+  {{ if ne $index 0 }}
+  {{ end }}
+  {{ .Render "li" }}
 {{ end }}
-{{ .Render "li" }}
-{{ end }}
+
 {{ partial "pagination.html" .Paginator }}
 {{ partial "siteinfo.html" . }}
 {{ partial "footer.html" . }}
