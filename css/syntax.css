@@ -1,6 +1,6 @@
 .chroma .hll {  background-color: var(--base02);
 }
-.chroma {
+.chroma, pre {
   background:var(--base00);
   color: var(--base07);
 }
