@@ -62,7 +62,7 @@ Now that you know some of the back story, let's actually look at the plugin and 
 
 First, you'll want to install the plugin. You can use any plugin manager you'd like, but I tend to prefer [dein.vim](https://github.com/Shougo/dein.vim) by Shougo.
 
-```
+```viml
 call dein#add('mhartington/nvim-typescript', {'build': './install.sh'})
 ```
 
