@@ -8,7 +8,7 @@ theme = 'pickles'
   bio = "Developer, Advocate, Teacher"
   subtitle = "Learning everyday"
 
-  disqus = "mhartington"
+  # disqus = "mhartington"
   paginate = 10
 
   author = "mhartington"
