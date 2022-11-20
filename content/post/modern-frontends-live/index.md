@@ -28,7 +28,7 @@ I’m sure you have seen posts from [Jo](https://dev.to/thisisjofrank/my-experie
 - Contacting people's CEOs to get them to speaking negatively
 - Poorly planned/executed conference which borderlines scamming people
 
-I hope that all this outcry from the community will sway the organizer to **not** put on another event, but give how Modern Frontends was put on to fund a different event, it's unlikely. Avoid these events. Avoid any future attempts to run things like RXJS Live, Webassembly Live and Modern Frontends Live.
+I hope that all this outcry from the community will sway the organizer to **not** put on another event, but given how Modern Frontends was put on to fund a different event, it's unlikely. Avoid these events. Avoid any future attempts to run things like RXJS Live, Webassembly Live and Modern Frontends Live.
 
 
 If you have any experience you want to share, please reach out and let me know.
