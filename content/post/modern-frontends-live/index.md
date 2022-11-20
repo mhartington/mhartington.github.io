@@ -21,7 +21,7 @@ Modern Frontends was not my first conference. I’ve been doing this as part of 
 
 All this to say, I know what goes into an event and what to expect from well run ones. Modern Frontends was not run well.
 
-I’m sure you have seen posts from [Jo](https://dev.to/thisisjofrank/my-experience-of-modern-frontends-conference-1cgg), or even [Cassie](https://dev.to/thisisjofrank/my-experience-of-modern-frontends-conference-1cgg), which covers a lot more in detail and has lead the way in people publicly speaking out about the conference and it’s organizer. These accounts are all true and match my experience at Modern Frontends, so I don't feel like I need to rehash them here. To sum it up though:
+I’m sure you have seen posts from [Jo](https://dev.to/thisisjofrank/my-experience-of-modern-frontends-conference-1cgg), or even [Cassie](https://www.cassie.codes/posts/modern-frontends/), which covers a lot more in detail and has lead the way in people publicly speaking out about the conference and it’s organizer. These accounts are all true and match my experience at Modern Frontends, so I don't feel like I need to rehash them here. To sum it up though:
 
 - Promising new speakers travel budget, but pulling that back while at the event
 - Intimidating community members who spoke out about the event
