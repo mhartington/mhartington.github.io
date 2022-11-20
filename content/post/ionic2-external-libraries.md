@@ -1,8 +1,8 @@
-+++
-date = "2016-02-17T11:38:32-05:00"
-title = "Ionic 2 and External Libraries"
+---
+date: "2016-02-17T11:38:32-05:00"
+title: "Ionic 2 and External Libraries"
+---
 
-+++
 
 Now that Ionic 2 is out in beta, people are setting aside some time to give it a shot and investigate everything it has to offer. Ionic 2 and Angular 2 bring a lot of improvements, but it's a fairly different style of developing that what people were used to before. Now, since everything needs to be imported and libraries aren’t global, it can be tricky to figure out how to integrate with other libraries.
 
