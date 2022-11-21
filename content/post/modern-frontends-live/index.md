@@ -37,4 +37,5 @@ If you have any experience you want to share, please reach out and let me know.
 - [Cassie's blog](https://www.cassie.codes/posts/modern-frontends/)
 - [Hidde's blog](https://hidde.blog/modern-frontends-live/)
 - [Todd's blog](https://toddl.dev/posts/modern-frontends/)
-
+- [Andy's blog](https://andy-bell.co.uk/modern-frontends-live/)
+- [Chris's blog](https://christopherallanperry.github.io/blog/2022/11/20/modern_frontends-an_attendees_perspective.html)
