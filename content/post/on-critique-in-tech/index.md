@@ -8,7 +8,7 @@ It seems that the wider tech community is very prone to having heated arguments 
 
 ## Tribalism in Tech 
 
-People is tech often feel passionate about their tools. Whether these are tools they use or tools they make. When someone from outside the "tribe" comments on a tool that people are passionate about, it's taken as an attack against the whole tribe. Look at any comment (valid or not) against web components. Even if the point being made is a legit concern, web component proponents will take this as an attack on web standards or projects involved with web components. The same can be said for arguments amongst frontend frameworks and tailwind fans.
+People id tech often feel passionate about their tools. Whether these are tools they use or tools they make. When someone from outside the "tribe" comments on a tool that people are passionate about, it's taken as an attack against the whole tribe. Look at any comment (valid or not) against web components. Even if the point being made is a legit concern, web component proponents will take this as an attack on web standards or projects involved with web components. The same can be said for arguments amongst frontend frameworks and tailwind fans.
 
 People build their identity on the tools they use, for better or worse. Giving these tools an almost cult like community. I'm no exception to this as I've gotten into arguments about Angular vs React in the past. 
 
