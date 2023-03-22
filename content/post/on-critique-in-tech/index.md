@@ -30,3 +30,5 @@ Critiques are meant to be constructive. If someone says "I don't like tailwind b
 If someone says "I don't like tailwind because it's stupid and you're stupid for using it", that's not feedback. That's an attack.
 
 Learning to hear feedback and different opinions is something I've learned at school. I wish other concentrations were able to participate, maybe there would be less arguments around tech tribes on twitter.
+
+>Thanks to [Josh VanAllen](https://twitter.com/JVAsays) for reviewing
