@@ -5,7 +5,7 @@ thumbnail: ""
 draft: false
 ---
 
-Recently a [Pull Request](https://github.com/angular/angular/pull/53861) from Matthieu Riegler came to the Angular repo that wanted to mark the `HTTPClientModule` and similar modules as deprecated. Overall it seems the idea has receieved positive traction, though in Matthieu's tweet about the PR, there was a comment in there that did stand out to me.
+Recently a [Pull Request](https://github.com/angular/angular/pull/53861) from Matthieu Riegler came to the Angular repo that wanted to mark the `HTTPClientModule` and similar modules as deprecated. Overall it seems the idea has received positive traction, though in Matthieu's tweet about the PR, there was a comment in there that did stand out to me.
 
 > I think I need an example before I decide whether I need pitchforks or not.
 
@@ -70,7 +70,7 @@ Why does this change matter? Well under the hood, `HttpClientModule` was doing t
 export class HttpClientModule {}
 ```
 
-So when you add the `HttpClientModule` in your app, you're just having the module setup and provide the rest of your providers. Whta does `provideHttpClient` do? 
+So when you add the `HttpClientModule` in your app, you're just having the module setup and provide the rest of your providers. What does `provideHttpClient` do? 
 
 ```ts
 export function provideHttpClient(...features: HttpFeature<HttpFeatureKind>[]): EnvironmentProviders {
