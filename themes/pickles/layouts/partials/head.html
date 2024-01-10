@@ -7,13 +7,13 @@
   <meta name="twitter:title" content="{{ . }}" />
   {{ end }}
 
-  {{ with .Description | default .Site.Params.subtitle }}
+  {{ with .Description | default ($.Param "subtitle") }}
   <meta name="description" content="{{ . }}">
   <meta property="og:description" content="{{ . }}">
   <meta name="twitter:description" content="{{ . | truncate 200 }}">
   {{ end }}
 
-  <meta name="author" content="{{ .Site.Params.author }}"/>
+  <meta name="author" content="{{ $.Param "author" }}"/>
   <meta property="og:site_name" content="{{ .Site.Title }}" />
   <meta property="og:url" content="{{ .Permalink }}" />
 
@@ -23,29 +23,44 @@
   {{ end }}
   <meta name="twitter:card" content="summary" />
 
-  {{ with .Site.Params.twitter }}
+  {{ with ($.Param "twitter") }}
   <meta name="twitter:site" content="@{{ . }}" />
   <meta name="twitter:creator" content="@{{ . }}" />
   {{ end }}
 
   {{ if .IsPage }}
   <meta property="og:type" content="article" />
-  {{ with .Site.Params.facebook }}
+  {{ with ($.Param "facebook") }}
   <meta property="og:article:author" content="https://facebook.com/{{ . }}" />
   {{ end }}
   {{ else }}
   <meta property="og:type" content="website" />
   {{ end }}
-  <!-- Hugo Version number -->
-  {{ .Hugo.Generator -}}
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+  <!-- Hugo Version Number -->
+  {{ hugo.Generator -}}
+
+  {{ if not .Site.IsServer }}
+  {{ if hasPrefix .Site.GoogleAnalytics "G-"}}
+    {{ template "_internal/google_analytics.html" . }}
+  {{ else }}
+    {{ template "_internal/google_analytics_async.html" . }}
+  {{ end }}
+  {{ end }}
+
   <link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css" />
-  {{- with .Site.Params.favicon }}
+  <!-- Custom css files as define in config.toml -->
+  {{ range ($.Param "custom_css") -}}
+    <link rel="stylesheet" href="{{ . | absURL }}">
+  {{- end }}
+  {{- with ($.Param "favicon") }}
   <link rel='icon' type='image/x-icon' href="{{ . | absURL }}" />
   {{- end -}}
-  {{ if eq .URL "/" }}
-  <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+  {{ if eq .RelPermalink "/" }}
+  {{ with .OutputFormats.Get "RSS" -}}
+  <link href="{{ .Permalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
+  {{ end -}}
   {{ end }}
-  <script type="text/javascript" src="{{ .Site.BaseURL }}js/bundle.js"></script>
+  {{ if .Params.mathjax }}{{ partial "mathjax_support.html" . }}{{ end }}
+  
   {{ partial "head_custom.html" . }}
 </head>
