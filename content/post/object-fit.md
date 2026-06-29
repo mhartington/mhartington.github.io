@@ -1,6 +1,7 @@
 +++
 date = "2016-01-14T20:54:55-08:00"
 title = "Object Fit"
+atUri = "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3z7mv2c"
 +++
 
 Today I was watching a random video on ES6 tooling when I saw the author use a CSS property I'd never heard of. `object-fit`, and it was pretty awesome.

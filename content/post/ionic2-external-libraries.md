@@ -1,6 +1,7 @@
 ---
 date: "2016-02-17T11:38:32-05:00"
 title: "Ionic 2 and External Libraries"
+atUri: "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3xhz52y"
 ---
 
 

@@ -16,6 +16,7 @@ theme = 'pickles'
 
   avatar = "https://www.gravatar.com/avatar/be834f0968111acbbc6f3bf67041c8d5?s=128"
 
+  standardSitePublication = "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.publication/3mpgyj6haew2g"
   customCSS = [ "css/highlight.css", "css/override.css", "css/syntax.css"]
   customJS = ["js/highlight.js"]
 
@@ -26,6 +27,11 @@ theme = 'pickles'
   twitter   = "mhartington"
   github    = "mhartington"
 
+
+
+
+[security]
+allowContent = '.*'
 
 [markup]
   [markup.highlight]

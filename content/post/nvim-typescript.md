@@ -3,6 +3,7 @@ title: "nvim-typescript"
 date: 2018-05-30T20:35:22-04:00
 thumbnail: "/img/nvim-typescript/header.png"
 draft: false
+atUri: "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3qpbg2e"
 ---
 
 These days it seems like everyone is using VSCode as their main editor, and with good reasons. VScode offers a lot of cool features, and if you're using TypeScript, you get great support out of the box. But, I'm a vim person, and more specifically, I use [Neovim](https://neovim.io). Since, I write mostly TypeScript, I needed something that offered all the feature of VSCode, but for Noevim. So I created [nvim-typescript](https://github.com/mhartington/nvim-typescript).

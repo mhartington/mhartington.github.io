@@ -1,0 +1,12 @@
+{
+  "siteUrl": "https://mhartington.io",
+  "contentDir": "content/post",
+  "imagesDir": "",
+  "publicDir": "static",
+  "publicationUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.publication/3mpgyj6haew2g",
+  "frontmatter": {
+    "publishDate": "date"
+  },
+  "ignore": [],
+  "removeIndexFromSlug": true
+}

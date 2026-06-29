@@ -1,6 +1,7 @@
 ---
 title: 'TypeScript ESLint Setup'
 date: 2019-02-21T21:10:20-05:00
+atUri: "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3pvuw2e"
 ---
 
 I was digging into ESLint tonight to see if there was a Language Service plugin available for TypeScript. In doing so, I realized I had no clue how to setup ESLint, especially considering the changes with regard to `@typescript-eslint`.

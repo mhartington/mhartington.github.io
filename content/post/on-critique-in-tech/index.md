@@ -2,6 +2,7 @@
 title: "On Critique In Tech"
 date: 2023-03-22T10:39:50-04:00
 draft: false
+atUri: "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3na7k2n"
 ---
 
 It seems that the wider tech community is very prone to having heated arguments regarding a particular piece of technology. Hybrid vs Native, Tailwind vs CSS, Web Components vs Framework Components. They normally start off with a valid piece of criticism, but inevitably become a pissing contest. If some sort of argument doesn't happen on Twitter, it can feel like a quiet week!

@@ -2,6 +2,7 @@
 date = "2016-06-02T13:03:06-04:00"
 title = "Revisiting Typings: Post 1.0"
 
+atUri = "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3wmm22p"
 +++
 
 ### Typings hits 1.0!

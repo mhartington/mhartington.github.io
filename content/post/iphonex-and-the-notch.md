@@ -2,6 +2,7 @@
 title: "iPhoneX and The Notch"
 date: "2017-09-21T10:39:55-04:00"
 draft: false
+atUri: "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3uw3a2n"
 ---
 
 

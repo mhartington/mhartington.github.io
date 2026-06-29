@@ -3,6 +3,7 @@ date = "2015-12-28T10:30:41-05:00"
 tags = []
 title = "My Dotfiles"
 
+atUri = "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk43ok52l"
 +++
 
 My dotfiles are my pride and joy. There are hundreds of hours spent tweaking them to create the best setup for me. Recently I've started working on three different machines, my Mac, a Windows machine, as well as Ubuntu. This introduced an interesting issue; how can I create a similar environment across all these platforms, but only store them in one location?

@@ -3,6 +3,7 @@ title: "A Moduleless Future for Angular"
 date: 2024-01-10T13:51:49.275Z
 thumbnail: ""
 draft: false
+atUri: "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3mcoq2n"
 ---
 
 Recently a [Pull Request](https://github.com/angular/angular/pull/53861) from Matthieu Riegler came to the Angular repo that wanted to mark the `HTTPClientModule` and similar modules as deprecated. Overall it seems the idea has received positive traction, though in Matthieu's tweet about the PR, there was a comment in there that did stand out to me.

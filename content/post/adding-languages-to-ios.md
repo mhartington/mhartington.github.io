@@ -3,6 +3,7 @@ title: "Adding Languages to iOS"
 date: 2018-01-19T07:24:04-05:00
 thumbnail: "/img/thumbnails/adding-languages-to-ios/i8n-v2.png"
 draft: false
+atUri: "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3sjvq2n"
 ---
 
 In hybrid apps, when we want to add support for different languages, we tend to rely on JavaScript libraries to make this possible. This is perfect when we need to deploy a PWA, but when it comes to the App Store, we then have a different challenge. How do we tell the App Store that we support different languages as well?

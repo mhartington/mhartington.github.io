@@ -3,6 +3,7 @@ title: "Building a reusable docs engine for Angular with Analog"
 date: 2026-05-19T13:51:49.275Z
 thumbnail: ""
 draft: false
+atUri: "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3ka632h"
 ---
 
 Most documentation sites share the same skeleton: a sidebar built from your file structure, a content area that renders some Markdown, a table of contents that tracks what you're reading, and a layout that works on mobile. This is so common, that there are various libraries out there for React that provide all of this out of the box. The React ecosystem has [Fumadocs](https://www.fumadocs.dev/), [Docusaurus](https://docusaurus.io/), and even [Nextra](https://nextra.site/). The Vue/Vite community has [VitePress](https://vitepress.dev/). Sadly, there's nothing out there for the Angular community. So I wanted to build that.

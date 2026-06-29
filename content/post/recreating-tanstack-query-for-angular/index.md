@@ -2,6 +2,7 @@
 title: 'Recreating TanStack Query in Angular'
 date: 2025-07-12T10:39:50-04:00
 draft: false
+atUri: "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3lci72b"
 ---
 
 Recently I've been building a React e-commerce app in a few frameworks for some Nx work, and in doing so I got to play around more with [TanStack Query](https://tanstack.com/query/latest). I'm very late to the party when it comes to using TanStack Query but it's damn good. While building an Angular version of my demos, I started missing some of TanStack Query's features and wanted to take a shot at recreating something for Angular that would have something similar in a simple service.

@@ -5,6 +5,13 @@
 <link rel="stylesheet" href="/css/override.css">
 <link rel="stylesheet" href="/css/syntax.css">
 
+{{ with .Site.Params.standardSitePublication }}
+<link rel="site.standard.publication" href="{{ . | safeURL }}" />
+{{ end }}
+{{ if .Params.atUri }}
+<link rel="site.standard.document" href="{{ .Params.atUri | safeURL }}" />
+{{ end }}
+
 {{ if .IsPage }}
   <meta name="twitter:description" content="{{ .Summary }}" />
   <meta name="twitter:title" content="{{ .Title }}" />

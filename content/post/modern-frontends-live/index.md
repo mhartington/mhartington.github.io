@@ -3,6 +3,7 @@ title: "Modern Frontends Live"
 date: 2022-11-19T18:25:08Z
 thumbnail: ""
 draft: false
+atUri: "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3o56o2r"
 ---
 
 To all the attendees who spent their money on Modern Frontends Live: I'm sorry that you had to experience one of the most unpleasant conferences I've been a part of.

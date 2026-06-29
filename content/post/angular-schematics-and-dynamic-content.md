@@ -2,6 +2,7 @@
 title: "Angular Schematics and Dynamic Content"
 date: 2018-05-08T18:07:00-04:00
 draft: false
+atUri: "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3rpmw2g"
 ---
 
 Recently, I've been diving into the new tooling setup being worked on for upcoming `ionic/angular@4.0`. Since we've moved all of our tooling over to the Angular CLI, we get to take advantage of new features, like Angular's Schematics. Schematics is a pipeline for building out new files/features in an app. What's even more impressive, is that schematics itself can be used in a non-angular project. In theory, you could have a Vue or P/React project, and it could also use schematics, though without some utility libs that exist for Angular.
