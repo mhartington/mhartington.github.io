@@ -3,127 +3,127 @@
     "content/post/a-docs-engine-for-angular/index.md": {
       "contentHash": "e8a7e490c903bdf2ecd5ee9e96654d9fa9278ba0df24ccf33b58e410c8aee751",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3ka632h",
-      "lastPublished": "2026-06-29T17:16:56.207Z",
+      "lastPublished": "2026-06-29T19:22:09.501Z",
       "slug": "a-docs-engine-for-angular"
     },
     "content/post/recreating-tanstack-query-for-angular/index.md": {
       "contentHash": "362a75aa758a87e13aab8ae35517155b78a4589edd45b2fe2c970282eb5ae7f7",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3lci72b",
-      "lastPublished": "2026-06-29T17:16:56.241Z",
+      "lastPublished": "2026-06-29T19:22:09.549Z",
       "slug": "recreating-tanstack-query-for-angular"
     },
     "content/post/a-moduleless-future-for-angular/index.md": {
       "contentHash": "78fd07dbd9241ca35eb33c327b345db45eca498f3d87da2ffd2edfa745652d5e",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3mcoq2n",
-      "lastPublished": "2026-06-29T17:16:56.272Z",
+      "lastPublished": "2026-06-29T19:22:09.599Z",
       "slug": "a-moduleless-future-for-angular"
     },
     "content/post/on-critique-in-tech/index.md": {
       "contentHash": "71497984900a99608f12b5ce17747937b6cf98df5197a7a2c1b63edf7683d7f9",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3na7k2n",
-      "lastPublished": "2026-06-29T17:16:56.301Z",
+      "lastPublished": "2026-06-29T19:22:09.649Z",
       "slug": "on-critique-in-tech"
     },
     "content/post/modern-frontends-live/index.md": {
       "contentHash": "04aeefea777a8126f16e7b7c4009cd32130cd1a5c3d8fec21968ab93f6c9afad",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3o56o2r",
-      "lastPublished": "2026-06-29T17:16:56.331Z",
+      "lastPublished": "2026-06-29T19:22:09.749Z",
       "slug": "modern-frontends-live"
     },
     "content/post/hmr-in-ionic-angular/index.md": {
       "contentHash": "0fa1988be97487b7dad1e811fe92845a7f3cadc3e5cd7d476b5c3442bec49a6f",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3ozmp2b",
-      "lastPublished": "2026-06-29T17:16:56.360Z",
+      "lastPublished": "2026-06-29T19:22:09.798Z",
       "slug": "hmr-in-ionic-angular"
     },
     "content/post/typescript-eslint-setup.md": {
       "contentHash": "f00478f804f5f5379ac1e060e8c60237dc8142ae7f7c784d6ac441285ad8d47b",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3pvuw2e",
-      "lastPublished": "2026-06-29T17:16:56.387Z",
+      "lastPublished": "2026-06-29T19:22:09.851Z",
       "slug": "typescript-eslint-setup"
     },
     "content/post/nvim-typescript.md": {
       "contentHash": "ae7893692412c2155abbf9f8196e87b653267c8a2a1048b25b813413d54b8acb",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3qpbg2e",
-      "lastPublished": "2026-06-29T17:16:56.413Z",
+      "lastPublished": "2026-06-29T19:22:09.900Z",
       "slug": "nvim-typescript"
     },
     "content/post/angular-schematics-and-dynamic-content.md": {
       "contentHash": "160c7c44554ce4d26f211c5e764e6f267492492a659ba1b7566fa3cff7c55916",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3rpmw2g",
-      "lastPublished": "2026-06-29T17:16:56.445Z",
+      "lastPublished": "2026-06-29T19:22:09.985Z",
       "slug": "angular-schematics-and-dynamic-content"
     },
     "content/post/adding-languages-to-ios.md": {
       "contentHash": "aa002d6d8e37732df42fb34a9312f32a9d55d8f3ed96d434670c463973dd18d5",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3sjvq2n",
-      "lastPublished": "2026-06-29T17:16:56.473Z",
+      "lastPublished": "2026-06-29T19:22:10.034Z",
       "slug": "adding-languages-to-ios"
     },
     "content/post/ionic-colors-map.md": {
       "contentHash": "af68e479d56261a62b9378dfc680048e580503848511ffc3eb4d77eee4746b11",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3tn5o2g",
-      "lastPublished": "2026-06-29T17:16:56.525Z",
+      "lastPublished": "2026-06-29T19:22:10.132Z",
       "slug": "ionic-colors-map"
     },
     "content/post/iphonex-and-the-notch.md": {
       "contentHash": "07c8fc9527b4d993c8ec5eb27aea9925c4e22a38951859876d947b25f0e60d4f",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3uw3a2n",
-      "lastPublished": "2026-06-29T17:16:56.551Z",
+      "lastPublished": "2026-06-29T19:22:10.222Z",
       "slug": "iphonex-and-the-notch"
     },
     "content/post/custom-decorators.md": {
       "contentHash": "225fad413db2f96350f3ab9e44a139b8ab67c6e97443cc3dc0accf6d85f8b530",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3vqcf2c",
-      "lastPublished": "2026-06-29T17:16:56.579Z",
+      "lastPublished": "2026-06-29T19:22:10.270Z",
       "slug": "custom-decorators"
     },
     "content/post/typings-v1.md": {
       "contentHash": "5dd0d4f84248abd70bb0cd66c39675b79140912dd4a9edfd785bc09479ac5c7e",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3wmm22p",
-      "lastPublished": "2026-06-29T17:16:56.607Z",
+      "lastPublished": "2026-06-29T19:22:10.320Z",
       "slug": "typings-v1"
     },
     "content/post/ionic2-external-libraries.md": {
       "contentHash": "31383cf2f03773eb7d8402b6b6d63b276a0223ca7a7b71b9e2ec1bf41d8042b3",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3xhz52y",
-      "lastPublished": "2026-06-29T17:16:56.635Z",
+      "lastPublished": "2026-06-29T19:22:10.368Z",
       "slug": "ionic2-external-libraries"
     },
     "content/post/setting-input-focus.md": {
       "contentHash": "353f50a3720a3e096c7db44b05f693f0d580530e80e8248bf9118ba3dbf4a1ea",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3ydcn2c",
-      "lastPublished": "2026-06-29T17:16:56.665Z",
+      "lastPublished": "2026-06-29T19:22:10.416Z",
       "slug": "setting-input-focus"
     },
     "content/post/object-fit.md": {
       "contentHash": "a34b6e8dfec472794c9d55b78a2ce5c1ab353df5fcda6c226461c860f05b7bba",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3z7mv2c",
-      "lastPublished": "2026-06-29T17:16:56.691Z",
+      "lastPublished": "2026-06-29T19:22:10.463Z",
       "slug": "object-fit"
     },
     "content/post/ionic-io-app-name.md": {
       "contentHash": "8eb13b3ef4ac9b445e17a0a1749f049ce94e3cb4be5928397a6d33c42b0b7997",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk3zyys2p",
-      "lastPublished": "2026-06-29T17:16:56.719Z",
+      "lastPublished": "2026-06-29T19:22:10.510Z",
       "slug": "ionic-io-app-name"
     },
     "content/post/a-new-year.md": {
       "contentHash": "4d7ec8b04e530cb41681f76d16dd12f58504d84433302c4b92730c5f33ece9f6",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk42tek2p",
-      "lastPublished": "2026-06-29T17:16:56.746Z",
+      "lastPublished": "2026-06-29T19:22:10.557Z",
       "slug": "a-new-year"
     },
     "content/post/my-dotfiles.md": {
       "contentHash": "5ac5fb91e07bb3ab7c2762da53c56c5b315f27114ad01aa352db3baa8026a4de",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk43ok52l",
-      "lastPublished": "2026-06-29T17:16:56.771Z",
+      "lastPublished": "2026-06-29T19:22:10.605Z",
       "slug": "my-dotfiles"
     },
     "content/post/welcome.md": {
       "contentHash": "a44c7a460cdaf2138ddbad9f665b5f3017f6fe4cb2eb68e25a12432440458cb2",
       "atUri": "at://did:plc:7kwylbxx56yro6aqz3oh5d2s/site.standard.document/3mpgyk44had2u",
-      "lastPublished": "2026-06-29T17:16:56.798Z",
+      "lastPublished": "2026-06-29T19:22:10.686Z",
       "slug": "welcome"
     }
   },
